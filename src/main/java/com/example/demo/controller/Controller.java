@@ -20,15 +20,17 @@ public class Controller implements Observer {
 		this.stage = stage;
 	}
 
-	public void launchGame() throws ClassNotFoundException, NoSuchMethodException, SecurityException,
-			InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException  {
-
+	public void launchGame() {
+		try {
 			stage.show();
 			goToLevel(LEVEL_ONE_CLASS_NAME);
+		} catch (Exception e) {
+			AlertUtils.alertException(e);
+		}
 	}
 
-	private void goToLevel(String className) throws ClassNotFoundException, NoSuchMethodException, SecurityException,
-			InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	private void goToLevel(String className) {
+		try {	
 			Class<?> myClass = Class.forName(className);
 			Constructor<?> constructor = myClass.getConstructor(double.class, double.class);
 			LevelParent myLevel = (LevelParent) constructor.newInstance(stage.getHeight(), stage.getWidth());
@@ -36,19 +38,23 @@ public class Controller implements Observer {
 			Scene scene = myLevel.initializeScene();
 			stage.setScene(scene);
 			myLevel.startGame();
-
+		} catch (Exception e) {
+			AlertUtils.alertException(e);
+		}
 	}
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		try {
-			goToLevel((String) arg1);
-		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
-				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setContentText(e.getClass().toString());
-			alert.show();
-		}
+		// Check type safety for a safe cast
+		if (arg1 instanceof String) {
+            try {
+                goToLevel((String) arg1);
+            } catch (Exception e) {
+                AlertUtils.alertException(e);
+            }
+        } else {
+            AlertUtils.alertException(new IllegalArgumentException("Specified level name is not an instance of String."));
+        }
 	}
 
 }
