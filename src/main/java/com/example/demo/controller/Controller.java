@@ -8,6 +8,13 @@ import javafx.stage.Stage;
 import com.example.demo.LevelParent;
 import com.example.demo.assets.*;
 
+/**
+ * Controls the logical flow of the game by creating instances of the levels and switching between them.
+ * <p>
+ * Implements the Observer design pattern: the Controller is an {@code Observer} of the levels ({@code Observable}).
+ * <p>
+ * When the level changes state, the Controller's update method is called and switches to the next level.
+ */
 public class Controller implements Observer {
 
 	private static final String LEVEL_ONE_CLASS_NAME = "com.example.demo.LevelOne";
@@ -16,12 +23,20 @@ public class Controller implements Observer {
 	private final SoundAssetManager soundManager;
 	private LevelParent myLevel;
 
+	/**
+	 * Constructor to create an instance of Controller.
+	 *
+	 * @param stage - the stage to display the game
+	 */
 	public Controller(Stage stage) {
 		this.stage = stage;
 		this.imageManager = new ImageAssetManager();
 		this.soundManager = new SoundAssetManager();
 	}
 
+	/**
+	 * Launch the game by showing the {@code stage} and going to the first level.
+	 */
 	public void launchGame() {
 		try {
 			stage.show();
@@ -31,6 +46,11 @@ public class Controller implements Observer {
 		}
 	}
 
+	/**
+	 * Go to the level specified by its parameter by using reflection to create an instance of the level class.
+	 *
+	 * @param className - the name of the level class to go to
+	 */
 	private void goToLevel(String className) {
 		try {
 			/*
@@ -52,6 +72,12 @@ public class Controller implements Observer {
 		}
 	}
 
+	/**
+	 * Notify the Controller ({@code Observer}) that the level ({@code Observable}) has changed state, prompting a switch to the next level.
+	 *
+	 * @param observable - the observable object, required in the method signature by the Observer interface
+	 * @param levelName - the name of the level class to go to
+	 */
 	@Override
 	public void update(Observable observable, Object levelName) {
 		// Check type safety for a safe cast

@@ -4,10 +4,21 @@ import javafx.scene.image.ImageView;
 import javafx.scene.media.AudioClip;
 import com.example.demo.assets.*;
 
+/**
+ * View displaying image and playing sound when the game is over.
+ */
 public class GameOverImage extends ImageView {
 
-	private AudioClip sound;
+	private final AudioClip sound;
 
+	/**
+	 * Constructor to create an instance of GameOverImage.
+	 *
+	 * @param xPosition - the x position of the image
+	 * @param yPosition - the y position of the image
+	 * @param imageManager - the image asset manager to load the image
+	 * @param soundManager - the sound asset manager to load the sound
+	 */
 	public GameOverImage(double xPosition, double yPosition, ImageAssetManager imageManager, SoundAssetManager soundManager) {
 		this.setImage(imageManager.load(AssetPaths.GAMEOVER));
 		this.setLayoutX(xPosition);

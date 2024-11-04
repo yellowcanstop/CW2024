@@ -22,6 +22,9 @@ public class Background extends ImageView {
         this.setImage(imageManager.load(backgroundImageName));
     }
 
+    /**
+     * Unload the background image.
+     */
     public void unloadResources() {
         imageManager.unload(backgroundImageName);
     }

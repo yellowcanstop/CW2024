@@ -4,12 +4,23 @@ import javafx.scene.image.ImageView;
 import javafx.scene.media.AudioClip;
 import com.example.demo.assets.*;
 
+/**
+ * View displaying image and playing sound when the game is won.
+ */
 public class WinImage extends ImageView {
 	
 	private static final int HEIGHT = 500;
 	private static final int WIDTH = 600;
-	private AudioClip sound;
-	
+	private final AudioClip sound;
+
+	/**
+	 * Constructor to create an instance of WinImage.
+	 *
+	 * @param xPosition - the x position of the image
+	 * @param yPosition - the y position of the image
+	 * @param imageManager - image asset manager to load the image
+	 * @param soundManager - sound asset manager to load the sound
+	 */
 	public WinImage(double xPosition, double yPosition, ImageAssetManager imageManager, SoundAssetManager soundManager) {
 		this.setImage(imageManager.load(AssetPaths.YOU_WIN));
 		this.setVisible(false);
@@ -19,7 +30,10 @@ public class WinImage extends ImageView {
 		this.setLayoutY(yPosition);
 		this.sound = soundManager.load(AssetPaths.WIN_SOUND);
 	}
-	
+
+	/**
+	 * Display the image when the game is won.
+	 */
 	public void showWinImage() {
 		this.setVisible(true);
 	}
