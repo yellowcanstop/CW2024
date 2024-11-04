@@ -3,6 +3,7 @@ package com.example.demo;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import com.example.demo.controller.InputController;
 import javafx.animation.*;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -103,21 +104,21 @@ public abstract class LevelParent extends Observable {
 		background.setFocusTraversable(true);
 		background.setFitHeight(screenHeight);
 		background.setFitWidth(screenWidth);
-		background.setOnKeyPressed(new EventHandler<KeyEvent>() {
-			public void handle(KeyEvent e) {
-				KeyCode kc = e.getCode();
-				if (kc == KeyCode.UP) user.moveUp();
-				if (kc == KeyCode.DOWN) user.moveDown();
-				if (kc == KeyCode.SPACE) fireProjectile();
-			}
-		});
-		background.setOnKeyReleased(new EventHandler<KeyEvent>() {
-			public void handle(KeyEvent e) {
-				KeyCode kc = e.getCode();
-				if (kc == KeyCode.UP || kc == KeyCode.DOWN) user.stop();
-			}
-		});
+		InputController keyboardController = new InputController(user, instantiateKeyActions());
+		background.setOnKeyPressed(keyboardController);
+		background.setOnKeyReleased(keyboardController);
 		root.getChildren().add(background);
+	}
+
+	/**
+	 * Instantiate the {@code Map<KeyCode, Runnable>} to define the key actions for the game level.
+	 *
+	 * @return the {@code Map<KeyCode, Runnable>} containing the key actions for the game level
+	 */
+	protected Map<KeyCode, Runnable> instantiateKeyActions() {
+		Map<KeyCode, Runnable> keyActions = new HashMap<>();
+		keyActions.put(KeyCode.SPACE, this::fireProjectile);
+		return keyActions;
 	}
 
 	private void fireProjectile() {
