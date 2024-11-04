@@ -33,10 +33,13 @@ public class Controller implements Observer {
 
 	private void goToLevel(String className) {
 		try {
+			/*
 			// Unload resources from the previous level before going to the next level
 			if (myLevel != null) {
 				myLevel.unloadResources();
 			}
+
+			 */
 			Class<?> myClass = Class.forName(className);
 			Constructor<?> constructor = myClass.getConstructor(double.class, double.class, ImageAssetManager.class, SoundAssetManager.class);
 			myLevel = (LevelParent) constructor.newInstance(stage.getHeight(), stage.getWidth(), imageManager, soundManager);

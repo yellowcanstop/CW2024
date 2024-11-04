@@ -7,7 +7,7 @@ public class AlertUtils {
     public static void alertException(Exception e) {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setContentText(e.getClass() + ":\n" + e.getMessage());
-		alert.show();
+		alert.showAndWait();
 		System.exit(1);
 	}
 }
