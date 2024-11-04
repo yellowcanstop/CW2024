@@ -1,23 +1,25 @@
 package com.example.demo.controller;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Observable;
 import java.util.Observer;
-
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import com.example.demo.LevelParent;
+import com.example.demo.assets.*;
 
 public class Controller implements Observer {
 
 	private static final String LEVEL_ONE_CLASS_NAME = "com.example.demo.LevelOne";
 	private final Stage stage;
+	private final ImageAssetManager imageManager;
+	private final SoundAssetManager soundManager;
+	private LevelParent myLevel;
 
 	public Controller(Stage stage) {
 		this.stage = stage;
+		this.imageManager = new ImageAssetManager();
+		this.soundManager = new SoundAssetManager();
 	}
 
 	public void launchGame() {
@@ -30,10 +32,14 @@ public class Controller implements Observer {
 	}
 
 	private void goToLevel(String className) {
-		try {	
+		try {
+			// Unload resources from the previous level before going to the next level
+			if (myLevel != null) {
+				myLevel.unloadResources();
+			}
 			Class<?> myClass = Class.forName(className);
-			Constructor<?> constructor = myClass.getConstructor(double.class, double.class);
-			LevelParent myLevel = (LevelParent) constructor.newInstance(stage.getHeight(), stage.getWidth());
+			Constructor<?> constructor = myClass.getConstructor(double.class, double.class, ImageAssetManager.class, SoundAssetManager.class);
+			myLevel = (LevelParent) constructor.newInstance(stage.getHeight(), stage.getWidth(), imageManager, soundManager);
 			myLevel.addObserver(this);
 			Scene scene = myLevel.initializeScene();
 			stage.setScene(scene);

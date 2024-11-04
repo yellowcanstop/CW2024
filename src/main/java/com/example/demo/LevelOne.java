@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import com.example.demo.assets.*;
+
 public class LevelOne extends LevelParent {
 	
 	private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/background1.jpg";
@@ -9,8 +11,8 @@ public class LevelOne extends LevelParent {
 	private static final double ENEMY_SPAWN_PROBABILITY = .20;
 	private static final int PLAYER_INITIAL_HEALTH = 5;
 
-	public LevelOne(double screenHeight, double screenWidth) {
-		super(BACKGROUND_IMAGE_NAME, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
+	public LevelOne(double screenHeight, double screenWidth, ImageAssetManager imageManager, SoundAssetManager soundManager) {
+		super(AssetPaths.BACKGROUND1, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH, imageManager, soundManager);
 	}
 
 	@Override
@@ -33,7 +35,7 @@ public class LevelOne extends LevelParent {
 		for (int i = 0; i < TOTAL_ENEMIES - currentNumberOfEnemies; i++) {
 			if (Math.random() < ENEMY_SPAWN_PROBABILITY) {
 				double newEnemyInitialYPosition = Math.random() * getEnemyMaximumYPosition();
-				ActiveActorDestructible newEnemy = new EnemyPlane(getScreenWidth(), newEnemyInitialYPosition);
+				ActiveActorDestructible newEnemy = new EnemyPlane(getScreenWidth(), newEnemyInitialYPosition, imageManager);
 				addEnemyUnit(newEnemy);
 			}
 		}
@@ -41,7 +43,7 @@ public class LevelOne extends LevelParent {
 
 	@Override
 	protected LevelView instantiateLevelView() {
-		return new LevelView(getRoot(), PLAYER_INITIAL_HEALTH);
+		return new LevelView(getRoot(), PLAYER_INITIAL_HEALTH, imageManager, soundManager);
 	}
 
 	private boolean userHasReachedKillTarget() {

@@ -1,14 +1,15 @@
 package com.example.demo;
 
 import javafx.scene.image.*;
+import com.example.demo.assets.*;
 
 public abstract class ActiveActor extends ImageView {
-	
-	private static final String IMAGE_LOCATION = "/com/example/demo/images/";
 
-	public ActiveActor(String imageName, int imageHeight, double initialXPos, double initialYPos) {
-		//this.setImage(new Image(IMAGE_LOCATION + imageName));
-		this.setImage(new Image(getClass().getResource(IMAGE_LOCATION + imageName).toExternalForm()));
+	public final ImageAssetManager imageManager;
+
+	public ActiveActor(String imageName, int imageHeight, double initialXPos, double initialYPos, ImageAssetManager imageManager) {
+		this.imageManager = imageManager;
+		this.setImage(imageManager.load(imageName));
 		this.setLayoutX(initialXPos);
 		this.setLayoutY(initialYPos);
 		this.setFitHeight(imageHeight);

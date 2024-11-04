@@ -2,10 +2,9 @@ package com.example.demo;
 
 import java.util.*;
 import java.util.stream.Collectors;
-
 import com.example.demo.controller.InputController;
+import com.example.demo.assets.*;
 import javafx.animation.*;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.*;
@@ -33,18 +32,23 @@ public abstract class LevelParent extends Observable {
 	
 	private int currentNumberOfEnemies;
 	private LevelView levelView;
+	public final ImageAssetManager imageManager;
+	public final SoundAssetManager soundManager;
+	private final String backgroundImageName;
 
-	public LevelParent(String backgroundImageName, double screenHeight, double screenWidth, int playerInitialHealth) {
+	public LevelParent(String backgroundImageName, double screenHeight, double screenWidth, int playerInitialHealth, ImageAssetManager imageManager, SoundAssetManager soundManager) {
 		this.root = new Group();
 		this.scene = new Scene(root, screenWidth, screenHeight);
 		this.timeline = new Timeline();
-		this.user = new UserPlane(playerInitialHealth);
+		this.imageManager = imageManager;
+		this.soundManager = soundManager;
+		this.user = new UserPlane(playerInitialHealth, imageManager);
 		this.friendlyUnits = new ArrayList<>();
 		this.enemyUnits = new ArrayList<>();
 		this.userProjectiles = new ArrayList<>();
 		this.enemyProjectiles = new ArrayList<>();
-
-		this.background = new ImageView(new Image(getClass().getResource(backgroundImageName).toExternalForm()));
+		this.backgroundImageName = backgroundImageName;
+		this.background = new ImageView(imageManager.load(backgroundImageName));
 		this.screenHeight = screenHeight;
 		this.screenWidth = screenWidth;
 		this.enemyMaximumYPosition = screenHeight - SCREEN_HEIGHT_ADJUSTMENT;
@@ -214,6 +218,12 @@ public abstract class LevelParent extends Observable {
 	protected void loseGame() {
 		timeline.stop();
 		levelView.showGameOverImage();
+	}
+
+	public void unloadResources() {
+		// unload other resources like scene?
+		imageManager.unload(backgroundImageName);
+		levelView.unloadResources();
 	}
 
 	protected UserPlane getUser() {

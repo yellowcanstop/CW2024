@@ -5,6 +5,7 @@ import javafx.scene.media.AudioClip;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 // TODO - control volume? - AudioClip.setVolume(double)
 // TODO - use Media and MediaPlayer for longer audio clips - more memory-efficient
@@ -20,7 +21,7 @@ import java.util.Map;
  */
 public class SoundAssetManager extends AssetManager<AudioClip> {
 
-    private Map<String, AudioClip> sounds = new HashMap<>();
+    private final Map<String, AudioClip> sounds = new HashMap<>();
 
     /**
      * Load an audio clip from the given path.
@@ -34,7 +35,7 @@ public class SoundAssetManager extends AssetManager<AudioClip> {
             return sounds.get(path);
         }
         try {
-            AudioClip clip = new AudioClip(path);
+            AudioClip clip = new AudioClip(Objects.requireNonNull(getClass().getResource(path)).toExternalForm());
             sounds.put(path, clip);
             return clip;
         } catch (Exception e) {

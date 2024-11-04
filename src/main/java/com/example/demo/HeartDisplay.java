@@ -3,16 +3,16 @@ package com.example.demo;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import com.example.demo.assets.*;
 
 public class HeartDisplay {
-	
-	private static final String HEART_IMAGE_NAME = "/com/example/demo/images/heart.png";
-	private static final int HEART_HEIGHT = 50;
 	private static final int INDEX_OF_FIRST_ITEM = 0;
 	private final HBox container;
 	private int numberOfHeartsToDisplay;
+	private final ImageAssetManager imageManager;
 	
-	public HeartDisplay(double xPosition, double yPosition, int heartsToDisplay) {
+	public HeartDisplay(double xPosition, double yPosition, int heartsToDisplay, ImageAssetManager imageManager) {
+		this.imageManager = imageManager;
 		this.container = new HBox();
 		this.container.setLayoutX(xPosition);
 		this.container.setLayoutY(yPosition);
@@ -22,10 +22,7 @@ public class HeartDisplay {
 
 	private void initializeHearts() {
 		for (int i = 0; i < numberOfHeartsToDisplay; i++) {
-			ImageView heart = new ImageView(new Image(getClass().getResource(HEART_IMAGE_NAME).toExternalForm()));
-
-			heart.setFitHeight(HEART_HEIGHT);
-			heart.setPreserveRatio(true);
+			Heart heart = new Heart(imageManager);
 			container.getChildren().add(heart);
 		}
 	}
@@ -39,4 +36,8 @@ public class HeartDisplay {
 		return container;
 	}
 
+	public void unloadResources() {
+		container.getChildren().clear();
+		imageManager.unload(AssetPaths.HEART);
+	}
 }

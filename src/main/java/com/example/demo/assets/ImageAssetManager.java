@@ -4,6 +4,7 @@ import com.example.demo.controller.AlertUtils;
 import javafx.scene.image.Image;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Asset manager for {@code Image} for images in the game.
@@ -26,7 +27,7 @@ public class ImageAssetManager extends AssetManager<Image> {
             return images.get(path);
         }
         try {
-            Image image = new Image(path);
+            Image image = new Image(Objects.requireNonNull(getClass().getResource(path)).toExternalForm());
             images.put(path, image);
             return image;
         } catch (Exception e) {
