@@ -23,7 +23,7 @@ public abstract class LevelParent extends Observable {
 	private final Timeline timeline;
 	private final UserPlane user;
 	private final Scene scene;
-	private final ImageView background;
+	private final Background background;
 
 	private final List<ActiveActorDestructible> friendlyUnits;
 	private final List<ActiveActorDestructible> enemyUnits;
@@ -31,10 +31,9 @@ public abstract class LevelParent extends Observable {
 	private final List<ActiveActorDestructible> enemyProjectiles;
 	
 	private int currentNumberOfEnemies;
-	private LevelView levelView;
+	private final LevelView levelView;
 	public final ImageAssetManager imageManager;
 	public final SoundAssetManager soundManager;
-	private final String backgroundImageName;
 
 	public LevelParent(String backgroundImageName, double screenHeight, double screenWidth, int playerInitialHealth, ImageAssetManager imageManager, SoundAssetManager soundManager) {
 		this.root = new Group();
@@ -47,8 +46,7 @@ public abstract class LevelParent extends Observable {
 		this.enemyUnits = new ArrayList<>();
 		this.userProjectiles = new ArrayList<>();
 		this.enemyProjectiles = new ArrayList<>();
-		this.backgroundImageName = backgroundImageName;
-		this.background = new ImageView(imageManager.load(backgroundImageName));
+		this.background = new Background(backgroundImageName, imageManager);
 		this.screenHeight = screenHeight;
 		this.screenWidth = screenWidth;
 		this.enemyMaximumYPosition = screenHeight - SCREEN_HEIGHT_ADJUSTMENT;
@@ -222,7 +220,7 @@ public abstract class LevelParent extends Observable {
 
 	public void unloadResources() {
 		// unload other resources like scene?
-		imageManager.unload(backgroundImageName);
+		background.unloadResources();
 		levelView.unloadResources();
 	}
 
