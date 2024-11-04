@@ -53,11 +53,11 @@ public class Controller implements Observer {
 	}
 
 	@Override
-	public void update(Observable arg0, Object arg1) {
+	public void update(Observable observable, Object levelName) {
 		// Check type safety for a safe cast
-		if (arg1 instanceof String) {
+		if (levelName instanceof String) {
             try {
-                goToLevel((String) arg1);
+                goToLevel((String) levelName);
             } catch (Exception e) {
                 AlertUtils.alertException(e);
             }
