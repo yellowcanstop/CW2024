@@ -54,6 +54,12 @@ public class InputController implements EventHandler<KeyEvent> {
             case DOWN:
                 user.moveDown();
                 break;
+            case LEFT:
+                user.moveLeft();
+                break;
+            case RIGHT:
+                user.moveRight();
+                break;
             default:
                 Runnable action = keyActions.get(keyCode);
                 if (action != null) {
@@ -69,7 +75,7 @@ public class InputController implements EventHandler<KeyEvent> {
      * @param keyCode - the keyboard key released
      */
     private void handleKeyReleased(KeyCode keyCode) {
-        if (keyCode == KeyCode.UP || keyCode == KeyCode.DOWN) {
+        if (keyCode == KeyCode.UP || keyCode == KeyCode.DOWN || keyCode == KeyCode.LEFT || keyCode == KeyCode.RIGHT) {
             user.stop();
         }
     }
