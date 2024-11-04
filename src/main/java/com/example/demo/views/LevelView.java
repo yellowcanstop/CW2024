@@ -1,5 +1,8 @@
-package com.example.demo;
+package com.example.demo.views;
 
+import com.example.demo.views.components.GameOverImage;
+import com.example.demo.views.components.HeartDisplay;
+import com.example.demo.views.components.WinImage;
 import javafx.scene.Group;
 import com.example.demo.assets.*;
 

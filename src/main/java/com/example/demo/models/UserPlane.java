@@ -1,11 +1,11 @@
-package com.example.demo;
+package com.example.demo.models;
 
 import com.example.demo.assets.*;
 
 /**
  * User-controlled plane sprite for the game.
  */
-public class UserPlane extends FighterPlane {
+public class UserPlane extends Plane {
 
 	private static final double X_UPPER_BOUND = -40;
 	private static final double X_LOWER_BOUND = 800;
@@ -69,7 +69,7 @@ public class UserPlane extends FighterPlane {
 	 * @return a projectile
 	 */
 	@Override
-	public ActiveActorDestructible fireProjectile() {
+	public DestructibleSprite fireProjectile() {
 		return new UserProjectile(PROJECTILE_X_POSITION, getProjectileYPosition(PROJECTILE_Y_POSITION_OFFSET), imageManager);
 	}
 

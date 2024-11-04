@@ -1,11 +1,11 @@
-package com.example.demo;
+package com.example.demo.models;
 
 import com.example.demo.assets.*;
 
 /**
  * Enemy plane sprite for the game.
  */
-public class EnemyPlane extends FighterPlane {
+public class EnemyPlane extends Plane {
 
 	private static final int IMAGE_HEIGHT = 150;
 	private static final int HORIZONTAL_VELOCITY = -6;
@@ -39,7 +39,7 @@ public class EnemyPlane extends FighterPlane {
 	 * @return a projectile randomly based on the fire rate, else null
 	 */
 	@Override
-	public ActiveActorDestructible fireProjectile() {
+	public DestructibleSprite fireProjectile() {
 		if (Math.random() < FIRE_RATE) {
 			double projectileXPosition = getProjectileXPosition(PROJECTILE_X_POSITION_OFFSET);
 			double projectileYPosition = getProjectileYPosition(PROJECTILE_Y_POSITION_OFFSET);

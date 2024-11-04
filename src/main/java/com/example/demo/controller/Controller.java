@@ -3,9 +3,11 @@ package com.example.demo.controller;
 import java.lang.reflect.Constructor;
 import java.util.Observable;
 import java.util.Observer;
+
+import com.example.demo.utils.AlertException;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import com.example.demo.LevelParent;
+import com.example.demo.levels.LevelParent;
 import com.example.demo.assets.*;
 
 /**
@@ -17,7 +19,7 @@ import com.example.demo.assets.*;
  */
 public class Controller implements Observer {
 
-	private static final String LEVEL_ONE_CLASS_NAME = "com.example.demo.LevelOne";
+	private static final String LEVEL_ONE_CLASS_NAME = "com.example.demo.levels.LevelOne";
 	private final Stage stage;
 	private final ImageAssetManager imageManager;
 	private final SoundAssetManager soundManager;
@@ -42,7 +44,7 @@ public class Controller implements Observer {
 			stage.show();
 			goToLevel(LEVEL_ONE_CLASS_NAME);
 		} catch (Exception e) {
-			AlertUtils.alertException(e);
+			AlertException.alertException(e);
 		}
 	}
 
@@ -68,7 +70,7 @@ public class Controller implements Observer {
 			stage.setScene(scene);
 			myLevel.startGame();
 		} catch (Exception e) {
-			AlertUtils.alertException(e);
+			AlertException.alertException(e);
 		}
 	}
 
@@ -85,10 +87,10 @@ public class Controller implements Observer {
             try {
                 goToLevel((String) levelName);
             } catch (Exception e) {
-                AlertUtils.alertException(e);
+                AlertException.alertException(e);
             }
         } else {
-            AlertUtils.alertException(new IllegalArgumentException("Specified level name is not an instance of String."));
+            AlertException.alertException(new IllegalArgumentException("Specified level name is not an instance of String."));
         }
 	}
 

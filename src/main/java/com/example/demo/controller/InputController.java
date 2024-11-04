@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.UserPlane;
+import com.example.demo.models.UserPlane;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;

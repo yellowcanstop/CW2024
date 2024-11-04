@@ -1,11 +1,12 @@
-package com.example.demo;
+package com.example.demo.models;
 
 import com.example.demo.assets.ImageAssetManager;
+import com.example.demo.models.DestructibleSprite;
 
 /**
  * Abstract class representing a projectile shot by sprites in the game.
  */
-public abstract class Projectile extends ActiveActorDestructible {
+public abstract class Projectile extends DestructibleSprite {
 
 	/**
 	 * Constructor to create an instance of Projectile.

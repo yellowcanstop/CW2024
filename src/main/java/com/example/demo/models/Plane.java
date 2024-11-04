@@ -1,11 +1,12 @@
-package com.example.demo;
+package com.example.demo.models;
 
 import com.example.demo.assets.*;
+import com.example.demo.models.DestructibleSprite;
 
 /**
  * Abstract class representing a plane sprite in the game.
  */
-public abstract class FighterPlane extends ActiveActorDestructible {
+public abstract class Plane extends DestructibleSprite {
 
 	private int health;
 
@@ -19,7 +20,7 @@ public abstract class FighterPlane extends ActiveActorDestructible {
 	 * @param health - the initial health of the plane
 	 * @param imageManager - the ImageAssetManager to load the image for the plane
 	 */
-	public FighterPlane(String imageName, int imageHeight, double initialXPos, double initialYPos, int health, ImageAssetManager imageManager) {
+	public Plane(String imageName, int imageHeight, double initialXPos, double initialYPos, int health, ImageAssetManager imageManager) {
 		super(imageName, imageHeight, initialXPos, initialYPos, imageManager);
 		this.health = health;
 	}
@@ -29,7 +30,7 @@ public abstract class FighterPlane extends ActiveActorDestructible {
 	 *
 	 * @return a projectile
 	 */
-	public abstract ActiveActorDestructible fireProjectile();
+	public abstract DestructibleSprite fireProjectile();
 
 	/**
 	 * Handle damage taken by the destructible.

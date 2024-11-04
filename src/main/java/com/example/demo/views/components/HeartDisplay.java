@@ -1,5 +1,6 @@
-package com.example.demo;
+package com.example.demo.views.components;
 
+import com.example.demo.views.components.Heart;
 import javafx.scene.layout.HBox;
 import com.example.demo.assets.*;
 

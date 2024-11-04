@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.models;
 
 import javafx.scene.image.*;
 import com.example.demo.assets.*;
@@ -6,12 +6,12 @@ import com.example.demo.assets.*;
 /**
  * Abstract class representing a sprite which can move in the game.
  */
-public abstract class ActiveActor extends ImageView {
+public abstract class Sprite extends ImageView {
 
 	public final ImageAssetManager imageManager;
 
 	/**
-	 * Constructor to create an instance of an ActiveActor.
+	 * Constructor to create an instance of an Sprite.
 	 *
 	 * @param imageName - the String classpath of the image for the actor
 	 * @param imageHeight - the height of the image for the actor
@@ -19,7 +19,7 @@ public abstract class ActiveActor extends ImageView {
 	 * @param initialYPos - the initial y coordinate position of the actor
 	 * @param imageManager - the ImageAssetManager to load the image for the actor
 	 */
-	public ActiveActor(String imageName, int imageHeight, double initialXPos, double initialYPos, ImageAssetManager imageManager) {
+	public Sprite(String imageName, int imageHeight, double initialXPos, double initialYPos, ImageAssetManager imageManager) {
 		this.imageManager = imageManager;
 		this.setImage(imageManager.load(imageName));
 		this.setLayoutX(initialXPos);

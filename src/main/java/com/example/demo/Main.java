@@ -1,5 +1,7 @@
-package com.example.demo.controller;
+package com.example.demo;
 
+import com.example.demo.controller.Controller;
+import com.example.demo.utils.AlertException;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -27,7 +29,7 @@ public class Main extends Application {
             Controller myController = new Controller(stage);
             myController.launchGame();
         } catch (Exception e) {
-            AlertUtils.alertException(e);
+            AlertException.alertException(e);
         }
     }
 

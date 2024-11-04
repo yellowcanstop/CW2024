@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.utils;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -6,7 +6,7 @@ import javafx.scene.control.Alert.AlertType;
 /**
  * Utility class for handling exceptions by displaying an alert dialog.
  */
-public class AlertUtils {
+public class AlertException {
 	/**
 	 * Displays an alert dialog with the exception message.
 	 * @param e - the exception to display

@@ -1,6 +1,6 @@
 package com.example.demo.assets;
 
-import com.example.demo.controller.AlertUtils;
+import com.example.demo.utils.AlertException;
 import javafx.scene.image.Image;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,7 +31,7 @@ public class ImageAssetManager extends AssetManager<Image> {
             images.put(path, image);
             return image;
         } catch (Exception e) {
-            AlertUtils.alertException(e);
+            AlertException.alertException(e);
             return null;
         }
     }
@@ -46,7 +46,7 @@ public class ImageAssetManager extends AssetManager<Image> {
         try {
             images.remove(path);
         } catch (Exception e) {
-            AlertUtils.alertException(e);
+            AlertException.alertException(e);
         }
     }
 }

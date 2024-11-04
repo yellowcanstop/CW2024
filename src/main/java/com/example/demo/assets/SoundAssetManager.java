@@ -1,6 +1,6 @@
 package com.example.demo.assets;
 
-import com.example.demo.controller.AlertUtils;
+import com.example.demo.utils.AlertException;
 import javafx.scene.media.AudioClip;
 
 import java.util.HashMap;
@@ -39,7 +39,7 @@ public class SoundAssetManager extends AssetManager<AudioClip> {
             sounds.put(path, clip);
             return clip;
         } catch (Exception e) {
-            AlertUtils.alertException(e);
+            AlertException.alertException(e);
             return null;
         }
     }
@@ -54,7 +54,7 @@ public class SoundAssetManager extends AssetManager<AudioClip> {
         try {
             sounds.remove(path);
         } catch (Exception e) {
-            AlertUtils.alertException(e);
+            AlertException.alertException(e);
         }
     }
 }

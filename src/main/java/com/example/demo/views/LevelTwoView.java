@@ -1,12 +1,13 @@
-package com.example.demo;
+package com.example.demo.views;
 
+import com.example.demo.views.components.ShieldImage;
 import javafx.scene.Group;
 import com.example.demo.assets.*;
 
 /**
  * View for level two of the game.
  */
-public class LevelViewLevelTwo extends LevelView {
+public class LevelTwoView extends LevelView {
 
 	private static final int SHIELD_X_POSITION = 1150;
 	private static final int SHIELD_Y_POSITION = 500;
@@ -23,7 +24,7 @@ public class LevelViewLevelTwo extends LevelView {
 	 * @param imageManager - the image manager to load images
 	 * @param soundManager - the sound manager to load sounds
 	 */
-	public LevelViewLevelTwo(Group root, int heartsToDisplay, ImageAssetManager imageManager, SoundAssetManager soundManager) {
+	public LevelTwoView(Group root, int heartsToDisplay, ImageAssetManager imageManager, SoundAssetManager soundManager) {
 		super(root, heartsToDisplay, imageManager, soundManager);
 		this.root = root;
 		this.imageManager = imageManager;

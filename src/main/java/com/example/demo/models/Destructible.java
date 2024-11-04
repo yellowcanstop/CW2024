@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.models;
 
 /**
  * Interface for sprites which can take damage and be destroyed in the game.

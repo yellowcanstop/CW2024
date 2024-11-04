@@ -1,9 +1,14 @@
-package com.example.demo;
+package com.example.demo.levels;
 
 import java.util.*;
-import java.util.stream.Collectors;
+
+import com.example.demo.views.components.Background;
+import com.example.demo.models.DestructibleSprite;
+import com.example.demo.models.Plane;
+import com.example.demo.models.UserPlane;
 import com.example.demo.controller.InputController;
 import com.example.demo.assets.*;
+import com.example.demo.views.LevelView;
 import javafx.animation.*;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -31,10 +36,10 @@ public abstract class LevelParent extends Observable {
 	private final Scene scene;
 	private final Background background;
 
-	private final List<ActiveActorDestructible> friendlyUnits;
-	private final List<ActiveActorDestructible> enemyUnits;
-	private final List<ActiveActorDestructible> userProjectiles;
-	private final List<ActiveActorDestructible> enemyProjectiles;
+	private final List<DestructibleSprite> friendlyUnits;
+	private final List<DestructibleSprite> enemyUnits;
+	private final List<DestructibleSprite> userProjectiles;
+	private final List<DestructibleSprite> enemyProjectiles;
 	
 	private int currentNumberOfEnemies;
 	private final LevelView levelView;
@@ -192,7 +197,7 @@ public abstract class LevelParent extends Observable {
 	 * Fire a projectile from the plane controlled by the player.
 	 */
 	private void fireProjectile() {
-		ActiveActorDestructible projectile = user.fireProjectile();
+		DestructibleSprite projectile = user.fireProjectile();
 		root.getChildren().add(projectile);
 		userProjectiles.add(projectile);
 	}
@@ -201,7 +206,7 @@ public abstract class LevelParent extends Observable {
 	 * Spawn projectiles for all enemy units.
 	 */
 	private void generateEnemyFire() {
-		enemyUnits.forEach(enemy -> spawnEnemyProjectile(((FighterPlane) enemy).fireProjectile()));
+		enemyUnits.forEach(enemy -> spawnEnemyProjectile(((Plane) enemy).fireProjectile()));
 	}
 
 	/**
@@ -209,7 +214,7 @@ public abstract class LevelParent extends Observable {
 	 *
 	 * @param projectile - the projectile to be displayed
 	 */
-	private void spawnEnemyProjectile(ActiveActorDestructible projectile) {
+	private void spawnEnemyProjectile(DestructibleSprite projectile) {
 		if (projectile != null) {
 			root.getChildren().add(projectile);
 			enemyProjectiles.add(projectile);
@@ -241,8 +246,8 @@ public abstract class LevelParent extends Observable {
 	 *
 	 * @param actors - list of actors
 	 */
-	private void removeDestroyedActors(List<ActiveActorDestructible> actors) {
-		List<ActiveActorDestructible> destroyedActors = actors.stream().filter(actor -> actor.isDestroyed())
+	private void removeDestroyedActors(List<DestructibleSprite> actors) {
+		List<DestructibleSprite> destroyedActors = actors.stream().filter(actor -> actor.isDestroyed())
 				.toList();
 		root.getChildren().removeAll(destroyedActors);
 		actors.removeAll(destroyedActors);
@@ -275,10 +280,10 @@ public abstract class LevelParent extends Observable {
 	 * @param actors1 - the first list of actors
 	 * @param actors2 - the second list of actors
 	 */
-	private void handleCollisions(List<ActiveActorDestructible> actors1,
-			List<ActiveActorDestructible> actors2) {
-		for (ActiveActorDestructible actor : actors2) {
-			for (ActiveActorDestructible otherActor : actors1) {
+	private void handleCollisions(List<DestructibleSprite> actors1,
+			List<DestructibleSprite> actors2) {
+		for (DestructibleSprite actor : actors2) {
+			for (DestructibleSprite otherActor : actors1) {
 				if (actor.getBoundsInParent().intersects(otherActor.getBoundsInParent())) {
 					actor.takeDamage();
 					otherActor.takeDamage();
@@ -291,7 +296,7 @@ public abstract class LevelParent extends Observable {
 	 * Handle enemy units which have moved past the player by adding damage to the player and removing the enemy unit.
 	 */
 	private void handleEnemyPenetration() {
-		for (ActiveActorDestructible enemy : enemyUnits) {
+		for (DestructibleSprite enemy : enemyUnits) {
 			if (enemyHasPenetratedDefenses(enemy)) {
 				user.takeDamage();
 				enemy.destroy();
@@ -321,7 +326,7 @@ public abstract class LevelParent extends Observable {
 	 * @param enemy - enemy unit whose position on the screen is being checked
 	 * @return true if enemy has moved past the player sprite, else false
 	 */
-	private boolean enemyHasPenetratedDefenses(ActiveActorDestructible enemy) {
+	private boolean enemyHasPenetratedDefenses(DestructibleSprite enemy) {
 		return Math.abs(enemy.getTranslateX()) > screenWidth;
 	}
 
@@ -382,7 +387,7 @@ public abstract class LevelParent extends Observable {
 	 *
 	 * @param enemy - enemy unit to be added to the game level
 	 */
-	protected void addEnemyUnit(ActiveActorDestructible enemy) {
+	protected void addEnemyUnit(DestructibleSprite enemy) {
 		enemyUnits.add(enemy);
 		root.getChildren().add(enemy);
 	}
