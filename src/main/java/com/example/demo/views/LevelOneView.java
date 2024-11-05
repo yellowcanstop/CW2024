@@ -8,6 +8,8 @@ import com.example.demo.assets.*;
  */
 public class LevelOneView extends LevelView {
 
+    private final ImageAssetManager imageManager;
+
     /**
      * Constructor to create an instance of the view for Level One.
      *
@@ -18,6 +20,17 @@ public class LevelOneView extends LevelView {
      */
     public LevelOneView(Group root, int heartsToDisplay, ImageAssetManager imageManager, SoundAssetManager soundManager) {
         super(root, heartsToDisplay, imageManager, soundManager);
+        this.imageManager = imageManager;
+    }
+
+    /**
+     * Unload level-specific resources when the level is no longer needed.
+     */
+    @Override
+    public void unloadResources() {
+        imageManager.unload(AssetPaths.BACKGROUND1);
+        imageManager.unload(AssetPaths.ENEMY_PLANE);
+        imageManager.unload(AssetPaths.ENEMY_FIRE);
     }
 
 }

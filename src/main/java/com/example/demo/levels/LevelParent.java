@@ -350,8 +350,6 @@ public abstract class LevelParent extends Observable {
 	 * Unload resources for the game level.
 	 */
 	public void unloadResources() {
-		// unload other resources like scene?
-		background.unloadResources();
 		levelView.unloadResources();
 	}
 

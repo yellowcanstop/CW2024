@@ -78,16 +78,16 @@ public class LevelView {
 	}
 
 	/**
-	 * Unload the resources used by the level view.
+	 * Unload the resources used by the level view at the end of the game.
 	 */
 	public void unloadResources() {
 		heartDisplay.unloadResources();
+		imageManager.unload(AssetPaths.USER_FIRE);
+		imageManager.unload(AssetPaths.USER_PLANE);
 
-		gameOverImage.stopSound();
 		soundManager.unload(AssetPaths.GAMEOVER_SOUND);
 		imageManager.unload(AssetPaths.GAMEOVER);
 
-		winImage.stopSound();
 		soundManager.unload(AssetPaths.WIN_SOUND);
 		imageManager.unload(AssetPaths.YOU_WIN);
 	}

@@ -23,9 +23,8 @@ public class Controller implements Observer {
 	private final Stage stage;
 	private final ImageAssetManager imageManager;
 	private final SoundAssetManager soundManager;
-	private LevelParent myLevel;
 
-	/**
+    /**
 	 * Constructor to create an instance of Controller.
 	 *
 	 * @param stage - the stage to display the game
@@ -55,16 +54,9 @@ public class Controller implements Observer {
 	 */
 	private void goToLevel(String className) {
 		try {
-			/*
-			// Unload resources from the previous level before going to the next level
-			if (myLevel != null) {
-				myLevel.unloadResources();
-			}
-
-			 */
 			Class<?> myClass = Class.forName(className);
 			Constructor<?> constructor = myClass.getConstructor(double.class, double.class, ImageAssetManager.class, SoundAssetManager.class);
-			myLevel = (LevelParent) constructor.newInstance(stage.getHeight(), stage.getWidth(), imageManager, soundManager);
+            LevelParent myLevel = (LevelParent) constructor.newInstance(stage.getHeight(), stage.getWidth(), imageManager, soundManager);
 			myLevel.addObserver(this);
 			Scene scene = myLevel.initializeScene();
 			stage.setScene(scene);
@@ -94,5 +86,12 @@ public class Controller implements Observer {
             AlertException.alertException(new IllegalArgumentException("Specified level name is not an instance of String."));
         }
 	}
+
+	/*
+	public void stopGame() {
+		// check overlap with stop() in main. is this necessary?
+		LevelParent.unloadResources();
+	}
+	 */
 
 }

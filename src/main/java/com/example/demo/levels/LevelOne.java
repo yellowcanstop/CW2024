@@ -38,6 +38,7 @@ public class LevelOne extends LevelParent {
 		}
 		else if (userHasReachedKillTarget())
 			goToNextLevel(NEXT_LEVEL);
+			this.unloadResources();
 	}
 
 	/**

@@ -32,7 +32,7 @@ public class GameOverImage extends ImageView {
 	public void playSound() {
 		if (sound != null) {
 			// loop continuously until stopped for gameover music
-			sound.setCycleCount(AudioClip.INDEFINITE);
+			// sound.setCycleCount(AudioClip.INDEFINITE);
 			sound.play();
 		}
 	}

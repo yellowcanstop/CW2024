@@ -55,11 +55,13 @@ public class LevelTwoView extends LevelView {
 	}
 
 	/**
-	 * Unload resources when the level is no longer needed.
+	 * Unload level-specific resources when the level is no longer needed.
 	 */
 	@Override
 	public void unloadResources() {
-		super.unloadResources();
 		imageManager.unload(AssetPaths.SHIELD);
+		imageManager.unload(AssetPaths.BACKGROUND2);
+		imageManager.unload(AssetPaths.BOSS_PLANE);
+		imageManager.unload(AssetPaths.FIREBALL);
 	}
 }
