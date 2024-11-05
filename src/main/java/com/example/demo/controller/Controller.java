@@ -85,6 +85,7 @@ public class Controller implements Observer {
 		// Check type safety for a safe cast
 		if (levelName instanceof String) {
             try {
+				observable.deleteObserver(this);
                 goToLevel((String) levelName);
             } catch (Exception e) {
                 AlertException.alertException(e);
