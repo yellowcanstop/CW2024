@@ -11,7 +11,7 @@ public abstract class Sprite extends ImageView {
 	public final ImageAssetManager imageManager;
 
 	/**
-	 * Constructor to create an instance of an Sprite.
+	 * Constructor to create an instance of a Sprite.
 	 *
 	 * @param imageName - the String classpath of the image for the actor
 	 * @param imageHeight - the height of the image for the actor
@@ -31,7 +31,7 @@ public abstract class Sprite extends ImageView {
 	/**
 	 * Update the position of the actor.
 	 */
-	public abstract void updatePosition();
+	protected abstract void updatePosition();
 
 	/**
 	 * Move the actor horizontally by the parameter amount.

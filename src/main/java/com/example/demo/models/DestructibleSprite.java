@@ -1,8 +1,6 @@
 package com.example.demo.models;
 
 import com.example.demo.assets.*;
-import com.example.demo.models.Destructible;
-import com.example.demo.models.Sprite;
 
 /**
  * Abstract class representing a sprite which can take damage and be destroyed in the game.

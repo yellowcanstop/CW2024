@@ -1,7 +1,6 @@
 package com.example.demo.models;
 
 import com.example.demo.assets.ImageAssetManager;
-import com.example.demo.models.DestructibleSprite;
 
 /**
  * Abstract class representing a projectile shot by sprites in the game.
@@ -33,6 +32,18 @@ public abstract class Projectile extends DestructibleSprite {
 	 * Update the position of the actor.
 	 */
 	@Override
-	public abstract void updatePosition();
+	public void updatePosition() {
+		destroyIfOffScreen();
+	}
+
+	/**
+	 * Destroy projectile is off the screen to optimize memory usage.
+	 */
+	private void destroyIfOffScreen() {
+		if (getLayoutX() + getTranslateX() < 0 || getLayoutX() + getTranslateX() > getScene().getWidth() ||
+				getLayoutY() + getTranslateY() < 0 || getLayoutY() + getTranslateY() > getScene().getHeight()) {
+			destroy();
+		}
+	}
 
 }

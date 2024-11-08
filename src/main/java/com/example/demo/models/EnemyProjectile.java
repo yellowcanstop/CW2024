@@ -1,7 +1,6 @@
 package com.example.demo.models;
 
 import com.example.demo.assets.*;
-import com.example.demo.models.Projectile;
 
 /**
  * Projectile for the enemy sprite in the game.
