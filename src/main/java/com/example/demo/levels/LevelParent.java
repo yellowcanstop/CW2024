@@ -14,15 +14,17 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.*;
 import javafx.util.Duration;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 /**
  * Abstract class which defines the behaviour of a level in the game.
  * <p>
- * Extends {@code Observable} to allow for communication with the Controller class.
+ * Uses a StringProperty for the Controller ({@code InvalidationListener}) to observe for changes in the level name.
  * <p>
  * Contains methods for instantiating a level's scene, handling collisions, and spawning sprites.
  */
-public abstract class LevelParent extends Observable {
+public abstract class LevelParent {
 
 	private static final double SCREEN_HEIGHT_ADJUSTMENT = 150;
 	private static final int MILLISECOND_DELAY = 50;
@@ -45,6 +47,9 @@ public abstract class LevelParent extends Observable {
 	private final LevelView levelView;
 	public final ImageAssetManager imageManager;
 	public final SoundAssetManager soundManager;
+
+	// The Controller (InvalidationListener) observes this property for changes in the level name.
+	private final StringProperty levelNameProperty = new SimpleStringProperty();
 
 	/**
 	 * Constructor to create an instance of a LevelParent.
@@ -122,13 +127,21 @@ public abstract class LevelParent extends Observable {
 	}
 
 	/**
-	 * Go to the next level of the game by notifying the Controller class ({@code Observer}).
+	 * Go to the next level of the game by setting the level name property (which is observed by the Controller).
 	 *
 	 * @param levelName - name of the next level of the game
 	 */
 	public void goToNextLevel(String levelName) {
-		setChanged();
-		notifyObservers(levelName);
+		levelNameProperty.set(levelName);
+	}
+
+	/**
+	 * Get the level name property.
+	 *
+	 * @return the level name property
+	 */
+	public StringProperty levelNameProperty() {
+		return levelNameProperty;
 	}
 
 	/**
