@@ -1,31 +1,22 @@
 package com.example.demo.views.components;
 
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import com.example.demo.assets.*;
+import java.util.Objects;
 
 /**
  * View component displaying a background image.
  */
 public class Background extends ImageView {
-
-    private final ImageAssetManager imageManager;
     private final String backgroundImageName;
 
     /**
      * Constructor to create an instance of Background.
      *
-     * @param imageManager - ImageAssetManager to load the background image
+     * @param backgroundImageName - the String classpath of the image for the background
      */
-    public Background(String backgroundImageName, ImageAssetManager imageManager) {
+    public Background(String backgroundImageName) {
         this.backgroundImageName = backgroundImageName;
-        this.imageManager = imageManager;
-        this.setImage(imageManager.load(backgroundImageName));
-    }
-
-    /**
-     * Unload the background image.
-     */
-    public void unloadResources() {
-        imageManager.unload(backgroundImageName);
+        this.setImage(new Image(Objects.requireNonNull(getClass().getResource(backgroundImageName)).toExternalForm()));
     }
 }

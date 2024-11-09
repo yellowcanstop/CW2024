@@ -1,13 +1,9 @@
 package com.example.demo.models;
 
-import com.example.demo.assets.*;
-import com.example.demo.models.DestructibleSprite;
-
 /**
  * Abstract class representing a plane sprite in the game.
  */
 public abstract class Plane extends DestructibleSprite {
-
 	private int health;
 
 	/**
@@ -18,10 +14,9 @@ public abstract class Plane extends DestructibleSprite {
 	 * @param initialXPos - the initial x coordinate position of the plane
 	 * @param initialYPos - the initial y coordinate position of the plane
 	 * @param health - the initial health of the plane
-	 * @param imageManager - the ImageAssetManager to load the image for the plane
 	 */
-	public Plane(String imageName, int imageHeight, double initialXPos, double initialYPos, int health, ImageAssetManager imageManager) {
-		super(imageName, imageHeight, initialXPos, initialYPos, imageManager);
+	public Plane(String imageName, int imageHeight, double initialXPos, double initialYPos, int health) {
+		super(imageName, imageHeight, initialXPos, initialYPos);
 		this.health = health;
 	}
 
@@ -80,5 +75,4 @@ public abstract class Plane extends DestructibleSprite {
 	public int getHealth() {
 		return health;
 	}
-		
 }

@@ -2,13 +2,12 @@ package com.example.demo.models;
 
 import java.util.*;
 
-import com.example.demo.assets.*;
+import com.example.demo.utils.AssetPaths;
 
 /**
  * BossPlane sprite for level two of the game.
  */
 public class BossPlane extends Plane {
-
 	private static final double INITIAL_X_POSITION = 1000.0;
 	private static final double INITIAL_Y_POSITION = 400;
 	private static final double PROJECTILE_Y_POSITION_OFFSET = 75.0;
@@ -31,11 +30,9 @@ public class BossPlane extends Plane {
 
 	/**
 	 * Constructor to create an instance of a BossPlane.
-	 *
-	 * @param imageManager - the ImageAssetManager to load the image for the boss
 	 */
-	public BossPlane(ImageAssetManager imageManager) {
-		super(AssetPaths.BOSS_PLANE, IMAGE_HEIGHT, INITIAL_X_POSITION, INITIAL_Y_POSITION, HEALTH, imageManager);
+	public BossPlane() {
+		super(AssetPaths.BOSS_PLANE, IMAGE_HEIGHT, INITIAL_X_POSITION, INITIAL_Y_POSITION, HEALTH);
 		movePattern = new ArrayList<>();
 		consecutiveMovesInSameDirection = 0;
 		indexOfCurrentMove = 0;
@@ -73,7 +70,7 @@ public class BossPlane extends Plane {
 	 */
 	@Override
 	public DestructibleSprite fireProjectile() {
-		return bossFiresInCurrentFrame() ? new BossProjectile(getProjectileInitialPosition(), imageManager) : null;
+		return bossFiresInCurrentFrame() ? new BossProjectile(getProjectileInitialPosition()) : null;
 	}
 
 	/**
@@ -176,5 +173,4 @@ public class BossPlane extends Plane {
 		isShielded = false;
 		framesWithShieldActivated = 0;
 	}
-
 }

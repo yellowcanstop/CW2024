@@ -1,15 +1,12 @@
 package com.example.demo.models;
 
 import javafx.scene.image.*;
-import com.example.demo.assets.*;
+import java.util.Objects;
 
 /**
  * Abstract class representing a sprite which can move in the game.
  */
 public abstract class Sprite extends ImageView {
-
-	public final ImageAssetManager imageManager;
-
 	/**
 	 * Constructor to create an instance of a Sprite.
 	 *
@@ -17,11 +14,9 @@ public abstract class Sprite extends ImageView {
 	 * @param imageHeight - the height of the image for the actor
 	 * @param initialXPos - the initial x coordinate position of the actor
 	 * @param initialYPos - the initial y coordinate position of the actor
-	 * @param imageManager - the ImageAssetManager to load the image for the actor
 	 */
-	public Sprite(String imageName, int imageHeight, double initialXPos, double initialYPos, ImageAssetManager imageManager) {
-		this.imageManager = imageManager;
-		this.setImage(imageManager.load(imageName));
+	public Sprite(String imageName, int imageHeight, double initialXPos, double initialYPos) {
+		this.setImage(new Image(Objects.requireNonNull(getClass().getResource(imageName)).toExternalForm()));
 		this.setLayoutX(initialXPos);
 		this.setLayoutY(initialYPos);
 		this.setFitHeight(imageHeight);
@@ -50,5 +45,4 @@ public abstract class Sprite extends ImageView {
 	protected void moveVertically(double verticalMove) {
 		this.setTranslateY(getTranslateY() + verticalMove);
 	}
-
 }

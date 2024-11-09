@@ -1,12 +1,9 @@
 package com.example.demo.models;
 
-import com.example.demo.assets.*;
-
 /**
  * Abstract class representing a sprite which can take damage and be destroyed in the game.
  */
 public abstract class DestructibleSprite extends Sprite implements Destructible {
-
 	private boolean isDestroyed;
 
 	/**
@@ -16,10 +13,9 @@ public abstract class DestructibleSprite extends Sprite implements Destructible 
 	 * @param imageHeight - the height of the image for the actor
 	 * @param initialXPos - the initial x coordinate position of the actor
 	 * @param initialYPos - the initial y coordinate position of the actor
-	 * @param imageManager - the ImageAssetManager to load the image for the actor
 	 */
-	public DestructibleSprite(String imageName, int imageHeight, double initialXPos, double initialYPos, ImageAssetManager imageManager) {
-		super(imageName, imageHeight, initialXPos, initialYPos, imageManager);
+	public DestructibleSprite(String imageName, int imageHeight, double initialXPos, double initialYPos) {
+		super(imageName, imageHeight, initialXPos, initialYPos);
 		isDestroyed = false;
 	}
 
@@ -56,5 +52,4 @@ public abstract class DestructibleSprite extends Sprite implements Destructible 
 	public boolean isDestroyed() {
 		return isDestroyed;
 	}
-	
 }

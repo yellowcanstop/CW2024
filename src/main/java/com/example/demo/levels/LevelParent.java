@@ -7,7 +7,6 @@ import com.example.demo.models.DestructibleSprite;
 import com.example.demo.models.Plane;
 import com.example.demo.models.UserPlane;
 import com.example.demo.controller.InputController;
-import com.example.demo.assets.*;
 import com.example.demo.views.LevelView;
 import javafx.animation.*;
 import javafx.scene.Group;
@@ -25,29 +24,22 @@ import javafx.beans.property.StringProperty;
  * Contains methods for instantiating a level's scene, handling collisions, and spawning sprites.
  */
 public abstract class LevelParent {
-
 	private static final double SCREEN_HEIGHT_ADJUSTMENT = 150;
 	private static final int MILLISECOND_DELAY = 50;
 	private final double screenHeight;
 	private final double screenWidth;
 	private final double enemyMaximumYPosition;
-
 	private final Group root;
 	private final Timeline timeline;
 	private final UserPlane user;
 	private final Scene scene;
 	private final Background background;
-
 	private final List<DestructibleSprite> friendlyUnits;
 	private final List<DestructibleSprite> enemyUnits;
 	private final List<DestructibleSprite> userProjectiles;
 	private final List<DestructibleSprite> enemyProjectiles;
-	
 	private int currentNumberOfEnemies;
 	private final LevelView levelView;
-	public final ImageAssetManager imageManager;
-	public final SoundAssetManager soundManager;
-
 	// The Controller (InvalidationListener) observes this property for changes in the level name.
 	private final StringProperty levelNameProperty = new SimpleStringProperty();
 
@@ -58,21 +50,17 @@ public abstract class LevelParent {
 	 * @param screenHeight - height of the screen
 	 * @param screenWidth - width of the screen
 	 * @param playerInitialHealth - initial number of lives for the player
-	 * @param imageManager - the image manager to be used for loading images
-	 * @param soundManager - the sound manager to be used for loading sounds
 	 */
-	public LevelParent(String backgroundImageName, double screenHeight, double screenWidth, int playerInitialHealth, ImageAssetManager imageManager, SoundAssetManager soundManager) {
+	public LevelParent(String backgroundImageName, double screenHeight, double screenWidth, int playerInitialHealth) {
 		this.root = new Group();
 		this.scene = new Scene(root, screenWidth, screenHeight);
 		this.timeline = new Timeline();
-		this.imageManager = imageManager;
-		this.soundManager = soundManager;
-		this.user = new UserPlane(playerInitialHealth, imageManager);
+		this.user = new UserPlane(playerInitialHealth);
 		this.friendlyUnits = new ArrayList<>();
 		this.enemyUnits = new ArrayList<>();
 		this.userProjectiles = new ArrayList<>();
 		this.enemyProjectiles = new ArrayList<>();
-		this.background = new Background(backgroundImageName, imageManager);
+		this.background = new Background(backgroundImageName);
 		this.screenHeight = screenHeight;
 		this.screenWidth = screenWidth;
 		this.enemyMaximumYPosition = screenHeight - SCREEN_HEIGHT_ADJUSTMENT;
@@ -172,7 +160,7 @@ public abstract class LevelParent {
 	}
 
 	/**
-	 * Initialize the background for the game level.
+	 * Initialize the background and input key actions for the game level.
 	 */
 	private void initializeBackground() {
 		background.setFocusTraversable(true);
@@ -238,10 +226,10 @@ public abstract class LevelParent {
 	 * Update the actors including friendly units, enemy units, user projectiles, and enemy projectiles.
 	 */
 	private void updateActors() {
-		friendlyUnits.forEach(plane -> plane.updateActor());
-		enemyUnits.forEach(enemy -> enemy.updateActor());
-		userProjectiles.forEach(projectile -> projectile.updateActor());
-		enemyProjectiles.forEach(projectile -> projectile.updateActor());
+		friendlyUnits.forEach(DestructibleSprite::updateActor);
+		enemyUnits.forEach(DestructibleSprite::updateActor);
+		userProjectiles.forEach(DestructibleSprite::updateActor);
+		enemyProjectiles.forEach(DestructibleSprite::updateActor);
 	}
 
 	/**
@@ -260,7 +248,7 @@ public abstract class LevelParent {
 	 * @param actors - list of actors
 	 */
 	private void removeDestroyedActors(List<DestructibleSprite> actors) {
-		List<DestructibleSprite> destroyedActors = actors.stream().filter(actor -> actor.isDestroyed())
+		List<DestructibleSprite> destroyedActors = actors.stream().filter(DestructibleSprite::isDestroyed)
 				.toList();
 		root.getChildren().removeAll(destroyedActors);
 		actors.removeAll(destroyedActors);
@@ -288,7 +276,13 @@ public abstract class LevelParent {
 	}
 
 	/**
-	 * Handle collisions between two lists of actors.
+	 * Handle collisions between two lists of actors by checking if the bounds of any two actors intersect.
+	 * <p>
+	 * If the bounds of two actors intersect, both actors take damage:
+	 * <p>for projectiles, the projectile is destroyed;
+	 * <p>for enemy planes, the enemy plane is destroyed;
+	 * <p>for the user plane, it has its health decremented and is destroyed if its health reaches zero;
+	 * <p>for the boss plane, it has its health decremented if unshielded and is destroyed if its health reaches zero.
 	 *
 	 * @param actors1 - the first list of actors
 	 * @param actors2 - the second list of actors

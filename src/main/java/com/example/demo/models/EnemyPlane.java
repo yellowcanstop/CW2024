@@ -1,12 +1,11 @@
 package com.example.demo.models;
 
-import com.example.demo.assets.*;
+import com.example.demo.utils.AssetPaths;
 
 /**
  * Enemy plane sprite for the game.
  */
 public class EnemyPlane extends Plane {
-
 	private static final int IMAGE_HEIGHT = 150;
 	private static final int HORIZONTAL_VELOCITY = -6;
 	private static final double PROJECTILE_X_POSITION_OFFSET = -100.0;
@@ -19,10 +18,9 @@ public class EnemyPlane extends Plane {
 	 *
 	 * @param initialXPos - the initial x coordinate position of the plane
 	 * @param initialYPos - the initial y coordinate position of the plane
-	 * @param imageManager - the ImageAssetManager to load the image for the plane
 	 */
-	public EnemyPlane(double initialXPos, double initialYPos, ImageAssetManager imageManager) {
-		super(AssetPaths.ENEMY_PLANE, IMAGE_HEIGHT, initialXPos, initialYPos, INITIAL_HEALTH, imageManager);
+	public EnemyPlane(double initialXPos, double initialYPos) {
+		super(AssetPaths.ENEMY_PLANE, IMAGE_HEIGHT, initialXPos, initialYPos, INITIAL_HEALTH);
 	}
 
 	/**
@@ -43,7 +41,7 @@ public class EnemyPlane extends Plane {
 		if (Math.random() < FIRE_RATE) {
 			double projectileXPosition = getProjectileXPosition(PROJECTILE_X_POSITION_OFFSET);
 			double projectileYPosition = getProjectileYPosition(PROJECTILE_Y_POSITION_OFFSET);
-			return new EnemyProjectile(projectileXPosition, projectileYPosition, imageManager);
+			return EnemyProjectile.create(projectileXPosition, projectileYPosition);
 		}
 		return null;
 	}
@@ -55,5 +53,4 @@ public class EnemyPlane extends Plane {
 	public void updateActor() {
 		updatePosition();
 	}
-
 }

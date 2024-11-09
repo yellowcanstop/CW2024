@@ -9,6 +9,7 @@ import javafx.scene.control.Alert.AlertType;
 public class AlertException {
 	/**
 	 * Displays an alert dialog with the exception message.
+	 *
 	 * @param e - the exception to display
 	 */
     public static void alertException(Exception e) {

@@ -2,34 +2,26 @@ package com.example.demo.views;
 
 import com.example.demo.views.components.ShieldImage;
 import javafx.scene.Group;
-import com.example.demo.assets.*;
 
 /**
  * View for level two of the game.
  */
 public class LevelTwoView extends LevelView {
-
 	private static final int SHIELD_X_POSITION = 1150;
 	private static final int SHIELD_Y_POSITION = 500;
 	private final Group root;
 	private final ShieldImage shieldImage;
-	private final ImageAssetManager imageManager;
-	private final SoundAssetManager soundManager;
 
 	/**
 	 * Constructor to create an instance of the view for Level Two.
 	 *
 	 * @param root - group of all nodes to be displayed in the scene
 	 * @param heartsToDisplay - the initial number of hearts to be displayed
-	 * @param imageManager - the image manager to load images
-	 * @param soundManager - the sound manager to load sounds
 	 */
-	public LevelTwoView(Group root, int heartsToDisplay, ImageAssetManager imageManager, SoundAssetManager soundManager) {
-		super(root, heartsToDisplay, imageManager, soundManager);
+	public LevelTwoView(Group root, int heartsToDisplay) {
+		super(root, heartsToDisplay);
 		this.root = root;
-		this.imageManager = imageManager;
-		this.soundManager = soundManager;
-		this.shieldImage = new ShieldImage(SHIELD_X_POSITION, SHIELD_Y_POSITION, imageManager);
+		this.shieldImage = new ShieldImage(SHIELD_X_POSITION, SHIELD_Y_POSITION);
 		addImagesToRoot();
 	}
 
@@ -52,16 +44,5 @@ public class LevelTwoView extends LevelView {
 	 */
 	public void hideShield() {
 		shieldImage.hideShield();
-	}
-
-	/**
-	 * Unload level-specific resources when the level is no longer needed.
-	 */
-	@Override
-	public void unloadResources() {
-		imageManager.unload(AssetPaths.SHIELD);
-		imageManager.unload(AssetPaths.BACKGROUND2);
-		imageManager.unload(AssetPaths.BOSS_PLANE);
-		imageManager.unload(AssetPaths.FIREBALL);
 	}
 }

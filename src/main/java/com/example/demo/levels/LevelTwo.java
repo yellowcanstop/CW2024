@@ -1,7 +1,7 @@
 package com.example.demo.levels;
 
 import com.example.demo.models.BossPlane;
-import com.example.demo.assets.*;
+import com.example.demo.utils.AssetPaths;
 import com.example.demo.views.LevelTwoView;
 import com.example.demo.views.LevelView;
 
@@ -9,7 +9,6 @@ import com.example.demo.views.LevelView;
  * Level two of the game.
  */
 public class LevelTwo extends LevelParent {
-
 	private static final int PLAYER_INITIAL_HEALTH = 5;
 	private final BossPlane bossPlane;
 
@@ -18,12 +17,10 @@ public class LevelTwo extends LevelParent {
 	 *
 	 * @param screenHeight - the height of the screen
 	 * @param screenWidth - the width of the screen
-	 * @param imageManager - the image manager to be used for loading images
-	 * @param soundManager - the sound manager to be used for loading sounds
 	 */
-	public LevelTwo(double screenHeight, double screenWidth, ImageAssetManager imageManager, SoundAssetManager soundManager) {
-		super(AssetPaths.BACKGROUND2, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH, imageManager, soundManager);
-		bossPlane = new BossPlane(imageManager);
+	public LevelTwo(double screenHeight, double screenWidth) {
+		super(AssetPaths.BACKGROUND2, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
+		bossPlane = new BossPlane();
 	}
 
 	/**
@@ -66,7 +63,6 @@ public class LevelTwo extends LevelParent {
 	 */
 	@Override
 	protected LevelView instantiateLevelView() {
-		return new LevelTwoView(getRoot(), PLAYER_INITIAL_HEALTH, imageManager, soundManager);
+		return new LevelTwoView(getRoot(), PLAYER_INITIAL_HEALTH);
 	}
-
 }

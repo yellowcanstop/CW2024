@@ -1,10 +1,9 @@
-package com.example.demo.assets;
+package com.example.demo.utils;
 
 /**
- * Class to encapsulate the classpaths of all the assets used in the game for easy access.
+ * Utility class to encapsulate the classpath of all the assets used in the game as constants for easy access.
  */
 public class AssetPaths {
-
     public static final String IMAGE = "/com/example/demo/images/";
     public static final String BACKGROUND1 = IMAGE + "background1.jpg";
     public static final String BACKGROUND2 = IMAGE + "background2.jpg";

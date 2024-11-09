@@ -1,24 +1,42 @@
 package com.example.demo.models;
 
-import com.example.demo.assets.*;
+import com.example.demo.utils.AssetPaths;
+import com.example.demo.utils.ObjectPool;
 
 /**
  * Projectile for the enemy sprite in the game.
  */
 public class EnemyProjectile extends Projectile {
-
 	private static final int IMAGE_HEIGHT = 50;
 	private static final int HORIZONTAL_VELOCITY = -10;
+	private static final ObjectPool<EnemyProjectile> pool = new ObjectPool<>(EnemyProjectile::new);
 
 	/**
-	 * Constructor to create an instance of EnemyProjectile.
+	 * Constructor to create an instance of the EnemyProjectile class using the super constructor.
+	 */
+	private EnemyProjectile() {
+		super(AssetPaths.ENEMY_FIRE, IMAGE_HEIGHT, 0, 0);
+	}
+
+	/**
+	 * Get an EnemyProjectile from the object pool and set the initial x and y position.
 	 *
 	 * @param initialXPos - the initial x coordinate position of the projectile
 	 * @param initialYPos - the initial y coordinate position of the projectile
-	 * @param imageManager - the ImageAssetManager to load the image for the projectile
+	 * @return an instance of an EnemyProjectile
 	 */
-	public EnemyProjectile(double initialXPos, double initialYPos, ImageAssetManager imageManager) {
-		super(AssetPaths.ENEMY_FIRE, IMAGE_HEIGHT, initialXPos, initialYPos, imageManager);
+	public static EnemyProjectile create(double initialXPos, double initialYPos) {
+		EnemyProjectile projectile = pool.get();
+		projectile.setX(initialXPos);
+		projectile.setY(initialYPos);
+		return projectile;
+	}
+
+	/**
+	 * Release the EnemyProjectile back to the object pool.
+	 */
+	public void release() {
+		pool.release(this);
 	}
 
 	/**
@@ -37,5 +55,30 @@ public class EnemyProjectile extends Projectile {
 		updatePosition();
 	}
 
+	/**
+	 * Called by collision handling to destroy a projectile.
+	 */
+	@Override
+	public void takeDamage() {
+		this.destroy();
+	}
 
+	/**
+	 * Destroy the projectile by setting isDestroyed to true and releasing it back to the object pool.
+	 */
+	@Override
+	public void destroy() {
+		super.destroy();
+		this.release();
+	}
+
+	/**
+	 * Destroy projectile if the projectile is off the screen to optimize memory usage.
+	 */
+	private void destroyIfOffScreen() {
+		if (getLayoutX() + getTranslateX() < 0 || getLayoutX() + getTranslateX() > getScene().getWidth() ||
+				getLayoutY() + getTranslateY() < 0 || getLayoutY() + getTranslateY() > getScene().getHeight()) {
+			this.destroy();
+		}
+	}
 }

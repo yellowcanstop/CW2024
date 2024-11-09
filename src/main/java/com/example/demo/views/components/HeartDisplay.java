@@ -1,8 +1,6 @@
 package com.example.demo.views.components;
 
-import com.example.demo.views.components.Heart;
 import javafx.scene.layout.HBox;
-import com.example.demo.assets.*;
 
 /**
  * View component displaying a container of hearts representing the remaining lives of the player.
@@ -10,8 +8,7 @@ import com.example.demo.assets.*;
 public class HeartDisplay {
 	private static final int INDEX_OF_FIRST_ITEM = 0;
 	private final HBox container;
-	private int numberOfHeartsToDisplay;
-	private final ImageAssetManager imageManager;
+	private final int numberOfHeartsToDisplay;
 
 	/**
 	 * Constructor to create an instance of HeartDisplay.
@@ -19,10 +16,8 @@ public class HeartDisplay {
 	 * @param xPosition - x position of the display
 	 * @param yPosition - y position of the display
 	 * @param heartsToDisplay - initial number of hearts to display
-	 * @param imageManager - ImageAssetManager to load the heart image
 	 */
-	public HeartDisplay(double xPosition, double yPosition, int heartsToDisplay, ImageAssetManager imageManager) {
-		this.imageManager = imageManager;
+	public HeartDisplay(double xPosition, double yPosition, int heartsToDisplay) {
 		this.container = new HBox();
 		this.container.setLayoutX(xPosition);
 		this.container.setLayoutY(yPosition);
@@ -35,7 +30,7 @@ public class HeartDisplay {
 	 */
 	private void initializeHearts() {
 		for (int i = 0; i < numberOfHeartsToDisplay; i++) {
-			Heart heart = new Heart(imageManager);
+			Heart heart = new Heart();
 			container.getChildren().add(heart);
 		}
 	}
@@ -62,6 +57,5 @@ public class HeartDisplay {
 	 */
 	public void unloadResources() {
 		container.getChildren().clear();
-		imageManager.unload(AssetPaths.HEART);
 	}
 }

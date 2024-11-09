@@ -1,13 +1,11 @@
 package com.example.demo.models;
 
-import com.example.demo.assets.*;
-import com.example.demo.models.Projectile;
+import com.example.demo.utils.AssetPaths;
 
 /**
  * Projectile for user-controlled player sprite in the game.
  */
 public class UserProjectile extends Projectile {
-
 	private static final int IMAGE_HEIGHT = 125;
 	private static final int HORIZONTAL_VELOCITY = 15;
 
@@ -16,10 +14,9 @@ public class UserProjectile extends Projectile {
 	 *
 	 * @param initialXPos - the initial x coordinate position of the projectile
 	 * @param initialYPos - the initial y coordinate position of the projectile
-	 * @param imageManager - the ImageAssetManager to load the image for the projectile
 	 */
-	public UserProjectile(double initialXPos, double initialYPos, ImageAssetManager imageManager) {
-		super(AssetPaths.USER_FIRE, IMAGE_HEIGHT, initialXPos, initialYPos, imageManager);
+	public UserProjectile(double initialXPos, double initialYPos) {
+		super(AssetPaths.USER_FIRE, IMAGE_HEIGHT, initialXPos, initialYPos);
 	}
 
 	/**
@@ -37,5 +34,4 @@ public class UserProjectile extends Projectile {
 	public void updateActor() {
 		updatePosition();
 	}
-	
 }

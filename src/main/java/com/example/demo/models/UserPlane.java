@@ -1,12 +1,11 @@
 package com.example.demo.models;
 
-import com.example.demo.assets.*;
+import com.example.demo.utils.AssetPaths;
 
 /**
  * User-controlled plane sprite for the game.
  */
 public class UserPlane extends Plane {
-
 	private static final double X_UPPER_BOUND = -40;
 	private static final double X_LOWER_BOUND = 800;
 	private static final double Y_UPPER_BOUND = -40;
@@ -26,10 +25,9 @@ public class UserPlane extends Plane {
 	 * Constructor to create an instance of a UserPlane.
 	 *
 	 * @param initialHealth - the initial health of the player
-	 * @param imageManager - the ImageAssetManager to load the image for the user plane
 	 */
-	public UserPlane(int initialHealth, ImageAssetManager imageManager) {
-		super(AssetPaths.USER_PLANE, IMAGE_HEIGHT, INITIAL_X_POSITION, INITIAL_Y_POSITION, initialHealth, imageManager);
+	public UserPlane(int initialHealth) {
+		super(AssetPaths.USER_PLANE, IMAGE_HEIGHT, INITIAL_X_POSITION, INITIAL_Y_POSITION, initialHealth);
 		verticalVelocityMultiplier = 0;
 		horizontalVelocityMultiplier = 0;
 	}
@@ -70,7 +68,7 @@ public class UserPlane extends Plane {
 	 */
 	@Override
 	public DestructibleSprite fireProjectile() {
-		return new UserProjectile(PROJECTILE_X_POSITION, getProjectileYPosition(PROJECTILE_Y_POSITION_OFFSET), imageManager);
+		return new UserProjectile(PROJECTILE_X_POSITION, getProjectileYPosition(PROJECTILE_Y_POSITION_OFFSET));
 	}
 
 	/**
@@ -133,5 +131,4 @@ public class UserPlane extends Plane {
 	public void incrementKillCount() {
 		numberOfKills++;
 	}
-
 }

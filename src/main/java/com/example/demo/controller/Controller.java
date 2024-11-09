@@ -7,21 +7,23 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import com.example.demo.utils.AlertException;
 import com.example.demo.levels.LevelParent;
-import com.example.demo.assets.*;
 
 /**
  * Controls the logical flow of the game by creating instances of the levels and switching between them.
  * <p>
  * Implements the Observer design pattern: the Controller is an observer of the level's change in state.
+ * <p>
  * The original code uses Observer for Controller and Observable for LevelParent from java.util, which are deprecated in Java 9.
  * This has been refactored to use InvalidationListener (instead of Observer) and Observable from javafx.beans.
+ * <p>
+ * InvalidationListener is chosen over ChangeListener since the former offers a simpler API (invalidated method only takes an Observable parameter).
+ * The old value of the observable property returned by ChangeListener is also not too meaningful in this case of a level switch.
+ *
+ * @see <a href="https://www.pragmaticcoding.ca/javafx/elements/listeners">pragmaticcoding.ca/javafx/elements/listeners</a>
  */
 public class Controller implements InvalidationListener {
-
 	private static final String LEVEL_ONE_CLASS_NAME = "com.example.demo.levels.LevelOne";
 	private final Stage stage;
-	private final ImageAssetManager imageManager;
-	private final SoundAssetManager soundManager;
 	private LevelParent myLevel;
 
     /**
@@ -31,8 +33,6 @@ public class Controller implements InvalidationListener {
 	 */
 	public Controller(Stage stage) {
 		this.stage = stage;
-		this.imageManager = new ImageAssetManager();
-		this.soundManager = new SoundAssetManager();
 	}
 
 	/**
@@ -55,8 +55,8 @@ public class Controller implements InvalidationListener {
 	private void goToLevel(String className) {
 		try {
 			Class<?> myClass = Class.forName(className);
-			Constructor<?> constructor = myClass.getConstructor(double.class, double.class, ImageAssetManager.class, SoundAssetManager.class);
-            myLevel = (LevelParent) constructor.newInstance(stage.getHeight(), stage.getWidth(), imageManager, soundManager);
+			Constructor<?> constructor = myClass.getConstructor(double.class, double.class);
+            myLevel = (LevelParent) constructor.newInstance(stage.getHeight(), stage.getWidth());
 			myLevel.levelNameProperty().addListener(this);
 			Scene scene = myLevel.initializeScene();
 			stage.setScene(scene);
@@ -67,7 +67,7 @@ public class Controller implements InvalidationListener {
 	}
 
 	/**
-	 * Called when the value of the observable (the levelNameProperty of the LevelParent) changes.
+	 * Called when the value of the observable (the levelNameProperty of the LevelParent) changes state (invalidated).
 	 * <p>
 	 * This notifies the Controller (InvalidationListener) that the level has changed and the Controller should go to the new level.
 	 *
@@ -86,14 +86,4 @@ public class Controller implements InvalidationListener {
 			AlertException.alertException(e);
 		}
 	}
-
-
-
-	/*
-	public void stopGame() {
-		// check overlap with stop() in main. is this necessary?
-		LevelParent.unloadResources();
-	}
-	 */
-
 }

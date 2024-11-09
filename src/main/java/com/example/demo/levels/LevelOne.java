@@ -2,14 +2,13 @@ package com.example.demo.levels;
 
 import com.example.demo.models.DestructibleSprite;
 import com.example.demo.models.EnemyPlane;
-import com.example.demo.assets.*;
+import com.example.demo.utils.AssetPaths;
 import com.example.demo.views.LevelOneView;
 
 /**
  * Level one of the game.
  */
 public class LevelOne extends LevelParent {
-	
 	private static final String NEXT_LEVEL = "com.example.demo.levels.LevelTwo";
 	private static final int TOTAL_ENEMIES = 5;
 	private static final int KILLS_TO_ADVANCE = 10;
@@ -21,11 +20,9 @@ public class LevelOne extends LevelParent {
 	 *
 	 * @param screenHeight - the height of the screen
 	 * @param screenWidth - the width of the screen
-	 * @param imageManager - the image manager to be used for loading images
-	 * @param soundManager - the sound manager to be used for loading sounds
 	 */
-	public LevelOne(double screenHeight, double screenWidth, ImageAssetManager imageManager, SoundAssetManager soundManager) {
-		super(AssetPaths.BACKGROUND1, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH, imageManager, soundManager);
+	public LevelOne(double screenHeight, double screenWidth) {
+		super(AssetPaths.BACKGROUND1, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
 	}
 
 	/**
@@ -36,9 +33,9 @@ public class LevelOne extends LevelParent {
 		if (userIsDestroyed()) {
 			loseGame();
 		}
-		else if (userHasReachedKillTarget())
+		else if (userHasReachedKillTarget()) {
 			goToNextLevel(NEXT_LEVEL);
-			this.unloadResources();
+		}
 	}
 
 	/**
@@ -50,7 +47,7 @@ public class LevelOne extends LevelParent {
 	}
 
 	/**
-	 * Randomly spawn enemy units on a random y position on the screen.
+	 * Randomly spawn enemy units at a random y position on the screen.
 	 */
 	@Override
 	protected void spawnEnemyUnits() {
@@ -58,7 +55,7 @@ public class LevelOne extends LevelParent {
 		for (int i = 0; i < TOTAL_ENEMIES - currentNumberOfEnemies; i++) {
 			if (Math.random() < ENEMY_SPAWN_PROBABILITY) {
 				double newEnemyInitialYPosition = Math.random() * getEnemyMaximumYPosition();
-				DestructibleSprite newEnemy = new EnemyPlane(getScreenWidth(), newEnemyInitialYPosition, imageManager);
+				DestructibleSprite newEnemy = new EnemyPlane(getScreenWidth(), newEnemyInitialYPosition);
 				addEnemyUnit(newEnemy);
 			}
 		}
@@ -71,7 +68,7 @@ public class LevelOne extends LevelParent {
 	 */
 	@Override
 	protected LevelOneView instantiateLevelView() {
-		return new LevelOneView(getRoot(), PLAYER_INITIAL_HEALTH, imageManager, soundManager);
+		return new LevelOneView(getRoot(), PLAYER_INITIAL_HEALTH);
 	}
 
 	/**
@@ -82,5 +79,4 @@ public class LevelOne extends LevelParent {
 	private boolean userHasReachedKillTarget() {
 		return getUser().getNumberOfKills() >= KILLS_TO_ADVANCE;
 	}
-
 }

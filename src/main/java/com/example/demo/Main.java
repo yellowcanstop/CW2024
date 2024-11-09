@@ -9,7 +9,6 @@ import javafx.stage.Stage;
  * Entry point of the program where the game application is launched.
  */
 public class Main extends Application {
-
 	private static final int SCREEN_WIDTH = 1300;
 	private static final int SCREEN_HEIGHT = 750;
 	private static final String TITLE = "Sky Battle";
@@ -32,14 +31,6 @@ public class Main extends Application {
             AlertException.alertException(e);
         }
     }
-
-    /*
-	@Override
-	public void stop() {
-		// TODO - unload assets used across multiple levels or scenes e.g. sound assets
-		soundManager.unload("test.wav");
-	}
-	*/
 
     /**
      * Main method to launch the game application.
