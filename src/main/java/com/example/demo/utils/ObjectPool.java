@@ -8,6 +8,8 @@ import java.util.Stack;
  * Helps to reduce overhead of object creation and garbage collection since the object is reused.
  * <p>
  * This object pooling is used by the projectiles and the enemies.
+ * <p>
+ * For encapsulation, ObjectFactory is an inner interface as it is used together with the pooling mechanism.
  */
 public class ObjectPool<T> {
     private final Stack<T> pool;
