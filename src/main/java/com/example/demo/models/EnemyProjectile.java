@@ -71,14 +71,4 @@ public class EnemyProjectile extends Projectile {
 		super.destroy();
 		this.release();
 	}
-
-	/**
-	 * Destroy projectile if the projectile is off the screen to optimize memory usage.
-	 */
-	private void destroyIfOffScreen() {
-		if (getLayoutX() + getTranslateX() < 0 || getLayoutX() + getTranslateX() > getScene().getWidth() ||
-				getLayoutY() + getTranslateY() < 0 || getLayoutY() + getTranslateY() > getScene().getHeight()) {
-			this.destroy();
-		}
-	}
 }

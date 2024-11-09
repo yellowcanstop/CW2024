@@ -141,6 +141,7 @@ public abstract class LevelParent {
 		generateEnemyFire();
 		updateNumberOfEnemies();
 		handleEnemyPenetration();
+		handleOffScreen();
 		handleUserProjectileCollisions();
 		handleEnemyProjectileCollisions();
 		handlePlaneCollisions();
@@ -300,13 +301,24 @@ public abstract class LevelParent {
 	}
 
 	/**
-	 * Handle enemy units which have moved past the player by adding damage to the player and removing the enemy unit.
+	 * Handle enemy units which have moved off the screen by adding damage to the player and removing the enemy unit.
 	 */
 	private void handleEnemyPenetration() {
 		for (DestructibleSprite enemy : enemyUnits) {
-			if (enemyHasPenetratedDefenses(enemy)) {
+			if (checkOffScreen(enemy)) {
 				user.takeDamage();
 				enemy.destroy();
+			}
+		}
+	}
+
+	/**
+	 * Handle projectiles which have moved off the screen by destroying them.
+	 */
+	private void handleOffScreen() {
+		for (DestructibleSprite enemyProjectile : enemyProjectiles) {
+			if (checkOffScreen(enemyProjectile)) {
+				enemyProjectile.destroy();
 			}
 		}
 	}
@@ -328,13 +340,13 @@ public abstract class LevelParent {
 	}
 
 	/**
-	 * Check if an enemy unit has moved past the player.
+	 * Check if a destructible has moved off the screen.
 	 *
-	 * @param enemy - enemy unit whose position on the screen is being checked
-	 * @return true if enemy has moved past the player sprite, else false
+	 * @param destructible - destructible whose position on the screen is being checked
+	 * @return true if destructible has moved off the screen, else false
 	 */
-	private boolean enemyHasPenetratedDefenses(DestructibleSprite enemy) {
-		return Math.abs(enemy.getTranslateX()) > screenWidth;
+	private boolean checkOffScreen(DestructibleSprite destructible) {
+		return Math.abs(destructible.getTranslateX()) > screenWidth;
 	}
 
 	/**
