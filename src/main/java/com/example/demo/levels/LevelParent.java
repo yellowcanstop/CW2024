@@ -1,7 +1,6 @@
 package com.example.demo.levels;
 
 import java.util.*;
-
 import com.example.demo.views.components.Background;
 import com.example.demo.models.DestructibleSprite;
 import com.example.demo.models.Plane;
@@ -64,16 +63,15 @@ public abstract class LevelParent {
 		this.screenHeight = screenHeight;
 		this.screenWidth = screenWidth;
 		this.enemyMaximumYPosition = screenHeight - SCREEN_HEIGHT_ADJUSTMENT;
-		//this.levelView = instantiateLevelView();
 		this.currentNumberOfEnemies = 0;
 		initializeTimeline();
 		friendlyUnits.add(user);
 	}
 
 	/**
-	 * Initialize the friendly units for the game level.
+	 * Initialize the units for the game level.
 	 */
-	protected abstract void initializeFriendlyUnits();
+	protected abstract void initializeUnits();
 
 	/**
 	 * Check if the game is over.
@@ -86,11 +84,11 @@ public abstract class LevelParent {
 	protected abstract void spawnEnemyUnits();
 
 	/**
-	 * Instantiate the view for the game level.
+	 * Get the view for the game level.
 	 *
 	 * @return the view for the game level
 	 */
-	protected abstract LevelView instantiateLevelView();
+	protected abstract LevelView getLevelView();
 
 	/**
 	 * Initialize the scene displaying the background, friendly units and heart for the game level.
@@ -99,8 +97,8 @@ public abstract class LevelParent {
 	 */
 	public Scene initializeScene() {
 		initializeBackground();
-		initializeFriendlyUnits();
-		instantiateLevelView().showHeartDisplay();
+		initializeUnits();
+		getLevelView().showHeartDisplay();
 		return scene;
 	}
 
@@ -327,7 +325,7 @@ public abstract class LevelParent {
 	 * Update the level view by removing hearts from the display based on the player's health.
 	 */
 	protected void updateLevelView() {
-		instantiateLevelView().removeHearts(user.getHealth());
+		getLevelView().removeHearts(user.getHealth());
 	}
 
 	/**
@@ -354,7 +352,7 @@ public abstract class LevelParent {
 	 */
 	protected void winGame() {
 		timeline.stop();
-		instantiateLevelView().showWinImage();
+		getLevelView().showWinImage();
 	}
 
 	/**
@@ -362,14 +360,14 @@ public abstract class LevelParent {
 	 */
 	protected void loseGame() {
 		timeline.stop();
-		instantiateLevelView().showGameOverImage();
+		getLevelView().showGameOverImage();
 	}
 
 	/**
 	 * Unload resources for the game level.
 	 */
 	public void unloadResources() {
-		instantiateLevelView().unloadResources();
+		getLevelView().unloadResources();
 	}
 
 	/**
@@ -442,5 +440,4 @@ public abstract class LevelParent {
 	private void updateNumberOfEnemies() {
 		currentNumberOfEnemies = enemyUnits.size();
 	}
-
 }

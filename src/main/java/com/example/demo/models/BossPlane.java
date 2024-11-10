@@ -1,7 +1,7 @@
 package com.example.demo.models;
 
 import java.util.*;
-
+import com.example.demo.views.components.ShieldImage;
 import com.example.demo.utils.AssetPaths;
 
 /**
@@ -12,7 +12,7 @@ public class BossPlane extends Plane {
 	private static final double INITIAL_Y_POSITION = 400;
 	private static final double PROJECTILE_Y_POSITION_OFFSET = 75.0;
 	private static final double BOSS_FIRE_RATE = .04;
-	private static final double BOSS_SHIELD_PROBABILITY = 1;
+	private static final double BOSS_SHIELD_PROBABILITY = .02;
 	private static final int IMAGE_HEIGHT = 300;
 	private static final int VERTICAL_VELOCITY = 8;
 	private static final int HEALTH = 10;
@@ -21,12 +21,13 @@ public class BossPlane extends Plane {
 	private static final int MAX_FRAMES_WITH_SAME_MOVE = 10;
 	private static final int Y_POSITION_UPPER_BOUND = -100;
 	private static final int Y_POSITION_LOWER_BOUND = 475;
-	private static final int MAX_FRAMES_WITH_SHIELD = 500;
+	private static final int MAX_FRAMES_WITH_SHIELD = 50;
 	private final List<Integer> movePattern;
 	private boolean isShielded;
 	private int consecutiveMovesInSameDirection;
 	private int indexOfCurrentMove;
 	private int framesWithShieldActivated;
+	private ShieldImage shieldImage;
 
 	/**
 	 * Constructor to create an instance of a BossPlane.
@@ -37,8 +38,11 @@ public class BossPlane extends Plane {
 		consecutiveMovesInSameDirection = 0;
 		indexOfCurrentMove = 0;
 		framesWithShieldActivated = 0;
-		isShielded = true;
+		isShielded = false;
 		initializeMovePattern();
+		shieldImage = new ShieldImage(INITIAL_X_POSITION, INITIAL_Y_POSITION);
+		shieldImage.translateXProperty().bind(this.translateXProperty());
+		shieldImage.translateYProperty().bind(this.translateYProperty());
 	}
 
 	/**
@@ -93,6 +97,15 @@ public class BossPlane extends Plane {
 			movePattern.add(ZERO);
 		}
 		Collections.shuffle(movePattern);
+	}
+
+	/**
+	 * Get the shield image for the boss.
+	 *
+	 * @return the shield image for the boss
+	 */
+	public ShieldImage getShieldImage() {
+		return shieldImage;
 	}
 
 	/**

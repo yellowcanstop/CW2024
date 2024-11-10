@@ -45,7 +45,7 @@ public class LevelOne extends LevelParent {
 	 * Initialize the friendly units.
 	 */
 	@Override
-	protected void initializeFriendlyUnits() {
+	protected void initializeUnits() {
 		getRoot().getChildren().add(getUser());
 	}
 
@@ -70,7 +70,7 @@ public class LevelOne extends LevelParent {
 	 * @return the level view
 	 */
 	@Override
-	protected LevelOneView instantiateLevelView() {
+	protected LevelOneView getLevelView() {
 		return levelView;
 	}
 

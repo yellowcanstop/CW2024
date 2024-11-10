@@ -3,7 +3,6 @@ package com.example.demo.levels;
 import com.example.demo.models.BossPlane;
 import com.example.demo.utils.AssetPaths;
 import com.example.demo.views.LevelTwoView;
-import com.example.demo.views.LevelView;
 
 /**
  * Level two of the game.
@@ -23,17 +22,15 @@ public class LevelTwo extends LevelParent {
 		super(AssetPaths.BACKGROUND2, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
 		bossPlane = new BossPlane();
 		this.levelView = new LevelTwoView(getRoot(), PLAYER_INITIAL_HEALTH);
-
-		levelView.showShield();
 	}
 
 	/**
-	 * Initialize the friendly units.
+	 * Initialize the units for level two: the UserPlane and the Shield for the boss.
 	 */
 	@Override
-	protected void initializeFriendlyUnits() {
+	protected void initializeUnits() {
 		getRoot().getChildren().add(getUser());
-		getRoot().getChildren().add(levelView.getShieldImage());
+		getRoot().getChildren().add(bossPlane.getShieldImage());
 	}
 
 	/**
@@ -67,7 +64,7 @@ public class LevelTwo extends LevelParent {
 	 * @return the level view
 	 */
 	@Override
-	protected LevelTwoView instantiateLevelView() {
+	protected LevelTwoView getLevelView() {
 		return levelView;
 	}
 
@@ -79,9 +76,9 @@ public class LevelTwo extends LevelParent {
 
 	private void checkIfBossShielded() {
 		if (bossPlane.isShielded()) {
-			levelView.showShield();
+			bossPlane.getShieldImage().showShield();
 		} else {
-			levelView.showShield();
+			bossPlane.getShieldImage().hideShield();
 		}
 	}
 
