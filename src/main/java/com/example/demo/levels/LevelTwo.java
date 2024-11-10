@@ -11,6 +11,7 @@ import com.example.demo.views.LevelView;
 public class LevelTwo extends LevelParent {
 	private static final int PLAYER_INITIAL_HEALTH = 5;
 	private final BossPlane bossPlane;
+	private LevelTwoView levelView;
 
 	/**
 	 * Constructor to create an instance of LevelTwo. Initialize the bossPlane.
@@ -21,6 +22,9 @@ public class LevelTwo extends LevelParent {
 	public LevelTwo(double screenHeight, double screenWidth) {
 		super(AssetPaths.BACKGROUND2, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
 		bossPlane = new BossPlane();
+		this.levelView = new LevelTwoView(getRoot(), PLAYER_INITIAL_HEALTH);
+
+		levelView.showShield();
 	}
 
 	/**
@@ -29,6 +33,7 @@ public class LevelTwo extends LevelParent {
 	@Override
 	protected void initializeFriendlyUnits() {
 		getRoot().getChildren().add(getUser());
+		getRoot().getChildren().add(levelView.getShieldImage());
 	}
 
 	/**
@@ -62,7 +67,22 @@ public class LevelTwo extends LevelParent {
 	 * @return the level view
 	 */
 	@Override
-	protected LevelView instantiateLevelView() {
-		return new LevelTwoView(getRoot(), PLAYER_INITIAL_HEALTH);
+	protected LevelTwoView instantiateLevelView() {
+		return levelView;
 	}
+
+	@Override
+	protected void updateLevelView() {
+		super.updateLevelView();
+		checkIfBossShielded();
+	}
+
+	private void checkIfBossShielded() {
+		if (bossPlane.isShielded()) {
+			levelView.showShield();
+		} else {
+			levelView.showShield();
+		}
+	}
+
 }

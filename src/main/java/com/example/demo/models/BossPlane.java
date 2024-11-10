@@ -12,7 +12,7 @@ public class BossPlane extends Plane {
 	private static final double INITIAL_Y_POSITION = 400;
 	private static final double PROJECTILE_Y_POSITION_OFFSET = 75.0;
 	private static final double BOSS_FIRE_RATE = .04;
-	private static final double BOSS_SHIELD_PROBABILITY = .002;
+	private static final double BOSS_SHIELD_PROBABILITY = 1;
 	private static final int IMAGE_HEIGHT = 300;
 	private static final int VERTICAL_VELOCITY = 8;
 	private static final int HEALTH = 10;
@@ -37,7 +37,7 @@ public class BossPlane extends Plane {
 		consecutiveMovesInSameDirection = 0;
 		indexOfCurrentMove = 0;
 		framesWithShieldActivated = 0;
-		isShielded = false;
+		isShielded = true;
 		initializeMovePattern();
 	}
 
@@ -164,6 +164,10 @@ public class BossPlane extends Plane {
 	 */
 	private void activateShield() {
 		isShielded = true;
+	}
+
+	public boolean isShielded() {
+		return isShielded;
 	}
 
 	/**

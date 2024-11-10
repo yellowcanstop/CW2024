@@ -39,7 +39,7 @@ public abstract class LevelParent {
 	private final List<DestructibleSprite> userProjectiles;
 	private final List<DestructibleSprite> enemyProjectiles;
 	private int currentNumberOfEnemies;
-	private final LevelView levelView;
+	//LevelView levelView;
 	// The Controller (InvalidationListener) observes this property for changes in the level name.
 	private final StringProperty levelNameProperty = new SimpleStringProperty();
 
@@ -64,7 +64,7 @@ public abstract class LevelParent {
 		this.screenHeight = screenHeight;
 		this.screenWidth = screenWidth;
 		this.enemyMaximumYPosition = screenHeight - SCREEN_HEIGHT_ADJUSTMENT;
-		this.levelView = instantiateLevelView();
+		//this.levelView = instantiateLevelView();
 		this.currentNumberOfEnemies = 0;
 		initializeTimeline();
 		friendlyUnits.add(user);
@@ -100,7 +100,7 @@ public abstract class LevelParent {
 	public Scene initializeScene() {
 		initializeBackground();
 		initializeFriendlyUnits();
-		levelView.showHeartDisplay();
+		instantiateLevelView().showHeartDisplay();
 		return scene;
 	}
 
@@ -326,8 +326,8 @@ public abstract class LevelParent {
 	/**
 	 * Update the level view by removing hearts from the display based on the player's health.
 	 */
-	private void updateLevelView() {
-		levelView.removeHearts(user.getHealth());
+	protected void updateLevelView() {
+		instantiateLevelView().removeHearts(user.getHealth());
 	}
 
 	/**
@@ -354,7 +354,7 @@ public abstract class LevelParent {
 	 */
 	protected void winGame() {
 		timeline.stop();
-		levelView.showWinImage();
+		instantiateLevelView().showWinImage();
 	}
 
 	/**
@@ -362,14 +362,14 @@ public abstract class LevelParent {
 	 */
 	protected void loseGame() {
 		timeline.stop();
-		levelView.showGameOverImage();
+		instantiateLevelView().showGameOverImage();
 	}
 
 	/**
 	 * Unload resources for the game level.
 	 */
 	public void unloadResources() {
-		levelView.unloadResources();
+		instantiateLevelView().unloadResources();
 	}
 
 	/**

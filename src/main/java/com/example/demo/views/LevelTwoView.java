@@ -2,6 +2,7 @@ package com.example.demo.views;
 
 import com.example.demo.views.components.ShieldImage;
 import javafx.scene.Group;
+import javafx.scene.image.ImageView;
 
 /**
  * View for level two of the game.
@@ -22,7 +23,7 @@ public class LevelTwoView extends LevelView {
 		super(root, heartsToDisplay);
 		this.root = root;
 		this.shieldImage = new ShieldImage(SHIELD_X_POSITION, SHIELD_Y_POSITION);
-		addImagesToRoot();
+		//addImagesToRoot();
 	}
 
 	/**
@@ -30,6 +31,10 @@ public class LevelTwoView extends LevelView {
 	 */
 	private void addImagesToRoot() {
 		root.getChildren().addAll(shieldImage);
+	}
+
+	public ShieldImage getShieldImage() {
+		return shieldImage;
 	}
 
 	/**

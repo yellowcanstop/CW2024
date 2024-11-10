@@ -4,6 +4,7 @@ import com.example.demo.models.DestructibleSprite;
 import com.example.demo.models.EnemyPlane;
 import com.example.demo.utils.AssetPaths;
 import com.example.demo.views.LevelOneView;
+import com.example.demo.views.LevelTwoView;
 
 /**
  * Level one of the game.
@@ -14,6 +15,7 @@ public class LevelOne extends LevelParent {
 	private static final int KILLS_TO_ADVANCE = 10;
 	private static final double ENEMY_SPAWN_PROBABILITY = .20;
 	private static final int PLAYER_INITIAL_HEALTH = 5;
+	private LevelOneView levelView;
 
 	/**
 	 * Constructor to create an instance of LevelOne.
@@ -23,6 +25,7 @@ public class LevelOne extends LevelParent {
 	 */
 	public LevelOne(double screenHeight, double screenWidth) {
 		super(AssetPaths.BACKGROUND1, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
+		this.levelView = new LevelOneView(getRoot(), PLAYER_INITIAL_HEALTH);
 	}
 
 	/**
@@ -68,7 +71,7 @@ public class LevelOne extends LevelParent {
 	 */
 	@Override
 	protected LevelOneView instantiateLevelView() {
-		return new LevelOneView(getRoot(), PLAYER_INITIAL_HEALTH);
+		return levelView;
 	}
 
 	/**
