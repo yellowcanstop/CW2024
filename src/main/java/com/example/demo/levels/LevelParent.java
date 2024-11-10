@@ -14,6 +14,8 @@ import javafx.scene.input.*;
 import javafx.util.Duration;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 /**
  * Abstract class which defines the behaviour of a level in the game.
@@ -38,19 +40,20 @@ public abstract class LevelParent {
 	private final List<DestructibleSprite> userProjectiles;
 	private final List<DestructibleSprite> enemyProjectiles;
 	private int currentNumberOfEnemies;
-	//LevelView levelView;
 	// The Controller (InvalidationListener) observes this property for changes in the level name.
 	private final StringProperty levelNameProperty = new SimpleStringProperty();
+	private MediaPlayer mediaPlayer;
 
 	/**
 	 * Constructor to create an instance of a LevelParent.
 	 *
 	 * @param backgroundImageName - name of background image for the level
+	 * @param musicName - name of music for the level
 	 * @param screenHeight - height of the screen
 	 * @param screenWidth - width of the screen
 	 * @param playerInitialHealth - initial number of lives for the player
 	 */
-	public LevelParent(String backgroundImageName, double screenHeight, double screenWidth, int playerInitialHealth) {
+	public LevelParent(String backgroundImageName, String musicName, double screenHeight, double screenWidth, int playerInitialHealth) {
 		this.root = new Group();
 		this.scene = new Scene(root, screenWidth, screenHeight);
 		this.timeline = new Timeline();
@@ -66,12 +69,29 @@ public abstract class LevelParent {
 		this.currentNumberOfEnemies = 0;
 		initializeTimeline();
 		friendlyUnits.add(user);
+		loadMusic(musicName);
 	}
 
 	/**
 	 * Initialize the units for the game level.
 	 */
 	protected abstract void initializeUnits();
+
+	/**
+	 * Load the music for the game level.
+	 */
+	protected void loadMusic(String path) {
+		Media media = new Media(Objects.requireNonNull(getClass().getResource(path)).toExternalForm());
+		mediaPlayer = new MediaPlayer(media);
+		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+		mediaPlayer.play();
+	}
+
+	public void stopMusic() {
+		if (mediaPlayer != null) {
+			mediaPlayer.stop();
+		}
+	}
 
 	/**
 	 * Check if the game is over.
@@ -118,6 +138,7 @@ public abstract class LevelParent {
 	 * @param levelName - name of the next level of the game
 	 */
 	public void goToNextLevel(String levelName) {
+		stopMusic();
 		levelNameProperty.set(levelName);
 	}
 
@@ -352,6 +373,7 @@ public abstract class LevelParent {
 	 */
 	protected void winGame() {
 		timeline.stop();
+		stopMusic();
 		getLevelView().showWinImage();
 	}
 
@@ -360,6 +382,7 @@ public abstract class LevelParent {
 	 */
 	protected void loseGame() {
 		timeline.stop();
+		stopMusic();
 		getLevelView().showGameOverImage();
 	}
 

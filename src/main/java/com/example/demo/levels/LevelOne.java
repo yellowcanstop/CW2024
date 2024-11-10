@@ -24,7 +24,7 @@ public class LevelOne extends LevelParent {
 	 * @param screenWidth - the width of the screen
 	 */
 	public LevelOne(double screenHeight, double screenWidth) {
-		super(AssetPaths.BACKGROUND1, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
+		super(AssetPaths.BACKGROUND1, AssetPaths.MUSIC1, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
 		this.levelView = new LevelOneView(getRoot(), PLAYER_INITIAL_HEALTH);
 	}
 

@@ -19,7 +19,7 @@ public class LevelTwo extends LevelParent {
 	 * @param screenWidth - the width of the screen
 	 */
 	public LevelTwo(double screenHeight, double screenWidth) {
-		super(AssetPaths.BACKGROUND2, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
+		super(AssetPaths.BACKGROUND2, AssetPaths.MUSIC2,screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
 		bossPlane = new BossPlane();
 		this.levelView = new LevelTwoView(getRoot(), PLAYER_INITIAL_HEALTH);
 	}
