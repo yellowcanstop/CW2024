@@ -51,11 +51,4 @@ public class HeartDisplay {
 	public HBox getContainer() {
 		return container;
 	}
-
-	/**
-	 * Unload resources when the heart display is no longer needed
-	 */
-	public void unloadResources() {
-		container.getChildren().clear();
-	}
 }

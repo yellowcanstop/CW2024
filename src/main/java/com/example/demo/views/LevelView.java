@@ -69,12 +69,4 @@ public class LevelView {
 			heartDisplay.removeHeart();
 		}
 	}
-
-	/**
-	 * Unload the resources used by the level view at the end of the game.
-	 */
-	public void unloadResources() {
-		heartDisplay.unloadResources();
-
-	}
 }

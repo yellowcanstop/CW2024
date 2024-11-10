@@ -39,11 +39,9 @@ public class LevelTwo extends LevelParent {
 	@Override
 	protected void checkIfGameOver() {
 		if (userIsDestroyed()) {
-			this.unloadResources();
 			loseGame();
 		}
 		else if (bossPlane.isDestroyed()) {
-			this.unloadResources();
 			winGame();
 		}
 	}

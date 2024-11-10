@@ -388,13 +388,6 @@ public abstract class LevelParent {
 	}
 
 	/**
-	 * Unload resources for the game level.
-	 */
-	public void unloadResources() {
-		getLevelView().unloadResources();
-	}
-
-	/**
 	 * Get the user plane controlled by the player.
 	 *
 	 * @return the UserPlane object controlled by the player
