@@ -15,7 +15,7 @@ public class UserPlane extends Plane {
 	private static final int IMAGE_HEIGHT = 150;
 	private static final int VERTICAL_VELOCITY = 8;
 	private static final int HORIZONTAL_VELOCITY = 8;
-	private static final int PROJECTILE_X_POSITION = 110;
+	private static final int PROJECTILE_X_POSITION_OFFSET = 20;
 	private static final int PROJECTILE_Y_POSITION_OFFSET = 20;
 	private int verticalVelocityMultiplier;
 	private int horizontalVelocityMultiplier;
@@ -68,7 +68,7 @@ public class UserPlane extends Plane {
 	 */
 	@Override
 	public DestructibleSprite fireProjectile() {
-		return new UserProjectile(PROJECTILE_X_POSITION, getProjectileYPosition(PROJECTILE_Y_POSITION_OFFSET));
+		return new UserProjectile(getProjectileXPosition(PROJECTILE_X_POSITION_OFFSET), getProjectileYPosition(PROJECTILE_Y_POSITION_OFFSET));
 	}
 
 	/**
