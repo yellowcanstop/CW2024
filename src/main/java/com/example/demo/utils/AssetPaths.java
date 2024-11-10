@@ -20,7 +20,7 @@ public class AssetPaths {
 
     public static final String SOUND = "/com/example/demo/sounds/";
     public static final String GAMEOVER_SOUND = SOUND + "gameover.wav";
-    public static final String WIN_SOUND = SOUND + "win.wav";
+    public static final String WIN_SOUND = SOUND + "hooray.wav";
     public static final String MUSIC1 = SOUND + "game.mp3";
     public static final String MUSIC2 = SOUND + "rain.mp3";
 }

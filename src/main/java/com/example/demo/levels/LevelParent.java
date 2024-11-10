@@ -138,6 +138,7 @@ public abstract class LevelParent {
 	 * @param levelName - name of the next level of the game
 	 */
 	public void goToNextLevel(String levelName) {
+		timeline.stop();
 		stopMusic();
 		levelNameProperty.set(levelName);
 	}
