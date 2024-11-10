@@ -19,7 +19,7 @@ public class LevelTwo extends LevelParent {
 	 * @param screenWidth - the width of the screen
 	 */
 	public LevelTwo(double screenHeight, double screenWidth) {
-		super(AssetPaths.BACKGROUND2, AssetPaths.MUSIC2,screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
+		super(AssetPaths.BACKGROUND2, AssetPaths.MUSIC2, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
 		bossPlane = new BossPlane();
 		this.levelView = new LevelTwoView(getRoot(), PLAYER_INITIAL_HEALTH);
 	}
@@ -68,12 +68,18 @@ public class LevelTwo extends LevelParent {
 		return levelView;
 	}
 
+	/**
+	 * Update the level view and check if the boss is shielded.
+	 */
 	@Override
 	protected void updateLevelView() {
 		super.updateLevelView();
 		checkIfBossShielded();
 	}
 
+	/**
+	 * Check if the boss is shielded and show the shield if it is.
+	 */
 	private void checkIfBossShielded() {
 		if (bossPlane.isShielded()) {
 			bossPlane.getShieldImage().showShield();
@@ -81,5 +87,4 @@ public class LevelTwo extends LevelParent {
 			bossPlane.getShieldImage().hideShield();
 		}
 	}
-
 }

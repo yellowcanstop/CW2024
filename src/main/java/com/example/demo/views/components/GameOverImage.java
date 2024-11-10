@@ -20,9 +20,17 @@ public class GameOverImage extends ImageView {
 	 */
 	public GameOverImage(double xPosition, double yPosition) {
 		this.setImage(new Image(Objects.requireNonNull(getClass().getResource(AssetPaths.GAMEOVER)).toExternalForm()));
+		this.setVisible(false);
 		this.setLayoutX(xPosition);
 		this.setLayoutY(yPosition);
 		this.sound = new AudioClip(Objects.requireNonNull(getClass().getResource(AssetPaths.GAMEOVER_SOUND)).toExternalForm());
+	}
+
+	/**
+	 * Display the image when the game is over.
+	 */
+	public void showGameOverImage() {
+		this.setVisible(true);
 	}
 
 	/**
@@ -30,8 +38,6 @@ public class GameOverImage extends ImageView {
 	 */
 	public void playSound() {
 		if (sound != null) {
-			// loop continuously until stopped for gameover music
-			// sound.setCycleCount(AudioClip.INDEFINITE);
 			sound.play();
 		}
 	}

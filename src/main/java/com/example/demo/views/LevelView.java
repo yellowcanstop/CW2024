@@ -54,6 +54,7 @@ public class LevelView {
 	 */
 	public void showGameOverImage() {
 		root.getChildren().add(gameOverImage);
+		gameOverImage.showGameOverImage();
 		gameOverImage.playSound();
 	}
 
