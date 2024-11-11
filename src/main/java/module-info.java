@@ -8,6 +8,7 @@ module com.example.demo {
     opens com.example.demo.levels to javafx.fxml;
     opens com.example.demo.views.components to javafx.fxml;
     opens com.example.demo.models to javafx.fxml;
+    opens com.example.demo.controller to javafx.fxml;
 
     exports com.example.demo.controller;
     exports com.example.demo.utils;

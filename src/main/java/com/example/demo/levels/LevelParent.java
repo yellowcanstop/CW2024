@@ -20,7 +20,7 @@ import javafx.scene.media.MediaPlayer;
 /**
  * Abstract class which defines the behaviour of a level in the game.
  * <p>
- * Uses a StringProperty for the Controller ({@code InvalidationListener}) to observe for changes in the level name.
+ * Uses a StringProperty for the GameController ({@code InvalidationListener}) to observe for changes in the level name.
  * <p>
  * Contains methods for instantiating a level's scene, handling collisions, and spawning sprites.
  */
@@ -40,7 +40,7 @@ public abstract class LevelParent {
 	private final List<DestructibleSprite> userProjectiles;
 	private final List<DestructibleSprite> enemyProjectiles;
 	private int currentNumberOfEnemies;
-	// The Controller (InvalidationListener) observes this property for changes in the level name.
+	// The GameController (InvalidationListener) observes this property for changes in the level name.
 	private final StringProperty levelNameProperty = new SimpleStringProperty();
 	private MediaPlayer mediaPlayer;
 
@@ -125,7 +125,7 @@ public abstract class LevelParent {
 	/**
 	 * Start the game level by setting the focus to the background and starting the timeline.
 	 * <p>
-	 * This method is called in the Controller class.
+	 * This method is called in the GameController class.
 	 */
 	public void startGame() {
 		background.requestFocus();
@@ -133,7 +133,7 @@ public abstract class LevelParent {
 	}
 
 	/**
-	 * Go to the next level of the game by setting the level name property (which is observed by the Controller).
+	 * Go to the next level of the game by setting the level name property (which is observed by the GameController).
 	 *
 	 * @param levelName - name of the next level of the game
 	 */

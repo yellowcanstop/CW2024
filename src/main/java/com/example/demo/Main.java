@@ -1,8 +1,10 @@
 package com.example.demo;
 
-import com.example.demo.controller.Controller;
+import com.example.demo.controller.MenuController;
 import com.example.demo.utils.AlertException;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
@@ -14,7 +16,7 @@ public class Main extends Application {
 	private static final String TITLE = "Sky Battle";
 
     /**
-     * Set the {@code stage} and launch the game using the {@link Controller}.
+     * Set the {@code stage} and launch the menu screen using the {@link MenuController}.
      *
      * @param stage - the stage to display the game
      */
@@ -25,9 +27,14 @@ public class Main extends Application {
             stage.setResizable(false);
             stage.setHeight(SCREEN_HEIGHT);
             stage.setWidth(SCREEN_WIDTH);
-            Controller myController = new Controller(stage);
-            myController.launchGame();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/demo/views/MenuScreen.fxml"));
+            Scene scene = new Scene(loader.load());
+            MenuController controller = loader.getController();
+            controller.setStage(stage);
+            stage.setScene(scene);
+            stage.show();
         } catch (Exception e) {
+            e.printStackTrace();
             AlertException.alertException(e);
         }
     }

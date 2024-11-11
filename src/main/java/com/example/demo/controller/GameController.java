@@ -11,9 +11,9 @@ import com.example.demo.levels.LevelParent;
 /**
  * Controls the logical flow of the game by creating instances of the levels and switching between them.
  * <p>
- * Implements the Observer design pattern: the Controller is an observer of the level's change in state.
+ * Implements the Observer design pattern: the GameController is an observer of the level's change in state.
  * <p>
- * The original code uses Observer for Controller and Observable for LevelParent from java.util, which are deprecated in Java 9.
+ * The original code uses Observer for GameController and Observable for LevelParent from java.util, which are deprecated in Java 9.
  * This has been refactored to use InvalidationListener (instead of Observer) and Observable from javafx.beans.
  * <p>
  * InvalidationListener is chosen over ChangeListener since the former offers a simpler API (invalidated method only takes an Observable parameter).
@@ -21,17 +21,17 @@ import com.example.demo.levels.LevelParent;
  *
  * @see <a href="https://www.pragmaticcoding.ca/javafx/elements/listeners">pragmaticcoding.ca/javafx/elements/listeners</a>
  */
-public class Controller implements InvalidationListener {
+public class GameController implements InvalidationListener {
 	private static final String LEVEL_ONE_CLASS_NAME = "com.example.demo.levels.LevelOne";
 	private final Stage stage;
 	private LevelParent myLevel;
 
     /**
-	 * Constructor to create an instance of Controller.
+	 * Constructor to create an instance of GameController.
 	 *
 	 * @param stage - the stage to display the game
 	 */
-	public Controller(Stage stage) {
+	public GameController(Stage stage) {
 		this.stage = stage;
 	}
 
@@ -69,7 +69,7 @@ public class Controller implements InvalidationListener {
 	/**
 	 * Called when the value of the observable (the levelNameProperty of the LevelParent) changes state (invalidated).
 	 * <p>
-	 * This notifies the Controller (InvalidationListener) that the level has changed and the Controller should go to the new level.
+	 * This notifies the GameController (InvalidationListener) that the level has changed and the GameController should go to the new level.
 	 *
 	 * @param observable - the observable which is the levelNameProperty of the LevelParent
 	 */
