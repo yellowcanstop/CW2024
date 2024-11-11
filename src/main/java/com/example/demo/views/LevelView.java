@@ -6,6 +6,7 @@ import com.example.demo.views.components.HeartDisplay;
 import com.example.demo.views.components.WinImage;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
 /**
@@ -23,6 +24,7 @@ public class LevelView {
 	private final GameOverImage gameOverImage;
 	private final HeartDisplay heartDisplay;
 	private final Button returnButton;
+	private final Label killCounterLabel;
 
 	/**
 	 * Constructor to create an instance of LevelView.
@@ -37,6 +39,16 @@ public class LevelView {
 		this.gameOverImage = new GameOverImage(LOSS_SCREEN_X_POSITION, LOSS_SCREEN_Y_POSITION);
 		this.returnButton = new Button("Return to Menu");
 		this.returnButton.setOnAction(event -> Main.returnToMenu());
+		this.killCounterLabel = new Label("Kills: 0");
+		this.killCounterLabel.setLayoutX(HEART_DISPLAY_X_POSITION);
+		this.killCounterLabel.setLayoutY(HEART_DISPLAY_Y_POSITION + 50);
+	}
+
+	/**
+	 * Show the kill counter.
+	 */
+	public void showKillCounter() {
+		root.getChildren().add(killCounterLabel);
 	}
 
 	/**
@@ -86,5 +98,14 @@ public class LevelView {
 		for (int i = 0; i < currentNumberOfHearts - heartsRemaining; i++) {
 			heartDisplay.removeHeart();
 		}
+	}
+
+	/**
+	 * Update counter display to show the kills scored.
+	 *
+	 * @param killCount - the number of kills
+	 */
+	public void updateCounter(int killCount) {
+		killCounterLabel.setText("Kills: " + killCount);
 	}
 }

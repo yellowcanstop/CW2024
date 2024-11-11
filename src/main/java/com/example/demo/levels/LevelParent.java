@@ -119,6 +119,7 @@ public abstract class LevelParent {
 		initializeBackground();
 		initializeUnits();
 		getLevelView().showHeartDisplay();
+		getLevelView().showKillCounter();
 		return scene;
 	}
 
@@ -348,6 +349,7 @@ public abstract class LevelParent {
 	 */
 	protected void updateLevelView() {
 		getLevelView().removeHearts(user.getHealth());
+		getLevelView().updateCounter(user.getNumberOfKills());
 	}
 
 	/**
