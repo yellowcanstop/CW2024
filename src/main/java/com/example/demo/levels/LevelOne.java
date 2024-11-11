@@ -4,7 +4,6 @@ import com.example.demo.models.DestructibleSprite;
 import com.example.demo.models.EnemyPlane;
 import com.example.demo.utils.AssetPaths;
 import com.example.demo.views.LevelOneView;
-import com.example.demo.views.LevelTwoView;
 
 /**
  * Level one of the game.

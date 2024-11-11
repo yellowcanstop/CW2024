@@ -71,6 +71,10 @@ public class UserPlane extends Plane {
 		return new UserProjectile(getProjectileXPosition(PROJECTILE_X_POSITION_OFFSET), getProjectileYPosition(PROJECTILE_Y_POSITION_OFFSET));
 	}
 
+	public DestructibleSprite fireBombs() {
+		return new UserBomb(getProjectileXPosition(PROJECTILE_X_POSITION_OFFSET), getProjectileYPosition(PROJECTILE_Y_POSITION_OFFSET));
+	}
+
 	/**
 	 * Check if the user plane is moving.
 	 *

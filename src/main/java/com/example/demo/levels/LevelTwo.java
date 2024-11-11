@@ -8,6 +8,7 @@ import com.example.demo.views.LevelTwoView;
  * Level two of the game.
  */
 public class LevelTwo extends LevelParent {
+	private static final String NEXT_LEVEL = "com.example.demo.levels.LevelThree";
 	private static final int PLAYER_INITIAL_HEALTH = 5;
 	private final BossPlane bossPlane;
 	private LevelTwoView levelView;
@@ -44,7 +45,7 @@ public class LevelTwo extends LevelParent {
 			loseGame();
 		}
 		else if (bossPlane.isDestroyed()) {
-			winGame();
+			goToNextLevel(NEXT_LEVEL);
 		}
 	}
 

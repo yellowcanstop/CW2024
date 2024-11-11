@@ -205,17 +205,6 @@ public abstract class LevelParent {
 		return keyActions;
 	}
 
-	/*
-	@Override
-    protected Map<KeyCode, Runnable> instantiateKeyActions() {
-        Map<KeyCode, Runnable> keyActions = super.instantiateKeyActions();
-        keyActions.put(KeyCode.M, this::fireBombs);
-        return keyActions;
-    }
-
-	private void fireBombs()
-	*/
-
 	/**
 	 * Fire a projectile from the plane controlled by the player.
 	 */
@@ -223,6 +212,10 @@ public abstract class LevelParent {
 		DestructibleSprite projectile = user.fireProjectile();
 		root.getChildren().add(projectile);
 		userProjectiles.add(projectile);
+	}
+
+	public List<DestructibleSprite> getUserProjectiles() {
+		return userProjectiles;
 	}
 
 	/**

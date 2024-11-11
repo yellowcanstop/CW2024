@@ -17,6 +17,7 @@ public class AssetPaths {
     public static final String USER_FIRE = IMAGE + "userfire.png";
     public static final String USER_PLANE = IMAGE + "userplane.png";
     public static final String YOU_WIN = IMAGE + "youwin.png";
+    public static final String USER_BOMB = IMAGE + "userfire2.png";
 
     public static final String SOUND = "/com/example/demo/sounds/";
     public static final String GAMEOVER_SOUND = SOUND + "gameover.wav";
