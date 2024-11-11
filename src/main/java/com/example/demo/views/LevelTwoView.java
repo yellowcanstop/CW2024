@@ -21,7 +21,7 @@ public class LevelTwoView extends LevelView {
 	public LevelTwoView(Group root, int heartsToDisplay) {
 		super(root, heartsToDisplay);
 		this.root = root;
-		this.bossHealthLabel = new Label("Boss Health: 0");
+		this.bossHealthLabel = new Label("Boss Health: ");
 		this.bossHealthLabel.setLayoutX(BOSS_HEALTH_X_POSITION);
 		this.bossHealthLabel.setLayoutY(BOSS_HEALTH_Y_POSITION);
 	}
