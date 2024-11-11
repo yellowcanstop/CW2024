@@ -31,6 +31,7 @@ public class LevelTwo extends LevelParent {
 	protected void initializeUnits() {
 		getRoot().getChildren().add(getUser());
 		getRoot().getChildren().add(bossPlane.getShieldImage());
+		getRoot().getChildren().add(getLevelView().getBossHealthLabel());
 	}
 
 	/**
@@ -73,6 +74,7 @@ public class LevelTwo extends LevelParent {
 	protected void updateLevelView() {
 		super.updateLevelView();
 		checkIfBossShielded();
+		levelView.updateBossHealth(bossPlane.getHealth());
 	}
 
 	/**
