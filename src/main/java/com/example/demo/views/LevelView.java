@@ -1,9 +1,12 @@
 package com.example.demo.views;
 
+import com.example.demo.Main;
 import com.example.demo.views.components.GameOverImage;
 import com.example.demo.views.components.HeartDisplay;
 import com.example.demo.views.components.WinImage;
 import javafx.scene.Group;
+import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
 
 /**
  * View for a level of the game.
@@ -19,6 +22,7 @@ public class LevelView {
 	private final WinImage winImage;
 	private final GameOverImage gameOverImage;
 	private final HeartDisplay heartDisplay;
+	private final Button returnButton;
 
 	/**
 	 * Constructor to create an instance of LevelView.
@@ -31,6 +35,8 @@ public class LevelView {
 		this.heartDisplay = new HeartDisplay(HEART_DISPLAY_X_POSITION, HEART_DISPLAY_Y_POSITION, heartsToDisplay);
 		this.winImage = new WinImage(WIN_IMAGE_X_POSITION, WIN_IMAGE_Y_POSITION);
 		this.gameOverImage = new GameOverImage(LOSS_SCREEN_X_POSITION, LOSS_SCREEN_Y_POSITION);
+		this.returnButton = new Button("Return to Menu");
+		this.returnButton.setOnAction(event -> Main.returnToMenu());
 	}
 
 	/**
@@ -47,6 +53,7 @@ public class LevelView {
 		root.getChildren().add(winImage);
 		winImage.showWinImage();
 		winImage.playSound();
+		showReturnButton();
 	}
 
 	/**
@@ -56,6 +63,17 @@ public class LevelView {
 		root.getChildren().add(gameOverImage);
 		gameOverImage.showGameOverImage();
 		gameOverImage.playSound();
+		showReturnButton();
+	}
+
+	/**
+	 * Show the button to return to menu.
+	 */
+	private void showReturnButton() {
+		VBox buttonContainer = new VBox(returnButton);
+		buttonContainer.setLayoutX(WIN_IMAGE_X_POSITION + 50);
+		buttonContainer.setLayoutY(WIN_IMAGE_Y_POSITION);
+		root.getChildren().add(buttonContainer);
 	}
 
 	/**
