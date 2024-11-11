@@ -23,7 +23,7 @@ public class LevelThree extends LevelParent {
      * @param screenWidth - the width of the screen
      */
     public LevelThree(double screenHeight, double screenWidth) {
-        super(AssetPaths.BACKGROUND1, AssetPaths.MUSIC1, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
+        super(AssetPaths.BACKGROUND3, AssetPaths.MUSIC3, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
         bossPlane1 = new BossPlane();
         bossPlane2 = new BossPlane();
         this.levelView = new LevelThreeView(getRoot(), PLAYER_INITIAL_HEALTH);
