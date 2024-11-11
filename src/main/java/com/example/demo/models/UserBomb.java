@@ -6,8 +6,8 @@ import com.example.demo.utils.AssetPaths;
  * Bomb for user-controlled player sprite in the game.
  */
 public class UserBomb extends Projectile {
-    private static final int IMAGE_HEIGHT = 125;
-    private static final int HORIZONTAL_VELOCITY = 15;
+    private static final int IMAGE_HEIGHT = 50;
+    private static final int HORIZONTAL_VELOCITY = 20;
 
     /**
      * Constructor to create an instance of UserBomb.

@@ -5,9 +5,6 @@ import com.example.demo.models.DestructibleSprite;
 import com.example.demo.utils.AssetPaths;
 import com.example.demo.views.LevelThreeView;
 import javafx.scene.input.KeyCode;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,7 +12,8 @@ import java.util.Map;
  */
 public class LevelThree extends LevelParent {
     private static final int PLAYER_INITIAL_HEALTH = 10;
-    private final BossPlane bossPlane;
+    private final BossPlane bossPlane1;
+    private final BossPlane bossPlane2;
     private LevelThreeView levelView;
 
     /**
@@ -26,7 +24,8 @@ public class LevelThree extends LevelParent {
      */
     public LevelThree(double screenHeight, double screenWidth) {
         super(AssetPaths.BACKGROUND1, AssetPaths.MUSIC1, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
-        bossPlane = new BossPlane();
+        bossPlane1 = new BossPlane();
+        bossPlane2 = new BossPlane();
         this.levelView = new LevelThreeView(getRoot(), PLAYER_INITIAL_HEALTH);
     }
 
@@ -36,9 +35,12 @@ public class LevelThree extends LevelParent {
     @Override
     protected void initializeUnits() {
         getRoot().getChildren().add(getUser());
-        getRoot().getChildren().add(bossPlane.getShieldImage());
-        getRoot().getChildren().add(getLevelView().getBossHealthLabel());
-        getRoot().getChildren().add(getLevelView().getBossHealthDisplay());
+        getRoot().getChildren().add(bossPlane1.getShieldImage());
+        getRoot().getChildren().add(bossPlane2.getShieldImage());
+        getRoot().getChildren().add(getLevelView().getBossHealthLabel1());
+        getRoot().getChildren().add(getLevelView().getBossHealthDisplay1());
+        getRoot().getChildren().add(getLevelView().getBossHealthLabel2());
+        getRoot().getChildren().add(getLevelView().getBossHealthDisplay2());
     }
 
     /**
@@ -49,7 +51,7 @@ public class LevelThree extends LevelParent {
         if (userIsDestroyed()) {
             loseGame();
         }
-        else if (bossPlane.isDestroyed()) {
+        else if (bossPlane1.isDestroyed() && bossPlane2.isDestroyed()) {
             winGame();
         }
     }
@@ -60,7 +62,8 @@ public class LevelThree extends LevelParent {
     @Override
     protected void spawnEnemyUnits() {
         if (getCurrentNumberOfEnemies() == 0) {
-            addEnemyUnit(bossPlane);
+            addEnemyUnit(bossPlane1);
+            addEnemyUnit(bossPlane2);
         }
     }
 
@@ -96,14 +99,16 @@ public class LevelThree extends LevelParent {
     @Override
     protected void updateLevelView() {
         super.updateLevelView();
-        checkIfBossShielded();
-        levelView.updateBossHealth(bossPlane.getHealth());
+        checkIfBossShielded(bossPlane1);
+        checkIfBossShielded(bossPlane2);
+        levelView.updateBossHealth1(bossPlane1.getHealth());
+        levelView.updateBossHealth2(bossPlane2.getHealth());
     }
 
     /**
      * Check if the boss is shielded and show the shield if it is.
      */
-    private void checkIfBossShielded() {
+    private void checkIfBossShielded(BossPlane bossPlane) {
         if (bossPlane.isShielded()) {
             bossPlane.getShieldImage().showShield();
         } else {

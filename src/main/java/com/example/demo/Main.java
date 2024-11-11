@@ -5,7 +5,6 @@ import com.example.demo.utils.AlertException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Menu;
 import javafx.stage.Stage;
 
 /**
@@ -17,7 +16,6 @@ public class Main extends Application {
 	private static final String TITLE = "Sky Battle";
     private static Stage stage;
     private static Scene menuScene;
-    private static MenuController menuController;
 
     /**
      * Set the {@code stage} and launch the menu screen using the {@link MenuController}.
@@ -52,7 +50,7 @@ public class Main extends Application {
         try {
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("/com/example/demo/views/MenuScreen.fxml"));
             menuScene = new Scene(loader.load());
-            menuController = loader.getController();
+            MenuController menuController = loader.getController();
             menuController.setStage(stage);
             stage.setTitle(TITLE);
             stage.setResizable(false);

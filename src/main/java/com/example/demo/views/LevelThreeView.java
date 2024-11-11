@@ -9,8 +9,10 @@ import javafx.scene.control.ProgressBar;
  */
 public class LevelThreeView extends LevelView {
     private final Group root;
-    private final Label bossHealthLabel;
-    private final ProgressBar bossHealthDisplay;
+    private final Label bossHealthLabel1;
+    private final Label bossHealthLabel2;
+    private final ProgressBar bossHealthDisplay1;
+    private final ProgressBar bossHealthDisplay2;
     private static final int BOSS_HEALTH_X_POSITION = 1000;
     private static final int BOSS_HEALTH_Y_POSITION = 20;
 
@@ -23,29 +25,44 @@ public class LevelThreeView extends LevelView {
     public LevelThreeView(Group root, int heartsToDisplay) {
         super(root, heartsToDisplay);
         this.root = root;
-        this.bossHealthLabel = new Label("Boss Health");
-        this.bossHealthLabel.setLayoutX(BOSS_HEALTH_X_POSITION);
-        this.bossHealthLabel.setLayoutY(BOSS_HEALTH_Y_POSITION - 20);
-        this.bossHealthDisplay = new ProgressBar();
-        this.bossHealthDisplay.setLayoutX(BOSS_HEALTH_X_POSITION);
-        this.bossHealthDisplay.setLayoutY(BOSS_HEALTH_Y_POSITION);
-        this.bossHealthDisplay.setPrefWidth(200);
-        this.bossHealthDisplay.setProgress(1.0);
-        this.bossHealthDisplay.getStyleClass().add("boss-progress-bar");
+        this.bossHealthLabel1 = new Label("Boss 1 Health");
+        this.bossHealthLabel1.setLayoutX(BOSS_HEALTH_X_POSITION);
+        this.bossHealthLabel1.setLayoutY(BOSS_HEALTH_Y_POSITION - 20);
+        this.bossHealthDisplay1 = new ProgressBar();
+        this.bossHealthDisplay1.setLayoutX(BOSS_HEALTH_X_POSITION);
+        this.bossHealthDisplay1.setLayoutY(BOSS_HEALTH_Y_POSITION);
+        this.bossHealthDisplay1.setPrefWidth(200);
+        this.bossHealthDisplay1.setProgress(1.0);
+        this.bossHealthLabel2 = new Label("Boss 2 Health");
+        this.bossHealthLabel2.setLayoutX(BOSS_HEALTH_X_POSITION);
+        this.bossHealthLabel2.setLayoutY(BOSS_HEALTH_Y_POSITION + 40);
+        this.bossHealthDisplay2 = new ProgressBar();
+        this.bossHealthDisplay2.setLayoutX(BOSS_HEALTH_X_POSITION);
+        this.bossHealthDisplay2.setLayoutY(BOSS_HEALTH_Y_POSITION + 50);
+        this.bossHealthDisplay2.setPrefWidth(200);
+        this.bossHealthDisplay2.setProgress(1.0);
     }
 
     /**
      * Get the boss health label.
      */
-    public Label getBossHealthLabel() {
-        return bossHealthLabel;
+    public Label getBossHealthLabel1() {
+        return bossHealthLabel1;
+    }
+
+    public Label getBossHealthLabel2() {
+        return bossHealthLabel2;
     }
 
     /**
      * Get the boss health display.
      */
-    public ProgressBar getBossHealthDisplay() {
-        return bossHealthDisplay;
+    public ProgressBar getBossHealthDisplay1() {
+        return bossHealthDisplay1;
+    }
+
+    public ProgressBar getBossHealthDisplay2() {
+        return bossHealthDisplay2;
     }
 
     /**
@@ -53,7 +70,11 @@ public class LevelThreeView extends LevelView {
      *
      * @param bossHealth - health of the boss
      */
-    public void updateBossHealth(int bossHealth) {
-        bossHealthDisplay.setProgress((double) bossHealth / 10);
+    public void updateBossHealth1(int bossHealth) {
+        bossHealthDisplay1.setProgress((double) bossHealth / 10);
+    }
+
+    public void updateBossHealth2(int bossHealth) {
+        bossHealthDisplay2.setProgress((double) bossHealth / 10);
     }
 }
