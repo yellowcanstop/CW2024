@@ -65,6 +65,7 @@ public class BossPlane extends Plane {
 	public void updateActor() {
 		updatePosition();
 		updateShield();
+		fireProjectile();
 	}
 
 	/**
@@ -74,7 +75,10 @@ public class BossPlane extends Plane {
 	 */
 	@Override
 	public DestructibleSprite fireProjectile() {
-		return bossFiresInCurrentFrame() ? new BossProjectile(getProjectileInitialPosition()) : null;
+		if (Math.random() < BOSS_FIRE_RATE) {
+			return BossProjectile.create(getProjectileInitialPosition());
+		}
+		return null;
 	}
 
 	/**
@@ -134,15 +138,6 @@ public class BossPlane extends Plane {
 			indexOfCurrentMove = 0;
 		}
 		return currentMove;
-	}
-
-	/**
-	 * Check if the boss is to fire in the current frame.
-	 *
-	 * @return true if boss is to fire in current frame, else false
-	 */
-	private boolean bossFiresInCurrentFrame() {
-		return Math.random() < BOSS_FIRE_RATE;
 	}
 
 	/**

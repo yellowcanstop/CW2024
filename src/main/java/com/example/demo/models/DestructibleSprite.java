@@ -4,7 +4,7 @@ package com.example.demo.models;
  * Abstract class representing a sprite which can take damage and be destroyed in the game.
  */
 public abstract class DestructibleSprite extends Sprite implements Destructible {
-	private boolean isDestroyed;
+	boolean isDestroyed;
 
 	/**
 	 * Constructor to create an instance of DestructibleSprite.

@@ -29,6 +29,7 @@ public class EnemyProjectile extends Projectile {
 		EnemyProjectile projectile = pool.get();
 		projectile.setX(initialXPos);
 		projectile.setY(initialYPos);
+		projectile.isDestroyed = false;
 		return projectile;
 	}
 
