@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.Main;
+import com.example.demo.utils.AlertException;
 import com.example.demo.utils.AssetPaths;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,8 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 import java.util.Objects;
 
 public class MenuController {
@@ -57,17 +55,26 @@ public class MenuController {
     }
 
     @FXML
-    private void showHelpScreen() throws IOException {
-        // initialize help screen
-        FXMLLoader loader = new FXMLLoader(MenuController.class.getResource("/com/example/demo/views/HelpScreen.fxml"));
-        helpScene = new Scene(loader.load());
-        helpController = loader.getController();
-        helpController.setStage(stage);
-        stage.setResizable(false);
-        stage.setHeight(SCREEN_HEIGHT);
-        stage.setWidth(SCREEN_WIDTH);
-        // show help screen
+    private void showHelpScreen() {
+        if (helpScene == null) {
+            initializeHelpScreen();
+        }
         stage.setScene(helpScene);
         stage.show();
+    }
+
+    private void initializeHelpScreen() {
+        FXMLLoader loader = new FXMLLoader(MenuController.class.getResource("/com/example/demo/views/HelpScreen.fxml"));
+        try {
+            helpScene = new Scene(loader.load());
+            helpController = loader.getController();
+            helpController.setStage(stage);
+            stage.setResizable(false);
+            stage.setHeight(SCREEN_HEIGHT);
+            stage.setWidth(SCREEN_WIDTH);
+        } catch (Exception e) {
+            AlertException.alertException(e);
+        }
+
     }
 }
