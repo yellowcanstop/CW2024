@@ -182,7 +182,9 @@ public class BossPlane extends Plane {
 	 * Deactivate the shield for the boss.
 	 */
 	public void deactivateShield() {
-		isShielded = false;
-		framesWithShieldActivated = 0;
+		if (isShielded) {
+			isShielded = false;
+			framesWithShieldActivated = 0;
+		}
 	}
 }
