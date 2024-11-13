@@ -15,6 +15,8 @@ public class LevelThree extends LevelParent {
     private final BossPlane bossPlane1;
     private final BossPlane bossPlane2;
     private LevelThreeView levelView;
+    private long lastFireTime = 0;
+    private static final long FIRE_COOL_DOWN = 1000;
 
     /**
      * Constructor to create an instance of LevelThree. Initialize the bossPlane.
@@ -78,9 +80,13 @@ public class LevelThree extends LevelParent {
      * Fire a projectile from the plane controlled by the player.
      */
     private void fireBombs() {
-        DestructibleSprite bomb = getUser().fireBombs();
-        getRoot().getChildren().add(bomb);
-        getUserProjectiles().add(bomb);
+        long currentTime = System.currentTimeMillis();
+        if (currentTime - lastFireTime >= FIRE_COOL_DOWN) {
+            DestructibleSprite bomb = getUser().fireBombs();
+            getRoot().getChildren().add(bomb);
+            getUserProjectiles().add(bomb);
+            lastFireTime = currentTime;
+        }
     }
 
     /**

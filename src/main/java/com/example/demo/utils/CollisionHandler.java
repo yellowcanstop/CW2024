@@ -1,6 +1,8 @@
 package com.example.demo.utils;
 
+import com.example.demo.models.BossPlane;
 import com.example.demo.models.DestructibleSprite;
+import com.example.demo.models.UserBomb;
 
 import java.util.List;
 
@@ -22,8 +24,14 @@ public class CollisionHandler {
         for (DestructibleSprite actor : actors2) {
             for (DestructibleSprite otherActor : actors1) {
                 if (actor.getBoundsInParent().intersects(otherActor.getBoundsInParent())) {
-                    actor.takeDamage();
-                    otherActor.takeDamage();
+                    if (actor instanceof BossPlane && otherActor instanceof UserBomb) {
+                        ((BossPlane) actor).deactivateShield();
+                    } else if (actor instanceof UserBomb && otherActor instanceof BossPlane) {
+                        ((BossPlane) otherActor).deactivateShield();
+                    } else {
+                        actor.takeDamage();
+                        otherActor.takeDamage();
+                    }
                 }
             }
         }

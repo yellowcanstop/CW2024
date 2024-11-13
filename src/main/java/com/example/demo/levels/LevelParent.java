@@ -45,9 +45,7 @@ public abstract class LevelParent {
 	// The GameController (InvalidationListener) observes this property for changes in the level name.
 	private final StringProperty levelNameProperty = new SimpleStringProperty();
 	private MediaPlayer mediaPlayer;
-	// track time of the last shot
 	private long lastFireTime = 0;
-	// the minimum time between shots
 	private static final long FIRE_COOL_DOWN = 500;
 	private final CollisionHandler collisionHandler = new CollisionHandler();
 
