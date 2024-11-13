@@ -1,6 +1,8 @@
 package com.example.demo.views;
 
 import com.example.demo.Main;
+import com.example.demo.utils.AssetPaths;
+import com.example.demo.utils.CollisionHandler;
 import com.example.demo.views.components.GameOverImage;
 import com.example.demo.views.components.HeartDisplay;
 import com.example.demo.views.components.WinImage;
@@ -8,6 +10,9 @@ import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.AudioClip;
+
+import java.util.Objects;
 
 /**
  * View for a level of the game.
@@ -25,6 +30,7 @@ public class LevelView {
 	private final HeartDisplay heartDisplay;
 	private final Button returnButton;
 	private final Label killCounterLabel;
+	private static final AudioClip damageUserSound = new AudioClip(Objects.requireNonNull(LevelView.class.getResource(AssetPaths.DAMAGE_USER)).toExternalForm());
 
 	/**
 	 * Constructor to create an instance of LevelView.
@@ -97,6 +103,7 @@ public class LevelView {
 		int currentNumberOfHearts = heartDisplay.getContainer().getChildren().size();
 		for (int i = 0; i < currentNumberOfHearts - heartsRemaining; i++) {
 			heartDisplay.removeHeart();
+			damageUserSound.play();
 		}
 	}
 

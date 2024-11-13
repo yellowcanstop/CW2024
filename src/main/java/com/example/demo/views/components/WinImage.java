@@ -46,13 +46,4 @@ public class WinImage extends ImageView {
 			sound.play();
 		}
 	}
-
-	/**
-	 * Stop the sound when navigating away from the win screen.
-	 */
-	public void stopSound() {
-		if (sound.isPlaying()) {
-			sound.stop();
-		}
-	}
 }

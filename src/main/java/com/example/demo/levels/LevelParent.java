@@ -2,6 +2,7 @@ package com.example.demo.levels;
 
 import java.util.*;
 
+import com.example.demo.utils.AssetPaths;
 import com.example.demo.utils.CollisionHandler;
 import com.example.demo.views.components.Background;
 import com.example.demo.models.DestructibleSprite;
@@ -13,6 +14,7 @@ import javafx.animation.*;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.*;
+import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -48,6 +50,8 @@ public abstract class LevelParent {
 	private long lastFireTime = 0;
 	private static final long FIRE_COOL_DOWN = 500;
 	private final CollisionHandler collisionHandler = new CollisionHandler();
+	private static final AudioClip fireProjectileSound = new AudioClip(Objects.requireNonNull(LevelParent.class.getResource(AssetPaths.FIRE_PROJECTILE)).toExternalForm());
+
 
 	/**
 	 * Constructor to create an instance of a LevelParent.
@@ -222,6 +226,7 @@ public abstract class LevelParent {
 			root.getChildren().add(projectile);
 			userProjectiles.add(projectile);
 			lastFireTime = currentTime;
+			fireProjectileSound.play();
 		}
 	}
 

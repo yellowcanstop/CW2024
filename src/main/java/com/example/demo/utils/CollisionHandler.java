@@ -3,10 +3,14 @@ package com.example.demo.utils;
 import com.example.demo.models.BossPlane;
 import com.example.demo.models.DestructibleSprite;
 import com.example.demo.models.UserBomb;
+import javafx.scene.media.AudioClip;
 
 import java.util.List;
+import java.util.Objects;
 
 public class CollisionHandler {
+    private static AudioClip deactivateShieldSound = new AudioClip(Objects.requireNonNull(BossPlane.class.getResource(AssetPaths.DEACTIVATE_SHIELD)).toExternalForm());
+
     /**
      * Handle collisions between two lists of actors by checking if the bounds of any two actors intersect.
      * <p>
@@ -26,10 +30,16 @@ public class CollisionHandler {
             for (DestructibleSprite otherActor : actors1) {
                 if (actor.getBoundsInParent().intersects(otherActor.getBoundsInParent())) {
                     if (actor instanceof BossPlane && otherActor instanceof UserBomb) {
-                        ((BossPlane) actor).deactivateShield();
+                        boolean hit = ((BossPlane) actor).deactivateShield();
+                        if (hit) {
+                            deactivateShieldSound.play();
+                        }
                         otherActor.takeDamage();
                     } else if (actor instanceof UserBomb && otherActor instanceof BossPlane) {
-                        ((BossPlane) otherActor).deactivateShield();
+                        boolean hit = ((BossPlane) otherActor).deactivateShield();
+                        if (hit) {
+                            deactivateShieldSound.play();
+                        }
                         actor.takeDamage();
                     } else {
                         actor.takeDamage();

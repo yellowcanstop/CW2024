@@ -41,13 +41,4 @@ public class GameOverImage extends ImageView {
 			sound.play();
 		}
 	}
-
-	/**
-	 * Stop the sound when navigating away from the game over screen.
-	 */
-	public void stopSound() {
-		if (sound.isPlaying()) {
-			sound.stop();
-		}
-	}
 }

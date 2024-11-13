@@ -2,10 +2,14 @@ package com.example.demo.levels;
 
 import com.example.demo.models.BossPlane;
 import com.example.demo.models.DestructibleSprite;
+import com.example.demo.models.EnemyPlane;
 import com.example.demo.utils.AssetPaths;
 import com.example.demo.views.LevelThreeView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.media.AudioClip;
+
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Level three of the game.
@@ -17,6 +21,7 @@ public class LevelThree extends LevelParent {
     private LevelThreeView levelView;
     private long lastFireTime = 0;
     private static final long FIRE_COOL_DOWN = 1000;
+    private static final AudioClip fireBombSound = new AudioClip(Objects.requireNonNull(LevelThree.class.getResource(AssetPaths.FIRE_BOMB)).toExternalForm());
 
     /**
      * Constructor to create an instance of LevelThree. Initialize the bossPlane.
@@ -86,6 +91,7 @@ public class LevelThree extends LevelParent {
             getRoot().getChildren().add(bomb);
             getUserProjectiles().add(bomb);
             lastFireTime = currentTime;
+            fireBombSound.play();
         }
     }
 

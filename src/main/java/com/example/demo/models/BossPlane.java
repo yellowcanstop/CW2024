@@ -1,8 +1,11 @@
 package com.example.demo.models;
 
 import java.util.*;
+
+import com.example.demo.utils.CollisionHandler;
 import com.example.demo.views.components.ShieldImage;
 import com.example.demo.utils.AssetPaths;
+import javafx.scene.media.AudioClip;
 
 /**
  * BossPlane sprite for level two of the game.
@@ -28,6 +31,7 @@ public class BossPlane extends Plane {
 	private int indexOfCurrentMove;
 	private int framesWithShieldActivated;
 	private ShieldImage shieldImage;
+	private static final AudioClip destroyBossSound = new AudioClip(Objects.requireNonNull(EnemyPlane.class.getResource(AssetPaths.DESTROY_ENEMY)).toExternalForm());
 
 	/**
 	 * Constructor to create an instance of a BossPlane.
@@ -88,6 +92,7 @@ public class BossPlane extends Plane {
 	public void takeDamage() {
 		if (!isShielded) {
 			super.takeDamage();
+			destroyBossSound.play();
 		}
 	}
 
@@ -181,10 +186,12 @@ public class BossPlane extends Plane {
 	/**
 	 * Deactivate the shield for the boss.
 	 */
-	public void deactivateShield() {
+	public boolean deactivateShield() {
 		if (isShielded) {
 			isShielded = false;
 			framesWithShieldActivated = 0;
+			return true;
 		}
+		return false;
 	}
 }

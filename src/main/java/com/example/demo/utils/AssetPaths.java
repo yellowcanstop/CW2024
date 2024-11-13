@@ -21,8 +21,14 @@ public class AssetPaths {
     public static final String USER_BOMB = IMAGE + "userfire2.png";
 
     public static final String SOUND = "/com/example/demo/sounds/";
-    public static final String GAMEOVER_SOUND = SOUND + "gameover.wav";
-    public static final String WIN_SOUND = SOUND + "hooray.wav";
+    public static final String GAMEOVER_SOUND = SOUND + "ugh.wav";
+    public static final String WIN_SOUND = SOUND + "boodoodaloop.wav";
+    public static final String FIRE_PROJECTILE = SOUND + "laser_shot2.wav";
+    public static final String FIRE_BOMB = SOUND + "firebomb.wav";
+    public static final String DESTROY_ENEMY = SOUND + "gameover.wav";
+    public static final String DEACTIVATE_SHIELD = SOUND + "minty_attack.wav";
+    public static final String DAMAGE_USER = SOUND + "ugh.wav";
+    public static final String MENU_CLICK = SOUND + "chime1.wav";
     public static final String MENU_MUSIC = SOUND + "rain.mp3";
     public static final String MUSIC1 = SOUND + "game.mp3";
     public static final String MUSIC2 = SOUND + "rain.mp3";

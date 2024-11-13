@@ -1,6 +1,10 @@
 package com.example.demo.models;
 
 import com.example.demo.utils.AssetPaths;
+import com.example.demo.utils.CollisionHandler;
+import javafx.scene.media.AudioClip;
+
+import java.util.Objects;
 
 /**
  * Enemy plane sprite for the game.
@@ -12,6 +16,8 @@ public class EnemyPlane extends Plane {
 	private static final double PROJECTILE_Y_POSITION_OFFSET = 50.0;
 	private static final int INITIAL_HEALTH = 1;
 	private static final double FIRE_RATE = .01;
+	private static final AudioClip destroyEnemySound = new AudioClip(Objects.requireNonNull(EnemyPlane.class.getResource(AssetPaths.DESTROY_ENEMY)).toExternalForm());
+
 
 	/**
 	 * Constructor to create an instance of an EnemyPlane.
@@ -52,5 +58,11 @@ public class EnemyPlane extends Plane {
 	@Override
 	public void updateActor() {
 		updatePosition();
+	}
+
+	@Override
+	public void takeDamage() {
+		super.takeDamage();
+		destroyEnemySound.play();
 	}
 }
