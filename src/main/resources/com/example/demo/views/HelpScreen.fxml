@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1300.0" stylesheets="@../styles/styles.css"
+            xmlns="http://javafx.com/javafx/19.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controller.HelpController">
+    <Label layoutX="500.0" layoutY="100.0" text="ARE YOU READY?"/>
+    <Label layoutX="500.0" layoutY="150.0" text="Level 1: Destroy enough enemy planes while staying alive!"/>
+    <Label layoutX="500.0" layoutY="200.0" text="Level 2: Destroy the boss plane when it unshields! (it can still shoot you while shielded)"/>
+    <Label layoutX="500.0" layoutY="250.0" text="Level 3: Destroy the boss planes but now you have bombs to break shields!"/>
+    <Label layoutX="500.0" layoutY="300.0" text="SO HOW TO PLAY?"/>
+    <Label layoutX="500.0" layoutY="350.0" text="UP/DOWN/LEFT/RIGHT to move."/>
+    <Label layoutX="500.0" layoutY="400.0" text="SPACE to shoot bullets."/>
+    <Label layoutX="500.0" layoutY="450.0" text="TAB to bomb boss shield (Level 3 only)."/>
+    <Button layoutX="500.0" layoutY="500.0" text="Return to Menu" onAction="#returnToMenu"/>
+</AnchorPane>

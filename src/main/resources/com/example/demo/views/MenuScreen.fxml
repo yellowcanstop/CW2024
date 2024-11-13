@@ -11,7 +11,8 @@
          <children>
               <Label prefHeight="55.0" prefWidth="139.0" text="Welcome to Sky Battle!" />
               <Button fx:id="button1" onAction="#startGame" text="Start game!" />
-              <Button fx:id="button2" onAction="#exitGame" text="Exit" />
+              <Button fx:id="button2" onAction="#showHelpScreen" text="How to Play" />
+              <Button fx:id="button3" onAction="#exitGame" text="Exit" />
          </children>
       </VBox>
     </children>
