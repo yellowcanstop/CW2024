@@ -1,6 +1,8 @@
 package com.example.demo.levels;
 
 import java.util.*;
+
+import com.example.demo.utils.CollisionHandler;
 import com.example.demo.views.components.Background;
 import com.example.demo.models.DestructibleSprite;
 import com.example.demo.models.Plane;
@@ -47,6 +49,7 @@ public abstract class LevelParent {
 	private long lastFireTime = 0;
 	// the minimum time between shots
 	private static final long FIRE_COOL_DOWN = 500;
+	private final CollisionHandler collisionHandler = new CollisionHandler();
 
 	/**
 	 * Constructor to create an instance of a LevelParent.
@@ -283,45 +286,21 @@ public abstract class LevelParent {
 	 * Handle collisions between friendly units and enemy units.
 	 */
 	private void handlePlaneCollisions() {
-		handleCollisions(friendlyUnits, enemyUnits);
+		collisionHandler.handleCollisions(friendlyUnits, enemyUnits);
 	}
 
 	/**
 	 * Handle collisions between user projectiles and enemy units.
 	 */
 	private void handleUserProjectileCollisions() {
-		handleCollisions(userProjectiles, enemyUnits);
+		collisionHandler.handleCollisions(userProjectiles, enemyUnits);
 	}
 
 	/**
 	 * Handle collisions between enemy projectiles and friendly units.
 	 */
 	private void handleEnemyProjectileCollisions() {
-		handleCollisions(enemyProjectiles, friendlyUnits);
-	}
-
-	/**
-	 * Handle collisions between two lists of actors by checking if the bounds of any two actors intersect.
-	 * <p>
-	 * If the bounds of two actors intersect, both actors take damage:
-	 * <p>for projectiles, the projectile is destroyed;
-	 * <p>for enemy planes, the enemy plane is destroyed;
-	 * <p>for the user plane, it has its health decremented and is destroyed if its health reaches zero;
-	 * <p>for the boss plane, it has its health decremented if unshielded and is destroyed if its health reaches zero.
-	 *
-	 * @param actors1 - the first list of actors
-	 * @param actors2 - the second list of actors
-	 */
-	private void handleCollisions(List<DestructibleSprite> actors1,
-			List<DestructibleSprite> actors2) {
-		for (DestructibleSprite actor : actors2) {
-			for (DestructibleSprite otherActor : actors1) {
-				if (actor.getBoundsInParent().intersects(otherActor.getBoundsInParent())) {
-					actor.takeDamage();
-					otherActor.takeDamage();
-				}
-			}
-		}
+		collisionHandler.handleCollisions(enemyProjectiles, friendlyUnits);
 	}
 
 	/**
