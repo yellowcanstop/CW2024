@@ -43,6 +43,10 @@ public abstract class LevelParent {
 	// The GameController (InvalidationListener) observes this property for changes in the level name.
 	private final StringProperty levelNameProperty = new SimpleStringProperty();
 	private MediaPlayer mediaPlayer;
+	// track time of the last shot
+	private long lastFireTime = 0;
+	// the minimum time between shots
+	private static final long FIRE_COOL_DOWN = 500;
 
 	/**
 	 * Constructor to create an instance of a LevelParent.
@@ -207,11 +211,17 @@ public abstract class LevelParent {
 
 	/**
 	 * Fire a projectile from the plane controlled by the player.
+	 * <p>
+	 * A new shot is only allowed if the time since the last shot is greater than the cool-down time.
 	 */
 	private void fireProjectile() {
-		DestructibleSprite projectile = user.fireProjectile();
-		root.getChildren().add(projectile);
-		userProjectiles.add(projectile);
+		long currentTime = System.currentTimeMillis();
+		if (currentTime - lastFireTime >= FIRE_COOL_DOWN) {
+			DestructibleSprite projectile = user.fireProjectile();
+			root.getChildren().add(projectile);
+			userProjectiles.add(projectile);
+			lastFireTime = currentTime;
+		}
 	}
 
 	public List<DestructibleSprite> getUserProjectiles() {
