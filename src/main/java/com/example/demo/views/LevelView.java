@@ -43,7 +43,7 @@ public class LevelView {
 		this.winImage = new WinImage(WIN_IMAGE_X_POSITION, WIN_IMAGE_Y_POSITION);
 		this.gameOverImage = new GameOverImage(LOSS_SCREEN_X_POSITION, LOSS_SCREEN_Y_POSITION);
 		this.returnButton = new Button("Return to Menu");
-		this.returnButton.setOnAction(event -> Main.returnToMenu());
+		this.returnButton.setOnAction(event -> Main.returnToMainScreen());
 		this.killCounterLabel = new Label("Kills: 0");
 		this.killCounterLabel.setLayoutX(HEART_DISPLAY_X_POSITION);
 		this.killCounterLabel.setLayoutY(HEART_DISPLAY_Y_POSITION + 50);

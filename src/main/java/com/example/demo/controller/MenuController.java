@@ -1,47 +1,79 @@
 package com.example.demo.controller;
 
-import com.example.demo.utils.AlertException;
+import com.example.demo.utils.ViewLoader;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import java.io.IOException;
 import java.util.Objects;
 
-public class MenuController {
+/**
+ * Controller for the menu screen.
+ */
+public class MenuController implements ViewController {
+    private Scene scene;
+    private Stage stage;
     public Button button1;
     public Button button2;
     public Button button3;
-    private Stage stage;
-    private Media media;
-    private MediaPlayer mediaPlayer;
-    private static HelpController helpController;
-    private static Scene helpScene;
-    private static final int SCREEN_WIDTH = 1300;
-    private static final int SCREEN_HEIGHT = 750;
     public static final String MENU_MUSIC = "/com/example/demo/sounds/rain.mp3";
+    private MediaPlayer mediaPlayer;
+    private static final String HELP_SCREEN = "/com/example/demo/views/HelpScreen.fxml";
 
-
-
-    public void setStage(Stage stage) {
+    /**
+     * Initialize the scene, stage and media.
+     *
+     * @param scene - the scene to display the application
+     * @param stage - the stage to display the application
+     */
+    @Override
+    public void initialize(Scene scene, Stage stage) {
+        this.scene = scene;
         this.stage = stage;
-        this.media = new Media(Objects.requireNonNull(getClass().getResource(MENU_MUSIC)).toExternalForm());
+        setMedia();
+    }
+
+    /**
+     * Show the menu screen with music playing.
+     */
+    @Override
+    public void showScreen() {
+        stage.setScene(scene);
+        stage.show();
+        playMusic();
+    }
+
+    /**
+     * Set the media for the menu screen.
+     */
+    private void setMedia() {
+        Media media = new Media(Objects.requireNonNull(getClass().getResource(MENU_MUSIC)).toExternalForm());
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
     }
 
-    public void playMusic() {
+    /**
+     * Play the music for the menu screen.
+     */
+    private void playMusic() {
         mediaPlayer.play();
     }
 
+    /**
+     * Stop the music for the menu screen.
+     */
     private void stopMusic() {
         if (mediaPlayer != null) {
             mediaPlayer.stop();
         }
     }
 
+    /**
+     * Start the game.
+     */
     @FXML
     private void startGame() {
         stopMusic();
@@ -49,33 +81,23 @@ public class MenuController {
         myGameController.launchGame();
     }
 
+    /**
+     * Exit the game.
+     */
     @FXML
     private void exitGame() {
         stopMusic();
         stage.close();
     }
 
+    /**
+     * Show the help screen.
+     *
+     * @throws IOException if the FXML file is not found
+     */
     @FXML
-    private void showHelpScreen() {
-        if (helpScene == null) {
-            initializeHelpScreen();
-        }
-        stage.setScene(helpScene);
-        stage.show();
-    }
-
-    private void initializeHelpScreen() {
-        FXMLLoader loader = new FXMLLoader(MenuController.class.getResource("/com/example/demo/views/HelpScreen.fxml"));
-        try {
-            helpScene = new Scene(loader.load());
-            helpController = loader.getController();
-            helpController.setStage(stage);
-            stage.setResizable(false);
-            stage.setHeight(SCREEN_HEIGHT);
-            stage.setWidth(SCREEN_WIDTH);
-        } catch (Exception e) {
-            AlertException.alertException(e);
-        }
-
+    private void showHelpScreen() throws IOException {
+        ViewController helpController = ViewLoader.loadView(stage, HELP_SCREEN);
+        helpController.showScreen();
     }
 }

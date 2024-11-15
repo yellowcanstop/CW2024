@@ -1,82 +1,46 @@
 package com.example.demo;
 
-import com.example.demo.controller.MenuController;
+import com.example.demo.controller.ViewController;
 import com.example.demo.utils.AlertException;
+import com.example.demo.utils.ViewLoader;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.Menu;
 import javafx.stage.Stage;
 
 /**
  * Entry point of the program where the game application is launched.
  */
 public class Main extends Application {
-	private static final int SCREEN_WIDTH = 1300;
-	private static final int SCREEN_HEIGHT = 750;
-	private static final String TITLE = "Sky Battle";
-    private static Stage stage;
-    private static MenuController menuController;
-    private static Scene menuScene;
-
-    /**
-     * Set the {@code stage} and launch the menu screen using the {@link MenuController}.
-     *
-     * @param stage - the stage to display the game
-     */
-    @Override
-    public void start(Stage stage) {
-        try {
-            Main.stage = stage;
-            initializeMenuScreen();
-            showMenuScreen();
-        } catch (Exception e) {
-            e.printStackTrace();
-            AlertException.alertException(e);
-        }
-    }
+    private static ViewController viewController;
+    private static final String MENU_SCREEN = "/com/example/demo/views/MenuScreen.fxml";
 
     /**
      * Main method to launch the game application.
      *
      * @param args - command line arguments
      */
-	public static void main(String[] args) {
-		launch();
-	}
+    public static void main(String[] args) {
+        launch();
+    }
 
     /**
-     * Initialize the menu screen.
+     * Set the stage and display the screen.
+     *
+     * @param stage - the stage to display the application
      */
-    private void initializeMenuScreen() {
+    @Override
+    public void start(Stage stage) {
         try {
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/com/example/demo/views/MenuScreen.fxml"));
-            menuScene = new Scene(loader.load());
-            menuController = loader.getController();
-            menuController.setStage(stage);
-            stage.setTitle(TITLE);
-            stage.setResizable(false);
-            stage.setHeight(SCREEN_HEIGHT);
-            stage.setWidth(SCREEN_WIDTH);
+            viewController = ViewLoader.loadView(stage, MENU_SCREEN);
+            viewController.showScreen();
         } catch (Exception e) {
-            e.printStackTrace();
             AlertException.alertException(e);
         }
     }
 
     /**
-     * Show the menu screen.
+     * Return to the main screen.
      */
-    public static void showMenuScreen() {
-        stage.setScene(menuScene);
-        stage.show();
-        menuController.playMusic();
-    }
-
-    /**
-     * Return to the menu screen.
-     */
-    public static void returnToMenu() {
-        showMenuScreen();
+    public static void returnToMainScreen() {
+        viewController.showScreen();
     }
 }
