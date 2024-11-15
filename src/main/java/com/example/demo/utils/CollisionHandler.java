@@ -10,8 +10,7 @@ import java.util.Objects;
 
 public class CollisionHandler {
     public static final String DEACTIVATE_SHIELD = "/com/example/demo/sounds/minty_attack.wav";
-    private static AudioClip deactivateShieldSound = new AudioClip(Objects.requireNonNull(BossPlane.class.getResource(DEACTIVATE_SHIELD)).toExternalForm());
-
+    private SoundLoader soundLoader = new SoundLoader(DEACTIVATE_SHIELD);
     /**
      * Handle collisions between two lists of actors by checking if the bounds of any two actors intersect.
      * <p>
@@ -33,13 +32,13 @@ public class CollisionHandler {
                     if (actor instanceof BossPlane && otherActor instanceof UserBomb) {
                         boolean hit = ((BossPlane) actor).deactivateShield();
                         if (hit) {
-                            deactivateShieldSound.play();
+                            soundLoader.playSound();
                         }
                         otherActor.takeDamage();
                     } else if (actor instanceof UserBomb && otherActor instanceof BossPlane) {
                         boolean hit = ((BossPlane) otherActor).deactivateShield();
                         if (hit) {
-                            deactivateShieldSound.play();
+                            soundLoader.playSound();
                         }
                         actor.takeDamage();
                     } else {

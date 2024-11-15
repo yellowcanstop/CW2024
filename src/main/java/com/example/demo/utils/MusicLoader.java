@@ -10,14 +10,14 @@ import java.util.Objects;
  * Implemented using MediaPlayer from JavaFX which is more memory-efficient for large audio files vs AudioClip.
  */
 public class MusicLoader {
-    private MediaPlayer mediaPlayer;
+    private final MediaPlayer mediaPlayer;
 
     /**
      * Set the media to play music.
      *
      * @param path - the path of the music file
      */
-    public void setMedia(String path) {
+    public MusicLoader(String path) {
         Media media = new Media(Objects.requireNonNull(getClass().getResource(path)).toExternalForm());
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);

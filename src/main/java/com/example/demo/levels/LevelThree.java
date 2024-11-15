@@ -2,6 +2,7 @@ package com.example.demo.levels;
 
 import com.example.demo.models.BossPlane;
 import com.example.demo.models.DestructibleSprite;
+import com.example.demo.utils.SoundLoader;
 import com.example.demo.views.LevelThreeView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.media.AudioClip;
@@ -20,7 +21,7 @@ public class LevelThree extends LevelParent {
     private long lastFireTime = 0;
     private static final long FIRE_COOL_DOWN = 1000;
     public static final String FIRE_BOMB = "/com/example/demo/sounds/firebomb.wav";
-    private static final AudioClip fireBombSound = new AudioClip(Objects.requireNonNull(LevelThree.class.getResource(FIRE_BOMB)).toExternalForm());
+    private SoundLoader soundLoader = new SoundLoader(FIRE_BOMB);
     public static final String BACKGROUND3 = "/com/example/demo/images/background1.jpg";
     public static final String MUSIC3 = "/com/example/demo/sounds/game.mp3";
 
@@ -92,7 +93,7 @@ public class LevelThree extends LevelParent {
             getRoot().getChildren().add(bomb);
             getUserProjectiles().add(bomb);
             lastFireTime = currentTime;
-            fireBombSound.play();
+            soundLoader.playSound();
         }
     }
 

@@ -1,5 +1,6 @@
 package com.example.demo.views.components;
 
+import com.example.demo.utils.SoundLoader;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.AudioClip;
@@ -12,9 +13,9 @@ import java.util.Objects;
 public class WinImage extends ImageView {
 	private static final int HEIGHT = 500;
 	private static final int WIDTH = 600;
-	private final AudioClip sound;
 	public static final String YOU_WIN = "/com/example/demo/images/youwin.png";
 	public static final String WIN_SOUND = "/com/example/demo/sounds/boodoodaloop.wav";
+	private SoundLoader soundLoader;
 
 	/**
 	 * Constructor to create an instance of WinImage.
@@ -29,7 +30,7 @@ public class WinImage extends ImageView {
 		this.setFitWidth(WIDTH);
 		this.setLayoutX(xPosition);
 		this.setLayoutY(yPosition);
-		this.sound = new AudioClip(Objects.requireNonNull(getClass().getResource(WIN_SOUND)).toExternalForm());
+		this.soundLoader = new SoundLoader(WIN_SOUND);
 	}
 
 	/**
@@ -43,8 +44,6 @@ public class WinImage extends ImageView {
 	 * Play the sound when the game is won.
 	 */
 	public void playSound() {
-		if (sound != null) {
-			sound.play();
-		}
+		soundLoader.playSound();
 	}
 }

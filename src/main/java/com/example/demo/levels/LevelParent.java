@@ -4,6 +4,7 @@ import java.util.*;
 
 import com.example.demo.utils.CollisionHandler;
 import com.example.demo.utils.MusicLoader;
+import com.example.demo.utils.SoundLoader;
 import com.example.demo.views.components.Background;
 import com.example.demo.models.DestructibleSprite;
 import com.example.demo.models.Plane;
@@ -18,8 +19,6 @@ import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 
 /**
  * Abstract class which defines the behaviour of a level in the game.
@@ -51,8 +50,7 @@ public abstract class LevelParent {
 	private static final long FIRE_COOL_DOWN = 500;
 	private final CollisionHandler collisionHandler = new CollisionHandler();
 	public static final String FIRE_PROJECTILE = "/com/example/demo/sounds/laser_shot2.wav";
-	private static final AudioClip fireProjectileSound = new AudioClip(Objects.requireNonNull(LevelParent.class.getResource(FIRE_PROJECTILE)).toExternalForm());
-
+	private SoundLoader soundLoader = new SoundLoader(FIRE_PROJECTILE);
 
 	/**
 	 * Constructor to create an instance of a LevelParent.
@@ -79,8 +77,7 @@ public abstract class LevelParent {
 		this.currentNumberOfEnemies = 0;
 		initializeTimeline();
 		friendlyUnits.add(user);
-		this.musicLoader = new MusicLoader();
-		musicLoader.setMedia(musicName);
+		this.musicLoader = new MusicLoader(musicName);
 		musicLoader.playMusic();
 	}
 
@@ -214,7 +211,7 @@ public abstract class LevelParent {
 			root.getChildren().add(projectile);
 			userProjectiles.add(projectile);
 			lastFireTime = currentTime;
-			fireProjectileSound.play();
+			soundLoader.playSound();
 		}
 	}
 

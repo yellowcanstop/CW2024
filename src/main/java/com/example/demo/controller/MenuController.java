@@ -31,8 +31,7 @@ public class MenuController implements ScreenController {
     public void initialize(Scene scene, Stage stage) throws Exception {
         this.scene = scene;
         this.stage = stage;
-        this.musicLoader = new MusicLoader();
-        musicLoader.setMedia(MENU_MUSIC);
+        this.musicLoader = new MusicLoader(MENU_MUSIC);
         this.helpController = ScreenLoader.loadScreen(stage, HELP_SCREEN);
     }
 

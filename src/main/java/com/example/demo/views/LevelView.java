@@ -1,6 +1,7 @@
 package com.example.demo.views;
 
 import com.example.demo.Main;
+import com.example.demo.utils.SoundLoader;
 import com.example.demo.views.components.GameOverImage;
 import com.example.demo.views.components.HeartDisplay;
 import com.example.demo.views.components.WinImage;
@@ -29,7 +30,7 @@ public class LevelView {
 	private final Button returnButton;
 	private final Label killCounterLabel;
 	public static final String DAMAGE_USER = "/com/example/demo/sounds/ugh.wav";
-	private static final AudioClip damageUserSound = new AudioClip(Objects.requireNonNull(LevelView.class.getResource(DAMAGE_USER)).toExternalForm());
+	private SoundLoader soundLoader = new SoundLoader(DAMAGE_USER);
 
 	/**
 	 * Constructor to create an instance of LevelView.
@@ -102,7 +103,7 @@ public class LevelView {
 		int currentNumberOfHearts = heartDisplay.getContainer().getChildren().size();
 		for (int i = 0; i < currentNumberOfHearts - heartsRemaining; i++) {
 			heartDisplay.removeHeart();
-			damageUserSound.play();
+			soundLoader.playSound();
 		}
 	}
 

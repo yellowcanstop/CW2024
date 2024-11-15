@@ -1,5 +1,6 @@
 package com.example.demo.models;
 
+import com.example.demo.utils.SoundLoader;
 import javafx.scene.media.AudioClip;
 import java.util.Objects;
 
@@ -14,7 +15,7 @@ public class EnemyPlane extends Plane {
 	private static final int INITIAL_HEALTH = 1;
 	private static final double FIRE_RATE = .01;
 	public static final String DESTROY_ENEMY = "/com/example/demo/sounds/gameover.wav";
-	private static final AudioClip destroyEnemySound = new AudioClip(Objects.requireNonNull(EnemyPlane.class.getResource(DESTROY_ENEMY)).toExternalForm());
+	private SoundLoader soundLoader = new SoundLoader(DESTROY_ENEMY);
 	public static final String ENEMY_PLANE = "/com/example/demo/images/enemyplane.png";
 
 
@@ -62,6 +63,6 @@ public class EnemyPlane extends Plane {
 	@Override
 	public void takeDamage() {
 		super.takeDamage();
-		destroyEnemySound.play();
+		soundLoader.playSound();
 	}
 }

@@ -1,6 +1,8 @@
 package com.example.demo.models;
 
 import java.util.*;
+
+import com.example.demo.utils.SoundLoader;
 import com.example.demo.views.components.ShieldImage;
 import javafx.scene.media.AudioClip;
 
@@ -29,7 +31,7 @@ public class BossPlane extends Plane {
 	private int framesWithShieldActivated;
 	private ShieldImage shieldImage;
 	public static final String DESTROY_ENEMY = "/com/example/demo/sounds/gameover.wav";
-	private static final AudioClip destroyBossSound = new AudioClip(Objects.requireNonNull(EnemyPlane.class.getResource(DESTROY_ENEMY)).toExternalForm());
+	private SoundLoader soundLoader = new SoundLoader(DESTROY_ENEMY);
 	public static final String BOSS_PLANE = "/com/example/demo/images/bossplane.png";
 
 	/**
@@ -91,7 +93,7 @@ public class BossPlane extends Plane {
 	public void takeDamage() {
 		if (!isShielded) {
 			super.takeDamage();
-			destroyBossSound.play();
+			soundLoader.playSound();
 		}
 	}
 
