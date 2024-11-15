@@ -3,6 +3,7 @@ package com.example.demo.levels;
 import java.util.*;
 
 import com.example.demo.utils.CollisionHandler;
+import com.example.demo.utils.MusicLoader;
 import com.example.demo.views.components.Background;
 import com.example.demo.models.DestructibleSprite;
 import com.example.demo.models.Plane;
@@ -45,7 +46,7 @@ public abstract class LevelParent {
 	private int currentNumberOfEnemies;
 	// The GameController (InvalidationListener) observes this property for changes in the level name.
 	private final StringProperty levelNameProperty = new SimpleStringProperty();
-	private MediaPlayer mediaPlayer;
+	private MusicLoader musicLoader;
 	private long lastFireTime = 0;
 	private static final long FIRE_COOL_DOWN = 500;
 	private final CollisionHandler collisionHandler = new CollisionHandler();
@@ -78,7 +79,9 @@ public abstract class LevelParent {
 		this.currentNumberOfEnemies = 0;
 		initializeTimeline();
 		friendlyUnits.add(user);
-		loadMusic(musicName);
+		this.musicLoader = new MusicLoader();
+		musicLoader.setMedia(musicName);
+		musicLoader.playMusic();
 	}
 
 	/**
@@ -86,21 +89,6 @@ public abstract class LevelParent {
 	 */
 	protected abstract void initializeUnits();
 
-	/**
-	 * Load the music for the game level.
-	 */
-	protected void loadMusic(String path) {
-		Media media = new Media(Objects.requireNonNull(getClass().getResource(path)).toExternalForm());
-		mediaPlayer = new MediaPlayer(media);
-		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-		mediaPlayer.play();
-	}
-
-	public void stopMusic() {
-		if (mediaPlayer != null) {
-			mediaPlayer.stop();
-		}
-	}
 
 	/**
 	 * Check if the game is over.
@@ -149,7 +137,7 @@ public abstract class LevelParent {
 	 */
 	public void goToNextLevel(String levelName) {
 		timeline.stop();
-		stopMusic();
+		musicLoader.stopMusic();
 		levelNameProperty.set(levelName);
 	}
 
@@ -361,7 +349,7 @@ public abstract class LevelParent {
 	 */
 	protected void winGame() {
 		timeline.stop();
-		stopMusic();
+		musicLoader.stopMusic();
 		getLevelView().showWinImage();
 	}
 
@@ -370,7 +358,7 @@ public abstract class LevelParent {
 	 */
 	protected void loseGame() {
 		timeline.stop();
-		stopMusic();
+		musicLoader.stopMusic();
 		getLevelView().showGameOverImage();
 	}
 

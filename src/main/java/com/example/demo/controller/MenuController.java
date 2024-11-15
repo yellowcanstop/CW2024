@@ -1,14 +1,12 @@
 package com.example.demo.controller;
 
+import com.example.demo.utils.MusicLoader;
 import com.example.demo.utils.ScreenLoader;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.util.Objects;
 
 /**
  * Controller for the menu screen.
@@ -20,7 +18,7 @@ public class MenuController implements ScreenController {
     public Button button2;
     public Button button3;
     public static final String MENU_MUSIC = "/com/example/demo/sounds/rain.mp3";
-    private MediaPlayer mediaPlayer;
+    private MusicLoader musicLoader;
     private static final String HELP_SCREEN = "/com/example/demo/views/HelpScreen.fxml";
 
     /**
@@ -33,7 +31,8 @@ public class MenuController implements ScreenController {
     public void initialize(Scene scene, Stage stage) {
         this.scene = scene;
         this.stage = stage;
-        setMedia();
+        this.musicLoader = new MusicLoader();
+        musicLoader.setMedia(MENU_MUSIC);
     }
 
     /**
@@ -43,32 +42,7 @@ public class MenuController implements ScreenController {
     public void showScreen() {
         stage.setScene(scene);
         stage.show();
-        playMusic();
-    }
-
-    /**
-     * Set the media for the menu screen.
-     */
-    private void setMedia() {
-        Media media = new Media(Objects.requireNonNull(getClass().getResource(MENU_MUSIC)).toExternalForm());
-        mediaPlayer = new MediaPlayer(media);
-        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-    }
-
-    /**
-     * Play the music for the menu screen.
-     */
-    private void playMusic() {
-        mediaPlayer.play();
-    }
-
-    /**
-     * Stop the music for the menu screen.
-     */
-    private void stopMusic() {
-        if (mediaPlayer != null) {
-            mediaPlayer.stop();
-        }
+        musicLoader.playMusic();
     }
 
     /**
@@ -76,7 +50,7 @@ public class MenuController implements ScreenController {
      */
     @FXML
     private void startGame() {
-        stopMusic();
+        musicLoader.stopMusic();
         GameController myGameController = new GameController(stage);
         myGameController.launchGame();
     }
@@ -86,7 +60,7 @@ public class MenuController implements ScreenController {
      */
     @FXML
     private void exitGame() {
-        stopMusic();
+        musicLoader.stopMusic();
         stage.close();
     }
 
