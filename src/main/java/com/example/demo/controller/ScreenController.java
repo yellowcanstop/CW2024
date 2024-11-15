@@ -6,7 +6,7 @@ import javafx.scene.Scene;
 /**
  * Interface for the view controller.
  */
-public interface ViewController {
+public interface ScreenController {
     /**
      * Initialize the view controller.
      *

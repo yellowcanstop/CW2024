@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 /**
  * Controller for the help screen.
  */
-public class HelpController implements ViewController {
+public class HelpController implements ScreenController {
     private Stage stage;
     private Scene scene;
 

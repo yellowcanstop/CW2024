@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.utils.ViewLoader;
+import com.example.demo.utils.ScreenLoader;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,7 +13,7 @@ import java.util.Objects;
 /**
  * Controller for the menu screen.
  */
-public class MenuController implements ViewController {
+public class MenuController implements ScreenController {
     private Scene scene;
     private Stage stage;
     public Button button1;
@@ -97,7 +97,7 @@ public class MenuController implements ViewController {
      */
     @FXML
     private void showHelpScreen() throws IOException {
-        ViewController helpController = ViewLoader.loadView(stage, HELP_SCREEN);
+        ScreenController helpController = ScreenLoader.loadScreen(stage, HELP_SCREEN);
         helpController.showScreen();
     }
 }
