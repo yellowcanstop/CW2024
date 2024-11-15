@@ -2,7 +2,6 @@ package com.example.demo.levels;
 
 import com.example.demo.models.DestructibleSprite;
 import com.example.demo.models.EnemyPlane;
-import com.example.demo.utils.AssetPaths;
 import com.example.demo.views.LevelOneView;
 
 /**
@@ -14,6 +13,8 @@ public class LevelOne extends LevelParent {
 	private static final int KILLS_TO_ADVANCE = 10;
 	private static final double ENEMY_SPAWN_PROBABILITY = .20;
 	private static final int PLAYER_INITIAL_HEALTH = 5;
+	public static final String BACKGROUND1 = "/com/example/demo/images/background1.jpg";
+	public static final String MUSIC1 = "/com/example/demo/sounds/game.mp3";
 	private LevelOneView levelView;
 
 	/**
@@ -23,7 +24,7 @@ public class LevelOne extends LevelParent {
 	 * @param screenWidth - the width of the screen
 	 */
 	public LevelOne(double screenHeight, double screenWidth) {
-		super(AssetPaths.BACKGROUND1, AssetPaths.MUSIC1, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
+		super(BACKGROUND1, MUSIC1, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
 		this.levelView = new LevelOneView(getRoot(), PLAYER_INITIAL_HEALTH);
 	}
 

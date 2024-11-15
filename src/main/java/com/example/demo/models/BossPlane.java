@@ -1,10 +1,7 @@
 package com.example.demo.models;
 
 import java.util.*;
-
-import com.example.demo.utils.CollisionHandler;
 import com.example.demo.views.components.ShieldImage;
-import com.example.demo.utils.AssetPaths;
 import javafx.scene.media.AudioClip;
 
 /**
@@ -31,13 +28,15 @@ public class BossPlane extends Plane {
 	private int indexOfCurrentMove;
 	private int framesWithShieldActivated;
 	private ShieldImage shieldImage;
-	private static final AudioClip destroyBossSound = new AudioClip(Objects.requireNonNull(EnemyPlane.class.getResource(AssetPaths.DESTROY_ENEMY)).toExternalForm());
+	public static final String DESTROY_ENEMY = "/com/example/demo/sounds/gameover.wav";
+	private static final AudioClip destroyBossSound = new AudioClip(Objects.requireNonNull(EnemyPlane.class.getResource(DESTROY_ENEMY)).toExternalForm());
+	public static final String BOSS_PLANE = "/com/example/demo/images/bossplane.png";
 
 	/**
 	 * Constructor to create an instance of a BossPlane.
 	 */
 	public BossPlane() {
-		super(AssetPaths.BOSS_PLANE, IMAGE_HEIGHT, INITIAL_X_POSITION, INITIAL_Y_POSITION, HEALTH);
+		super(BOSS_PLANE, IMAGE_HEIGHT, INITIAL_X_POSITION, INITIAL_Y_POSITION, HEALTH);
 		movePattern = new ArrayList<>();
 		consecutiveMovesInSameDirection = 0;
 		indexOfCurrentMove = 0;

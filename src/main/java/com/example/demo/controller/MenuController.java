@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.utils.AlertException;
-import com.example.demo.utils.AssetPaths;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -22,11 +21,13 @@ public class MenuController {
     private static Scene helpScene;
     private static final int SCREEN_WIDTH = 1300;
     private static final int SCREEN_HEIGHT = 750;
+    public static final String MENU_MUSIC = "/com/example/demo/sounds/rain.mp3";
+
 
 
     public void setStage(Stage stage) {
         this.stage = stage;
-        this.media = new Media(Objects.requireNonNull(getClass().getResource(AssetPaths.MENU_MUSIC)).toExternalForm());
+        this.media = new Media(Objects.requireNonNull(getClass().getResource(MENU_MUSIC)).toExternalForm());
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
     }

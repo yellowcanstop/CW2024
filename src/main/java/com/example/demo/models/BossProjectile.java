@@ -1,6 +1,5 @@
 package com.example.demo.models;
 
-import com.example.demo.utils.AssetPaths;
 import com.example.demo.utils.ObjectPool;
 
 /**
@@ -11,13 +10,14 @@ public class BossProjectile extends Projectile {
 	private static final int HORIZONTAL_VELOCITY = -15;
 	private static final int INITIAL_X_POSITION = 950;
 	private static final ObjectPool<BossProjectile> pool = new ObjectPool<>(BossProjectile::new);
+	public static final String FIREBALL = "/com/example/demo/images/fireball.png";
 
 	/**
 	 * Constructor to create an instance of BossProjectile.
 	 *
 	 */
 	private BossProjectile() {
-		super(AssetPaths.FIREBALL, IMAGE_HEIGHT, 0, 0);
+		super(FIREBALL, IMAGE_HEIGHT, 0, 0);
 	}
 
 	public static BossProjectile create(double initialYPos) {

@@ -1,6 +1,5 @@
 package com.example.demo.views.components;
 
-import com.example.demo.utils.AssetPaths;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import java.util.Objects;
@@ -10,6 +9,8 @@ import java.util.Objects;
  */
 public class ShieldImage extends ImageView {
 	private static final int SHIELD_SIZE = 200;
+	public static final String SHIELD = "/com/example/demo/images/shield.png";
+
 
 	/**
 	 * Constructor to create an instance of a ShieldImage.
@@ -20,7 +21,7 @@ public class ShieldImage extends ImageView {
 	public ShieldImage(double xPosition, double yPosition) {
 		this.setLayoutX(xPosition);
 		this.setLayoutY(yPosition);
-		this.setImage(new Image(Objects.requireNonNull(getClass().getResource(AssetPaths.SHIELD)).toExternalForm()));
+		this.setImage(new Image(Objects.requireNonNull(getClass().getResource(SHIELD)).toExternalForm()));
 		this.setVisible(false);
 		this.setFitHeight(SHIELD_SIZE);
 		this.setFitWidth(SHIELD_SIZE);

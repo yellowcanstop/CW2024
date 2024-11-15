@@ -9,7 +9,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class CollisionHandler {
-    private static AudioClip deactivateShieldSound = new AudioClip(Objects.requireNonNull(BossPlane.class.getResource(AssetPaths.DEACTIVATE_SHIELD)).toExternalForm());
+    public static final String DEACTIVATE_SHIELD = "/com/example/demo/sounds/minty_attack.wav";
+    private static AudioClip deactivateShieldSound = new AudioClip(Objects.requireNonNull(BossPlane.class.getResource(DEACTIVATE_SHIELD)).toExternalForm());
 
     /**
      * Handle collisions between two lists of actors by checking if the bounds of any two actors intersect.

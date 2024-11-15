@@ -2,8 +2,6 @@ package com.example.demo.levels;
 
 import com.example.demo.models.BossPlane;
 import com.example.demo.models.DestructibleSprite;
-import com.example.demo.models.EnemyPlane;
-import com.example.demo.utils.AssetPaths;
 import com.example.demo.views.LevelThreeView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.media.AudioClip;
@@ -21,7 +19,10 @@ public class LevelThree extends LevelParent {
     private LevelThreeView levelView;
     private long lastFireTime = 0;
     private static final long FIRE_COOL_DOWN = 1000;
-    private static final AudioClip fireBombSound = new AudioClip(Objects.requireNonNull(LevelThree.class.getResource(AssetPaths.FIRE_BOMB)).toExternalForm());
+    public static final String FIRE_BOMB = "/com/example/demo/sounds/firebomb.wav";
+    private static final AudioClip fireBombSound = new AudioClip(Objects.requireNonNull(LevelThree.class.getResource(FIRE_BOMB)).toExternalForm());
+    public static final String BACKGROUND3 = "/com/example/demo/images/background1.jpg";
+    public static final String MUSIC3 = "/com/example/demo/sounds/game.mp3";
 
     /**
      * Constructor to create an instance of LevelThree. Initialize the bossPlane.
@@ -30,7 +31,7 @@ public class LevelThree extends LevelParent {
      * @param screenWidth - the width of the screen
      */
     public LevelThree(double screenHeight, double screenWidth) {
-        super(AssetPaths.BACKGROUND3, AssetPaths.MUSIC3, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
+        super(BACKGROUND3, MUSIC3, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
         bossPlane1 = new BossPlane();
         bossPlane2 = new BossPlane();
         this.levelView = new LevelThreeView(getRoot(), PLAYER_INITIAL_HEALTH);

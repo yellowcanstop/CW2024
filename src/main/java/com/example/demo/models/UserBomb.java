@@ -1,6 +1,5 @@
 package com.example.demo.models;
 
-import com.example.demo.utils.AssetPaths;
 
 /**
  * Bomb for user-controlled player sprite in the game.
@@ -8,6 +7,7 @@ import com.example.demo.utils.AssetPaths;
 public class UserBomb extends Projectile {
     private static final int IMAGE_HEIGHT = 50;
     private static final int HORIZONTAL_VELOCITY = 20;
+    public static final String USER_BOMB = "/com/example/demo/images/userfire2.png";
 
     /**
      * Constructor to create an instance of UserBomb.
@@ -16,7 +16,7 @@ public class UserBomb extends Projectile {
      * @param initialYPos - the initial y coordinate position of the projectile
      */
     public UserBomb(double initialXPos, double initialYPos) {
-        super(AssetPaths.USER_BOMB, IMAGE_HEIGHT, initialXPos, initialYPos);
+        super(USER_BOMB, IMAGE_HEIGHT, initialXPos, initialYPos);
     }
 
     /**

@@ -1,7 +1,6 @@
 package com.example.demo.levels;
 
 import com.example.demo.models.BossPlane;
-import com.example.demo.utils.AssetPaths;
 import com.example.demo.views.LevelTwoView;
 
 /**
@@ -12,6 +11,9 @@ public class LevelTwo extends LevelParent {
 	private static final int PLAYER_INITIAL_HEALTH = 5;
 	private final BossPlane bossPlane;
 	private LevelTwoView levelView;
+	public static final String BACKGROUND2 = "/com/example/demo/images/background2.jpg";
+	public static final String MUSIC2 = "/com/example/demo/sounds/rain.mp3";
+
 
 	/**
 	 * Constructor to create an instance of LevelTwo. Initialize the bossPlane.
@@ -20,7 +22,7 @@ public class LevelTwo extends LevelParent {
 	 * @param screenWidth - the width of the screen
 	 */
 	public LevelTwo(double screenHeight, double screenWidth) {
-		super(AssetPaths.BACKGROUND2, AssetPaths.MUSIC2, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
+		super(BACKGROUND2, MUSIC2, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
 		bossPlane = new BossPlane();
 		this.levelView = new LevelTwoView(getRoot(), PLAYER_INITIAL_HEALTH);
 	}

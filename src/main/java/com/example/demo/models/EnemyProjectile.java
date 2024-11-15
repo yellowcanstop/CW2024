@@ -1,6 +1,5 @@
 package com.example.demo.models;
 
-import com.example.demo.utils.AssetPaths;
 import com.example.demo.utils.ObjectPool;
 
 /**
@@ -10,12 +9,13 @@ public class EnemyProjectile extends Projectile {
 	private static final int IMAGE_HEIGHT = 50;
 	private static final int HORIZONTAL_VELOCITY = -10;
 	private static final ObjectPool<EnemyProjectile> pool = new ObjectPool<>(EnemyProjectile::new);
+	public static final String ENEMY_FIRE = "/com/example/demo/images/enemyFire.png";
 
 	/**
 	 * Constructor to create an instance of the EnemyProjectile class using the super constructor.
 	 */
 	private EnemyProjectile() {
-		super(AssetPaths.ENEMY_FIRE, IMAGE_HEIGHT, 0, 0);
+		super(ENEMY_FIRE, IMAGE_HEIGHT, 0, 0);
 	}
 
 	/**

@@ -1,9 +1,6 @@
 package com.example.demo.models;
 
-import com.example.demo.utils.AssetPaths;
-import com.example.demo.utils.CollisionHandler;
 import javafx.scene.media.AudioClip;
-
 import java.util.Objects;
 
 /**
@@ -16,7 +13,9 @@ public class EnemyPlane extends Plane {
 	private static final double PROJECTILE_Y_POSITION_OFFSET = 50.0;
 	private static final int INITIAL_HEALTH = 1;
 	private static final double FIRE_RATE = .01;
-	private static final AudioClip destroyEnemySound = new AudioClip(Objects.requireNonNull(EnemyPlane.class.getResource(AssetPaths.DESTROY_ENEMY)).toExternalForm());
+	public static final String DESTROY_ENEMY = "/com/example/demo/sounds/gameover.wav";
+	private static final AudioClip destroyEnemySound = new AudioClip(Objects.requireNonNull(EnemyPlane.class.getResource(DESTROY_ENEMY)).toExternalForm());
+	public static final String ENEMY_PLANE = "/com/example/demo/images/enemyplane.png";
 
 
 	/**
@@ -26,7 +25,7 @@ public class EnemyPlane extends Plane {
 	 * @param initialYPos - the initial y coordinate position of the plane
 	 */
 	public EnemyPlane(double initialXPos, double initialYPos) {
-		super(AssetPaths.ENEMY_PLANE, IMAGE_HEIGHT, initialXPos, initialYPos, INITIAL_HEALTH);
+		super(ENEMY_PLANE, IMAGE_HEIGHT, initialXPos, initialYPos, INITIAL_HEALTH);
 	}
 
 	/**

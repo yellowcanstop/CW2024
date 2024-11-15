@@ -1,7 +1,5 @@
 package com.example.demo.models;
 
-import com.example.demo.utils.AssetPaths;
-
 /**
  * User-controlled plane sprite for the game.
  */
@@ -17,6 +15,7 @@ public class UserPlane extends Plane {
 	private static final int HORIZONTAL_VELOCITY = 8;
 	private static final int PROJECTILE_X_POSITION_OFFSET = 20;
 	private static final int PROJECTILE_Y_POSITION_OFFSET = 20;
+	public static final String USER_PLANE = "/com/example/demo/images/userplane.png";
 	private int verticalVelocityMultiplier;
 	private int horizontalVelocityMultiplier;
 	private int numberOfKills;
@@ -27,7 +26,7 @@ public class UserPlane extends Plane {
 	 * @param initialHealth - the initial health of the player
 	 */
 	public UserPlane(int initialHealth) {
-		super(AssetPaths.USER_PLANE, IMAGE_HEIGHT, INITIAL_X_POSITION, INITIAL_Y_POSITION, initialHealth);
+		super(USER_PLANE, IMAGE_HEIGHT, INITIAL_X_POSITION, INITIAL_Y_POSITION, initialHealth);
 		verticalVelocityMultiplier = 0;
 		horizontalVelocityMultiplier = 0;
 	}

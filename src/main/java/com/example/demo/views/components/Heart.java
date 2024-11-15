@@ -1,6 +1,5 @@
 package com.example.demo.views.components;
 
-import com.example.demo.utils.AssetPaths;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import java.util.Objects;
@@ -10,12 +9,14 @@ import java.util.Objects;
  */
 public class Heart extends ImageView {
     private static final int HEART_HEIGHT = 50;
+    public static final String HEART = "/com/example/demo/images/heart.png";
+
 
     /**
      * Constructor to create an instance of Heart.
      */
     public Heart() {
-        this.setImage(new Image(Objects.requireNonNull(getClass().getResource(AssetPaths.HEART)).toExternalForm()));
+        this.setImage(new Image(Objects.requireNonNull(getClass().getResource(HEART)).toExternalForm()));
         this.setFitHeight(HEART_HEIGHT);
         this.setPreserveRatio(true);
     }

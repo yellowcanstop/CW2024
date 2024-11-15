@@ -1,8 +1,6 @@
 package com.example.demo.views;
 
 import com.example.demo.Main;
-import com.example.demo.utils.AssetPaths;
-import com.example.demo.utils.CollisionHandler;
 import com.example.demo.views.components.GameOverImage;
 import com.example.demo.views.components.HeartDisplay;
 import com.example.demo.views.components.WinImage;
@@ -30,7 +28,8 @@ public class LevelView {
 	private final HeartDisplay heartDisplay;
 	private final Button returnButton;
 	private final Label killCounterLabel;
-	private static final AudioClip damageUserSound = new AudioClip(Objects.requireNonNull(LevelView.class.getResource(AssetPaths.DAMAGE_USER)).toExternalForm());
+	public static final String DAMAGE_USER = "/com/example/demo/sounds/ugh.wav";
+	private static final AudioClip damageUserSound = new AudioClip(Objects.requireNonNull(LevelView.class.getResource(DAMAGE_USER)).toExternalForm());
 
 	/**
 	 * Constructor to create an instance of LevelView.
