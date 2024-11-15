@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import java.io.IOException;
 
 /**
  * Controller for the menu screen.
@@ -20,6 +19,7 @@ public class MenuController implements ScreenController {
     public static final String MENU_MUSIC = "/com/example/demo/sounds/rain.mp3";
     private MusicLoader musicLoader;
     private static final String HELP_SCREEN = "/com/example/demo/views/HelpScreen.fxml";
+    private ScreenController helpController;
 
     /**
      * Initialize the scene, stage and media.
@@ -28,11 +28,12 @@ public class MenuController implements ScreenController {
      * @param stage - the stage to display the application
      */
     @Override
-    public void initialize(Scene scene, Stage stage) {
+    public void initialize(Scene scene, Stage stage) throws Exception {
         this.scene = scene;
         this.stage = stage;
         this.musicLoader = new MusicLoader();
         musicLoader.setMedia(MENU_MUSIC);
+        this.helpController = ScreenLoader.loadScreen(stage, HELP_SCREEN);
     }
 
     /**
@@ -66,12 +67,9 @@ public class MenuController implements ScreenController {
 
     /**
      * Show the help screen.
-     *
-     * @throws IOException if the FXML file is not found
      */
     @FXML
-    private void showHelpScreen() throws IOException {
-        ScreenController helpController = ScreenLoader.loadScreen(stage, HELP_SCREEN);
+    private void showHelpScreen() {
         helpController.showScreen();
     }
 }

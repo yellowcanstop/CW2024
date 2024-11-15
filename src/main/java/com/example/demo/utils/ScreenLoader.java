@@ -22,7 +22,7 @@ public class ScreenLoader {
      * @return a configured controller of the view
      * @throws IOException if the FXML file is not found
      */
-    public static ScreenController loadScreen(Stage stage, String path) throws IOException {
+    public static ScreenController loadScreen(Stage stage, String path) throws Exception {
         FXMLLoader loader = new FXMLLoader(ScreenLoader.class.getResource(path));
         Scene scene = new Scene(loader.load());
         ScreenController controller = loader.getController();

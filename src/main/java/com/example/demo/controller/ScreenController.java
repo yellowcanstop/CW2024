@@ -12,8 +12,9 @@ public interface ScreenController {
      *
      * @param scene - the scene to set
      * @param stage - the stage to set
+     * @throws Exception - if the view controller cannot be initialized
      */
-    void initialize(Scene scene, Stage stage);
+    void initialize(Scene scene, Stage stage) throws Exception;
 
     /**
      * Show the screen.
