@@ -32,7 +32,7 @@ public class LevelTwo extends LevelParent {
 	@Override
 	protected void initializeUnits() {
 		super.initializeUnits();
-		getRoot().getChildren().add(bossPlane.getShieldImage());
+		getRoot().getChildren().add(bossPlane.getShield());
 	}
 
 	/**

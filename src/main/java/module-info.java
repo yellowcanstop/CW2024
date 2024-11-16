@@ -14,4 +14,5 @@ module com.example.demo {
     exports com.example.demo.utils;
     exports com.example.demo;
     exports com.example.demo.models;
+    exports com.example.demo.views.components;
 }

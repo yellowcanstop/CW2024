@@ -39,8 +39,8 @@ public class LevelThree extends LevelParent {
     @Override
     protected void initializeUnits() {
         super.initializeUnits();
-        getRoot().getChildren().add(bossPlane1.getShieldImage());
-        getRoot().getChildren().add(bossPlane2.getShieldImage());
+        getRoot().getChildren().add(bossPlane1.getShield());
+        getRoot().getChildren().add(bossPlane2.getShield());
     }
 
     /**
