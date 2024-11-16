@@ -42,18 +42,37 @@ public class LevelOne extends LevelParent {
 	}
 
 	/**
-	 * Randomly spawn enemy units at a random y position on the screen.
+	 * Spawn the enemy units.
 	 */
 	@Override
 	protected void spawnEnemyUnits() {
 		int currentNumberOfEnemies = getCurrentNumberOfEnemies();
-		for (int i = 0; i < TOTAL_ENEMIES - currentNumberOfEnemies; i++) {
-			if (Math.random() < ENEMY_SPAWN_PROBABILITY) {
-				double newEnemyInitialYPosition = Math.random() * getEnemyMaximumYPosition();
-				DestructibleSprite newEnemy = new EnemyPlane(getScreenWidth(), newEnemyInitialYPosition);
+		int enemiesToSpawn = TOTAL_ENEMIES - currentNumberOfEnemies;
+		for (int i = 0; i < enemiesToSpawn; i++) {
+			if (shouldSpawnEnemy()) {
+				DestructibleSprite newEnemy = createEnemy();
 				addEnemyUnit(newEnemy);
 			}
 		}
+	}
+
+	/**
+	 * Check if an enemy should be spawned based on the probability.
+	 *
+	 * @return true if an enemy should be spawned, else false
+	 */
+	private boolean shouldSpawnEnemy() {
+		return Math.random() < ENEMY_SPAWN_PROBABILITY;
+	}
+
+	/**
+	 * Create a new enemy at a random y position.
+	 *
+	 * @return the new enemy
+	 */
+	private DestructibleSprite createEnemy() {
+		double newEnemyInitialYPosition = Math.random() * getEnemyMaximumYPosition();
+		return new EnemyPlane(getScreenWidth(), newEnemyInitialYPosition);
 	}
 
 	/**
