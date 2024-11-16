@@ -5,7 +5,7 @@ import com.example.demo.utils.ObjectPool;
 /**
  * Projectile for the boss sprite in the game.
  */
-public class BossProjectile extends Projectile {
+public class BossProjectile extends Projectile implements Poolable {
 	private static final int IMAGE_HEIGHT = 75;
 	private static final int HORIZONTAL_VELOCITY = -15;
 	private static final int INITIAL_X_POSITION = 950;
@@ -13,26 +13,39 @@ public class BossProjectile extends Projectile {
 	public static final String FIREBALL = "/com/example/demo/images/fireball.png";
 
 	/**
-	 * Constructor to create an instance of BossProjectile.
-	 *
+	 * Constructor to create an instance of the BossProjectile class using the super constructor.
 	 */
 	private BossProjectile() {
 		super(FIREBALL, IMAGE_HEIGHT, 0, 0);
 	}
 
+	/**
+	 * Get a BossProjectile from the object pool and set the initial x and y position.
+	 *
+	 * @param initialYPos - the initial y coordinate position of the projectile
+	 * @return an instance of a BossProjectile
+	 */
 	public static BossProjectile create(double initialYPos) {
 		BossProjectile projectile = pool.get();
 		projectile.setX(INITIAL_X_POSITION);
 		projectile.setY(initialYPos);
-		projectile.resetIsDestroyed();
+		projectile.reset();
 		return projectile;
 	}
 
 	/**
-	 * Release the EnemyProjectile back to the object pool.
+	 * Release the projectile back to the object pool.
 	 */
 	public void release() {
 		pool.release(this);
+	}
+
+	/**
+	 * Reset the projectile by setting isDestroyed to false.
+	 */
+	@Override
+	public void reset() {
+		resetIsDestroyed();
 	}
 
 	/**

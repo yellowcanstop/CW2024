@@ -5,7 +5,7 @@ import com.example.demo.utils.ObjectPool;
 /**
  * Projectile for the enemy sprite in the game.
  */
-public class EnemyProjectile extends Projectile {
+public class EnemyProjectile extends Projectile implements Poolable {
 	private static final int IMAGE_HEIGHT = 50;
 	private static final int HORIZONTAL_VELOCITY = -10;
 	private static final ObjectPool<EnemyProjectile> pool = new ObjectPool<>(EnemyProjectile::new);
@@ -29,15 +29,24 @@ public class EnemyProjectile extends Projectile {
 		EnemyProjectile projectile = pool.get();
 		projectile.setX(initialXPos);
 		projectile.setY(initialYPos);
-		projectile.resetIsDestroyed();
+		projectile.reset();
 		return projectile;
 	}
 
 	/**
-	 * Release the EnemyProjectile back to the object pool.
+	 * Release the projectile back to the object pool.
 	 */
+	@Override
 	public void release() {
 		pool.release(this);
+	}
+
+	/**
+	 * Reset the projectile by setting isDestroyed to false.
+	 */
+	@Override
+	public void reset() {
+		resetIsDestroyed();
 	}
 
 	/**

@@ -1,6 +1,5 @@
 package com.example.demo.models;
 
-
 /**
  * Projectile for user-controlled player sprite in the game.
  */
@@ -8,7 +7,6 @@ public class UserProjectile extends Projectile {
 	private static final int IMAGE_HEIGHT = 125;
 	private static final int HORIZONTAL_VELOCITY = 15;
 	public static final String USER_FIRE = "/com/example/demo/images/userfire.png";
-
 
 	/**
 	 * Constructor to create an instance of UserProjectile.
