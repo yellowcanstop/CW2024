@@ -3,6 +3,7 @@ package com.example.demo.levels;
 import java.util.*;
 import com.example.demo.models.Plane;
 import com.example.demo.utils.CollisionHandler;
+import com.example.demo.utils.FireAction;
 import com.example.demo.utils.MusicLoader;
 import com.example.demo.utils.SoundLoader;
 import com.example.demo.views.components.Background;
@@ -44,12 +45,8 @@ public abstract class LevelParent {
 	private final double enemyMaximumYPosition;
 	private static final double SCREEN_HEIGHT_ADJUSTMENT = 150;
 	private static final long FIRE_COOL_DOWN = 500;
-
-	private int currentNumberOfEnemies;
-	private long lastFireTime = 0;
-
 	public static final String FIRE_PROJECTILE = "/com/example/demo/sounds/laser_shot2.wav";
-	private final SoundLoader soundLoader = new SoundLoader(FIRE_PROJECTILE);
+	private int currentNumberOfEnemies;
 
 	/**
 	 * Constructor to create an instance of a LevelParent.
@@ -236,24 +233,8 @@ public abstract class LevelParent {
 	 */
 	protected Map<KeyCode, Runnable> instantiateKeyActions() {
 		Map<KeyCode, Runnable> keyActions = new HashMap<>();
-		keyActions.put(KeyCode.SPACE, this::fireProjectile);
+		keyActions.put(KeyCode.SPACE, new FireAction(getRoot(), getUserProjectiles(), new SoundLoader(FIRE_PROJECTILE), FIRE_COOL_DOWN, getUser()::fireProjectile));
 		return keyActions;
-	}
-
-	/**
-	 * Fire a projectile from the plane controlled by the player.
-	 * <p>
-	 * A new shot is only allowed if the time since the last shot is greater than the cool-down time.
-	 */
-	private void fireProjectile() {
-		long currentTime = System.currentTimeMillis();
-		if (currentTime - lastFireTime >= FIRE_COOL_DOWN) {
-			DestructibleSprite projectile = user.fireProjectile();
-			root.getChildren().add(projectile);
-			userProjectiles.add(projectile);
-			lastFireTime = currentTime;
-			soundLoader.playSound();
-		}
 	}
 
 	/**

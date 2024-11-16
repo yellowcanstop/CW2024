@@ -1,14 +1,11 @@
 package com.example.demo.levels;
 
 import com.example.demo.models.BossPlane;
-import com.example.demo.models.DestructibleSprite;
+import com.example.demo.utils.FireAction;
 import com.example.demo.utils.SoundLoader;
 import com.example.demo.views.LevelThreeView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.media.AudioClip;
-
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * Level three of the game.
@@ -17,11 +14,9 @@ public class LevelThree extends LevelParent {
     private static final int PLAYER_INITIAL_HEALTH = 10;
     private final BossPlane bossPlane1;
     private final BossPlane bossPlane2;
-    private LevelThreeView levelView;
-    private long lastFireTime = 0;
+    private final LevelThreeView levelView;
     private static final long FIRE_COOL_DOWN = 1000;
     public static final String FIRE_BOMB = "/com/example/demo/sounds/firebomb.wav";
-    private SoundLoader soundLoader = new SoundLoader(FIRE_BOMB);
     public static final String BACKGROUND3 = "/com/example/demo/images/background1.jpg";
     public static final String MUSIC3 = "/com/example/demo/sounds/game.mp3";
 
@@ -85,22 +80,8 @@ public class LevelThree extends LevelParent {
 	@Override
     protected Map<KeyCode, Runnable> instantiateKeyActions() {
         Map<KeyCode, Runnable> keyActions = super.instantiateKeyActions();
-        keyActions.put(KeyCode.TAB, this::fireBombs);
+        keyActions.put(KeyCode.TAB, new FireAction(getRoot(), getUserProjectiles(), new SoundLoader(FIRE_BOMB), FIRE_COOL_DOWN, getUser()::fireBombs));
         return keyActions;
-    }
-
-    /**
-     * Fire a projectile from the plane controlled by the player.
-     */
-    private void fireBombs() {
-        long currentTime = System.currentTimeMillis();
-        if (currentTime - lastFireTime >= FIRE_COOL_DOWN) {
-            DestructibleSprite bomb = getUser().fireBombs();
-            getRoot().getChildren().add(bomb);
-            getUserProjectiles().add(bomb);
-            lastFireTime = currentTime;
-            soundLoader.playSound();
-        }
     }
 
     /**
