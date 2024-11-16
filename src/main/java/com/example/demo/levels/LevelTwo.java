@@ -7,12 +7,14 @@ import com.example.demo.views.LevelTwoView;
  * Level two of the game.
  */
 public class LevelTwo extends LevelParent {
+	private final LevelTwoView levelView;
+	private final BossPlane bossPlane;
 	private static final String NEXT_LEVEL = "com.example.demo.levels.LevelThree";
 	private static final int PLAYER_INITIAL_HEALTH = 5;
-	private final BossPlane bossPlane;
-	private LevelTwoView levelView;
 	public static final String BACKGROUND2 = "/com/example/demo/images/background2.jpg";
 	public static final String MUSIC2 = "/com/example/demo/sounds/rain.mp3";
+
+
 
 
 	/**
@@ -32,7 +34,7 @@ public class LevelTwo extends LevelParent {
 	 */
 	@Override
 	protected void initializeUnits() {
-		getRoot().getChildren().add(getUser());
+		super.initializeUnits();
 		getRoot().getChildren().add(bossPlane.getShieldImage());
 	}
 

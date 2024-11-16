@@ -120,11 +120,6 @@ public abstract class LevelParent {
 	}
 
 	/**
-	 * Initialize the units for the game level.
-	 */
-	protected abstract void initializeUnits();
-
-	/**
 	 * Check if the game is over.
 	 */
 	protected abstract void checkIfGameOver();
@@ -155,6 +150,13 @@ public abstract class LevelParent {
 	protected void updateLevelView() {
 		getLevelView().removeHearts(user.getHealth());
 		getLevelView().updateCounter(user.getNumberOfKills());
+	}
+
+	/**
+	 * Initialize the units for the game level.
+	 */
+	protected void initializeUnits() {
+		root.getChildren().add(user);
 	}
 
 	/**
