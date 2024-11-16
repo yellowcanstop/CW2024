@@ -3,7 +3,7 @@ package com.example.demo.models;
 /**
  * User-controlled plane sprite for the game.
  */
-public class UserPlane extends Plane {
+public class UserPlane extends Plane implements InputControlledObject {
 	private static final double X_UPPER_BOUND = -40;
 	private static final double X_LOWER_BOUND = 500;
 	private static final double Y_UPPER_BOUND = -40;

@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.models.UserPlane;
+import com.example.demo.models.InputControlledObject;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -10,21 +10,19 @@ import java.util.Map;
  * Class implementing {@code EventHandler<KeyEvent>} to handle all keyboard input.
  * <p>
  * For extensibility, key-action mappings are used to support multiple actions (e.g. TAB to fireBomb).
- * <p>
- * Direct access to {@link UserPlane} since the plane is the only user-controlled object in this single-player game.
  */
 public class InputController implements EventHandler<KeyEvent> {
-    private final UserPlane user;
+    private final InputControlledObject inputControlledObject;
     private final Map<KeyCode, Runnable> keyActions;
 
     /**
      * Constructor to create an instance of InputController.
      *
-     * @param user - the UserPlane representing the player
+     * @param inputControlledObject - the object controlled by player's input
      * @param keyActions - a map of key codes to actions (Runnable) to be executed when the key is pressed
      */
-    public InputController(UserPlane user, Map<KeyCode, Runnable> keyActions) {
-        this.user = user;
+    public InputController(InputControlledObject inputControlledObject, Map<KeyCode, Runnable> keyActions) {
+        this.inputControlledObject = inputControlledObject;
         this.keyActions = keyActions;
     }
 
@@ -51,16 +49,16 @@ public class InputController implements EventHandler<KeyEvent> {
     private void handleKeyPressed(KeyCode keyCode) {
         switch (keyCode) {
             case UP:
-                user.moveUp();
+                inputControlledObject.moveUp();
                 break;
             case DOWN:
-                user.moveDown();
+                inputControlledObject.moveDown();
                 break;
             case LEFT:
-                user.moveLeft();
+                inputControlledObject.moveLeft();
                 break;
             case RIGHT:
-                user.moveRight();
+                inputControlledObject.moveRight();
                 break;
             default:
                 Runnable action = keyActions.get(keyCode);
@@ -78,7 +76,7 @@ public class InputController implements EventHandler<KeyEvent> {
      */
     private void handleKeyReleased(KeyCode keyCode) {
         if (keyCode == KeyCode.UP || keyCode == KeyCode.DOWN || keyCode == KeyCode.LEFT || keyCode == KeyCode.RIGHT) {
-            user.stop();
+            inputControlledObject.stop();
         }
     }
 }
