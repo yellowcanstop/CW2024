@@ -57,7 +57,7 @@ public class GameController implements InvalidationListener {
 			Class<?> myClass = Class.forName(className);
 			Constructor<?> constructor = myClass.getConstructor(double.class, double.class);
             myLevel = (LevelParent) constructor.newInstance(stage.getHeight(), stage.getWidth());
-			myLevel.levelNameProperty().addListener(this);
+			myLevel.getLevelNameProperty().addListener(this);
 			Scene scene = myLevel.initializeScene();
 			stage.setScene(scene);
 			myLevel.startGame();
@@ -70,17 +70,16 @@ public class GameController implements InvalidationListener {
 	 * Called when the value of the observable (the levelNameProperty of the LevelParent) changes state (invalidated).
 	 * <p>
 	 * This notifies the GameController (InvalidationListener) that the level has changed and the GameController should go to the new level.
+	 * <p>
+	 * To mimic deleteObserver() when java.util.Observer and Observable were used, the InvalidationListener is removed from the levelNameProperty when the level changes to avoid memory leaks.
 	 *
 	 * @param observable - the observable which is the levelNameProperty of the LevelParent
 	 */
 	@Override
 	public void invalidated(Observable observable) {
 		try {
-			/* to mimic deleteObserver() when java.util.Observer and Observable were used
-			 * the InvalidationListener is removed from the levelNameProperty when the level changes to avoid memory leaks.
-			 */
 			observable.removeListener(this);
-			String levelName = myLevel.levelNameProperty().get();
+			String levelName = myLevel.getLevelNameProperty().get();
 			goToLevel(levelName);
 		} catch (Exception e) {
 			AlertException.alertException(e);

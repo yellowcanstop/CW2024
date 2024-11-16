@@ -1,7 +1,6 @@
 package com.example.demo.levels;
 
 import java.util.*;
-
 import com.example.demo.utils.CollisionHandler;
 import com.example.demo.utils.MusicLoader;
 import com.example.demo.utils.SoundLoader;
@@ -15,7 +14,6 @@ import javafx.animation.*;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.*;
-import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -143,7 +141,7 @@ public abstract class LevelParent {
 	 *
 	 * @return the level name property
 	 */
-	public StringProperty levelNameProperty() {
+	public StringProperty getLevelNameProperty() {
 		return levelNameProperty;
 	}
 
