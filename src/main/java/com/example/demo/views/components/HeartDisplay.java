@@ -1,5 +1,6 @@
 package com.example.demo.views.components;
 
+import com.example.demo.utils.SoundLoader;
 import javafx.scene.layout.HBox;
 
 /**
@@ -9,6 +10,8 @@ public class HeartDisplay {
 	private static final int INDEX_OF_FIRST_ITEM = 0;
 	private final HBox container;
 	private final int numberOfHeartsToDisplay;
+	private final SoundLoader soundLoader = new SoundLoader(HEART_LOSS);
+	public static final String HEART_LOSS = "/com/example/demo/sounds/ugh.wav";
 
 	/**
 	 * Constructor to create an instance of HeartDisplay.
@@ -39,8 +42,12 @@ public class HeartDisplay {
 	 * Remove a heart from the container.
 	 */
 	public void removeHeart() {
-		if (!container.getChildren().isEmpty())
+		if (!container.getChildren().isEmpty()) {
 			container.getChildren().remove(INDEX_OF_FIRST_ITEM);
+			soundLoader.playSound();
+		}
+
+
 	}
 
 	/**

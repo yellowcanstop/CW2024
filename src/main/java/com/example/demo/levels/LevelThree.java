@@ -41,7 +41,6 @@ public class LevelThree extends LevelParent {
         super.initializeUnits();
         getRoot().getChildren().add(bossPlane1.getShieldImage());
         getRoot().getChildren().add(bossPlane2.getShieldImage());
-
     }
 
     /**

@@ -1,7 +1,6 @@
 package com.example.demo.views;
 
 import com.example.demo.Main;
-import com.example.demo.utils.SoundLoader;
 import com.example.demo.views.components.GameOverImage;
 import com.example.demo.views.components.HeartDisplay;
 import com.example.demo.views.components.WinImage;
@@ -9,28 +8,28 @@ import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.AudioClip;
-
-import java.util.Objects;
 
 /**
  * View for a level of the game.
  */
 public abstract class LevelView {
-	private static final double HEART_DISPLAY_X_POSITION = 5;
-	private static final double HEART_DISPLAY_Y_POSITION = 25;
-	private static final int WIN_IMAGE_X_POSITION = 355;
-	private static final int WIN_IMAGE_Y_POSITION = 175;
-	private static final int LOSS_SCREEN_X_POSITION = -160;
-	private static final int LOSS_SCREEN_Y_POSITION = -375;
 	private final Group root;
 	private final WinImage winImage;
+	private static final int WIN_IMAGE_X_POSITION = 355;
+	private static final int WIN_IMAGE_Y_POSITION = 175;
 	private final GameOverImage gameOverImage;
+	private static final int LOSS_IMAGE_X_POSITION = -160;
+	private static final int LOSS_IMAGE_Y_POSITION = -375;
 	private final HeartDisplay heartDisplay;
+	private static final int HEART_DISPLAY_X_POSITION = 5;
+	private static final int HEART_DISPLAY_Y_POSITION = 25;
 	private final Button returnButton;
+	private static final int RETURN_BUTTON_X_POSITION = 400;
+	private static final int RETURN_BUTTON_Y_POSITION = 200;
+
 	private final Label killCounterLabel;
-	public static final String DAMAGE_USER = "/com/example/demo/sounds/ugh.wav";
-	private SoundLoader soundLoader = new SoundLoader(DAMAGE_USER);
+	private static final int KILL_COUNTER_X_POSITION = 5;
+	private static final int KILL_COUNTER_Y_POSITION = 75;
 
 	/**
 	 * Constructor to create an instance of LevelView.
@@ -42,12 +41,12 @@ public abstract class LevelView {
 		this.root = root;
 		this.heartDisplay = new HeartDisplay(HEART_DISPLAY_X_POSITION, HEART_DISPLAY_Y_POSITION, heartsToDisplay);
 		this.winImage = new WinImage(WIN_IMAGE_X_POSITION, WIN_IMAGE_Y_POSITION);
-		this.gameOverImage = new GameOverImage(LOSS_SCREEN_X_POSITION, LOSS_SCREEN_Y_POSITION);
+		this.gameOverImage = new GameOverImage(LOSS_IMAGE_X_POSITION, LOSS_IMAGE_Y_POSITION);
 		this.returnButton = new Button("Return to Menu");
 		this.returnButton.setOnAction(event -> Main.returnToMainScreen());
 		this.killCounterLabel = new Label("Kills: 0");
-		this.killCounterLabel.setLayoutX(HEART_DISPLAY_X_POSITION);
-		this.killCounterLabel.setLayoutY(HEART_DISPLAY_Y_POSITION + 50);
+		this.killCounterLabel.setLayoutX(KILL_COUNTER_X_POSITION);
+		this.killCounterLabel.setLayoutY(KILL_COUNTER_Y_POSITION);
 	}
 
 	/**
@@ -89,8 +88,8 @@ public abstract class LevelView {
 	 */
 	private void showReturnButton() {
 		VBox buttonContainer = new VBox(returnButton);
-		buttonContainer.setLayoutX(WIN_IMAGE_X_POSITION + 50);
-		buttonContainer.setLayoutY(WIN_IMAGE_Y_POSITION);
+		buttonContainer.setLayoutX(RETURN_BUTTON_X_POSITION);
+		buttonContainer.setLayoutY(RETURN_BUTTON_Y_POSITION);
 		root.getChildren().add(buttonContainer);
 	}
 
@@ -103,7 +102,6 @@ public abstract class LevelView {
 		int currentNumberOfHearts = heartDisplay.getContainer().getChildren().size();
 		for (int i = 0; i < currentNumberOfHearts - heartsRemaining; i++) {
 			heartDisplay.removeHeart();
-			soundLoader.playSound();
 		}
 	}
 
