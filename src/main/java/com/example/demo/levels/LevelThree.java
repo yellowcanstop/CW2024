@@ -47,10 +47,10 @@ public class LevelThree extends LevelParent {
     @Override
     protected void initializeLevelView() {
         super.initializeLevelView();
-        getRoot().getChildren().add(getLevelView().getBossHealthLabel1());
-        getRoot().getChildren().add(getLevelView().getBossHealthDisplay1());
-        getRoot().getChildren().add(getLevelView().getBossHealthLabel2());
-        getRoot().getChildren().add(getLevelView().getBossHealthDisplay2());
+        getRoot().getChildren().add(levelView.getBossHealthLabel1());
+        getRoot().getChildren().add(levelView.getBossHealthDisplay1());
+        getRoot().getChildren().add(levelView.getBossHealthLabel2());
+        getRoot().getChildren().add(levelView.getBossHealthDisplay2());
     }
 
     /**
@@ -85,7 +85,7 @@ public class LevelThree extends LevelParent {
     }
 
     /**
-     * Instantiate the level view with all nodes and the player's initial health.
+     * Get the level view.
      *
      * @return the level view
      */

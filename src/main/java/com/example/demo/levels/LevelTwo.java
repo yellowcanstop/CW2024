@@ -14,9 +14,6 @@ public class LevelTwo extends LevelParent {
 	public static final String BACKGROUND2 = "/com/example/demo/images/background2.jpg";
 	public static final String MUSIC2 = "/com/example/demo/sounds/rain.mp3";
 
-
-
-
 	/**
 	 * Constructor to create an instance of LevelTwo. Initialize the bossPlane.
 	 *
@@ -30,7 +27,7 @@ public class LevelTwo extends LevelParent {
 	}
 
 	/**
-	 * Initialize the units for level two: the UserPlane and the Shield for the boss.
+	 * Initialize units for the level.
 	 */
 	@Override
 	protected void initializeUnits() {
@@ -38,11 +35,14 @@ public class LevelTwo extends LevelParent {
 		getRoot().getChildren().add(bossPlane.getShieldImage());
 	}
 
+	/**
+	 * Initialize the level view.
+	 */
 	@Override
 	protected void initializeLevelView() {
 		super.initializeLevelView();
-		getRoot().getChildren().add(getLevelView().getBossHealthLabel());
-		getRoot().getChildren().add(getLevelView().getBossHealthDisplay());
+		getRoot().getChildren().add(levelView.getBossHealthLabel());
+		getRoot().getChildren().add(levelView.getBossHealthDisplay());
 	}
 
 	/**
@@ -59,7 +59,7 @@ public class LevelTwo extends LevelParent {
 	}
 
 	/**
-	 * Spawn the bossPlane.
+	 * Spawn the boss plane.
 	 */
 	@Override
 	protected void spawnEnemyUnits() {
@@ -69,7 +69,7 @@ public class LevelTwo extends LevelParent {
 	}
 
 	/**
-	 * Instantiate the level view with all nodes and the player's initial health.
+	 * Get the level view.
 	 *
 	 * @return the level view
 	 */

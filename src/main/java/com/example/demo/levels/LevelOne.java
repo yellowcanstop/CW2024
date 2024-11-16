@@ -76,7 +76,7 @@ public class LevelOne extends LevelParent {
 	}
 
 	/**
-	 * Instantiate the level view with all nodes and the player's initial health.
+	 * Get the level view.
 	 *
 	 * @return the level view
 	 */
