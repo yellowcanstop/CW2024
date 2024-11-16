@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.utils.MusicLoader;
-import com.example.demo.utils.ScreenLoader;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -18,7 +17,6 @@ public class MenuController implements ScreenController {
     public Button button3;
     public static final String MENU_MUSIC = "/com/example/demo/sounds/rain.mp3";
     private MusicLoader musicLoader;
-    private static final String HELP_SCREEN = "/com/example/demo/views/HelpScreen.fxml";
     private ScreenController helpController;
 
     /**
@@ -32,7 +30,7 @@ public class MenuController implements ScreenController {
         this.scene = scene;
         this.stage = stage;
         this.musicLoader = new MusicLoader(MENU_MUSIC);
-        this.helpController = ScreenLoader.loadScreen(stage, HELP_SCREEN);
+        this.helpController = ScreenFactory.createHelpScreen(stage);
     }
 
     /**
