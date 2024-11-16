@@ -46,8 +46,6 @@ public class HeartDisplay {
 			container.getChildren().remove(INDEX_OF_FIRST_ITEM);
 			soundLoader.playSound();
 		}
-
-
 	}
 
 	/**
@@ -57,5 +55,14 @@ public class HeartDisplay {
 	 */
 	public HBox getContainer() {
 		return container;
+	}
+
+	/**
+	 * Get the current number of hearts in the container.
+	 *
+	 * @return the current number of hearts
+	 */
+	public int getCurrentNumberOfHearts() {
+		return container.getChildren().size();
 	}
 }

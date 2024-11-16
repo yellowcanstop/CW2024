@@ -85,8 +85,7 @@ public abstract class LevelView {
 	 * @param heartsRemaining - the current number of hearts to be displayed
 	 */
 	public void removeHearts(int heartsRemaining) {
-		int currentNumberOfHearts = heartDisplay.getContainer().getChildren().size();
-		int heartsToRemove = currentNumberOfHearts - heartsRemaining;
+		int heartsToRemove = heartDisplay.getCurrentNumberOfHearts() - heartsRemaining;
 		for (int i = 0; i < heartsToRemove; i++) {
 			heartDisplay.removeHeart();
 		}
