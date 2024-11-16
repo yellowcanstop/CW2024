@@ -35,17 +35,17 @@ public class LevelTwoView extends LevelView {
 	}
 
 	/**
-	 * Get the boss health label.
+	 * Show the boss health label.
 	 */
-	public Label getBossHealthLabel() {
-		return bossHealthLabel;
+	public void showBossHealthLabel() {
+		root.getChildren().add(bossHealthLabel);
 	}
 
 	/**
-	 * Get the boss health display.
+	 * Show the boss health display.
 	 */
-	public ProgressBar getBossHealthDisplay() {
-		return bossHealthDisplay;
+	public void showBossHealthDisplay() {
+		root.getChildren().add(bossHealthDisplay);
 	}
 
 	/**

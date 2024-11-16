@@ -23,8 +23,7 @@ public abstract class LevelView {
 	private static final int HEART_DISPLAY_X_POSITION = 5;
 	private static final int HEART_DISPLAY_Y_POSITION = 25;
 	private final VBox buttonContainer;
-	private final Button returnButton;
-	private static final int RETURN_BUTTON_X_POSITION = 400;
+    private static final int RETURN_BUTTON_X_POSITION = 400;
 	private static final int RETURN_BUTTON_Y_POSITION = 200;
 
 	/**
@@ -38,8 +37,8 @@ public abstract class LevelView {
 		this.heartDisplay = new HeartDisplay(HEART_DISPLAY_X_POSITION, HEART_DISPLAY_Y_POSITION, heartsToDisplay);
 		this.winImage = new WinImage(WIN_IMAGE_X_POSITION, WIN_IMAGE_Y_POSITION);
 		this.gameOverImage = new GameOverImage(LOSS_IMAGE_X_POSITION, LOSS_IMAGE_Y_POSITION);
-		this.returnButton = new Button("Return to Menu");
-		this.returnButton.setOnAction(event -> Main.returnToMainScreen());
+        Button returnButton = new Button("Return to Menu");
+		returnButton.setOnAction(event -> Main.returnToMainScreen());
 		this.buttonContainer = new VBox(returnButton);
 		buttonContainer.setLayoutX(RETURN_BUTTON_X_POSITION);
 		buttonContainer.setLayoutY(RETURN_BUTTON_Y_POSITION);

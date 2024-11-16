@@ -11,6 +11,7 @@ public class LevelOneView extends LevelView {
     private final Label killCounterLabel;
     private static final int KILL_COUNTER_X_POSITION = 5;
     private static final int KILL_COUNTER_Y_POSITION = 75;
+
     /**
      * Constructor to create an instance of the view for Level One.
      *
