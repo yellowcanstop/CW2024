@@ -5,7 +5,7 @@ import javafx.scene.Group;
 import java.util.List;
 
 /**
- * Generalized action to fire a projectile (UserProjectile or UserBomb) in the game.
+ * Generalized action to fire a projectile (UserBullet or UserBomb) in the game.
  * <p>
  * Encapsulates the logic that a new shot is only allowed if the time since the last shot is greater than the cool-down time.
  */

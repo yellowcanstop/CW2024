@@ -1,6 +1,5 @@
 package com.example.demo.models;
 
-
 /**
  * Bomb for user-controlled player sprite in the game.
  */

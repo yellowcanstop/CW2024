@@ -67,7 +67,7 @@ public class UserPlane extends Plane implements InputControlledObject {
 	 */
 	@Override
 	public DestructibleSprite fireProjectile() {
-		return new UserProjectile(getProjectileXPosition(PROJECTILE_X_POSITION_OFFSET), getProjectileYPosition(PROJECTILE_Y_POSITION_OFFSET));
+		return new UserBullet(getProjectileXPosition(PROJECTILE_X_POSITION_OFFSET), getProjectileYPosition(PROJECTILE_Y_POSITION_OFFSET));
 	}
 
 	public DestructibleSprite fireBombs() {

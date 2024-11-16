@@ -3,31 +3,31 @@ package com.example.demo.models;
 import com.example.demo.utils.ObjectPool;
 
 /**
- * Projectile for the boss sprite in the game.
+ * Projectile for the enemy sprite in the game.
  */
-public class BossProjectile extends Projectile implements Poolable {
-	private static final int IMAGE_HEIGHT = 75;
-	private static final int HORIZONTAL_VELOCITY = -15;
-	private static final int INITIAL_X_POSITION = 950;
-	private static final ObjectPool<BossProjectile> pool = new ObjectPool<>(BossProjectile::new);
-	public static final String FIREBALL = "/com/example/demo/images/fireball.png";
+public class EnemyBullet extends Projectile implements Poolable {
+	private static final int IMAGE_HEIGHT = 50;
+	private static final int HORIZONTAL_VELOCITY = -10;
+	private static final ObjectPool<EnemyBullet> pool = new ObjectPool<>(EnemyBullet::new);
+	public static final String ENEMY_FIRE = "/com/example/demo/images/enemyFire.png";
 
 	/**
-	 * Constructor to create an instance of the BossProjectile class using the super constructor.
+	 * Constructor to create an instance of the EnemyBullet class using the super constructor.
 	 */
-	private BossProjectile() {
-		super(FIREBALL, IMAGE_HEIGHT, 0, 0);
+	private EnemyBullet() {
+		super(ENEMY_FIRE, IMAGE_HEIGHT, 0, 0);
 	}
 
 	/**
-	 * Get a BossProjectile from the object pool and set the initial x and y position.
+	 * Get an EnemyBullet from the object pool and set the initial x and y position.
 	 *
+	 * @param initialXPos - the initial x coordinate position of the projectile
 	 * @param initialYPos - the initial y coordinate position of the projectile
-	 * @return an instance of a BossProjectile
+	 * @return an instance of an EnemyBullet
 	 */
-	public static BossProjectile create(double initialYPos) {
-		BossProjectile projectile = pool.get();
-		projectile.setX(INITIAL_X_POSITION);
+	public static EnemyBullet create(double initialXPos, double initialYPos) {
+		EnemyBullet projectile = pool.get();
+		projectile.setX(initialXPos);
 		projectile.setY(initialYPos);
 		projectile.reset();
 		return projectile;
@@ -36,6 +36,7 @@ public class BossProjectile extends Projectile implements Poolable {
 	/**
 	 * Release the projectile back to the object pool.
 	 */
+	@Override
 	public void release() {
 		pool.release(this);
 	}

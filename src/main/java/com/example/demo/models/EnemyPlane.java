@@ -79,9 +79,9 @@ public class EnemyPlane extends Plane {
 	 *
 	 * @return the projectile created
 	 */
-	private EnemyProjectile createProjectile() {
+	private EnemyBullet createProjectile() {
 		double projectileXPosition = getProjectileXPosition(PROJECTILE_X_POSITION_OFFSET);
 		double projectileYPosition = getProjectileYPosition(PROJECTILE_Y_POSITION_OFFSET);
-		return EnemyProjectile.create(projectileXPosition, projectileYPosition);
+		return EnemyBullet.create(projectileXPosition, projectileYPosition);
 	}
 }
