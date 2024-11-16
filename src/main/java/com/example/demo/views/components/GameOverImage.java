@@ -3,14 +3,13 @@ package com.example.demo.views.components;
 import com.example.demo.utils.SoundLoader;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.media.AudioClip;
 import java.util.Objects;
 
 /**
  * View displaying image and playing sound when the game is over.
  */
 public class GameOverImage extends ImageView {
-	private SoundLoader soundLoader;
+	private final SoundLoader soundLoader;
 	public static final String GAMEOVER = "/com/example/demo/images/gameover.png";
 	public static final String GAMEOVER_SOUND = "/com/example/demo/sounds/ugh.wav";
 

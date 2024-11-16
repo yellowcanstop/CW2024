@@ -11,7 +11,6 @@ public class Heart extends ImageView {
     private static final int HEART_HEIGHT = 50;
     public static final String HEART = "/com/example/demo/images/heart.png";
 
-
     /**
      * Constructor to create an instance of Heart.
      */

@@ -11,7 +11,6 @@ public class ShieldImage extends ImageView {
 	private static final int SHIELD_SIZE = 200;
 	public static final String SHIELD = "/com/example/demo/images/shield.png";
 
-
 	/**
 	 * Constructor to create an instance of a ShieldImage.
 	 *

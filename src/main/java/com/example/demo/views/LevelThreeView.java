@@ -2,8 +2,6 @@ package com.example.demo.views;
 
 import com.example.demo.views.components.ProgressDisplay;
 import javafx.scene.Group;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
 
 /**
  * View for level three of the game.

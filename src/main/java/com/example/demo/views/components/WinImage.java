@@ -3,19 +3,17 @@ package com.example.demo.views.components;
 import com.example.demo.utils.SoundLoader;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.media.AudioClip;
-
 import java.util.Objects;
 
 /**
  * View displaying image and playing sound when the game is won.
  */
 public class WinImage extends ImageView {
+	private final SoundLoader soundLoader;
 	private static final int HEIGHT = 500;
 	private static final int WIDTH = 600;
 	public static final String YOU_WIN = "/com/example/demo/images/youwin.png";
 	public static final String WIN_SOUND = "/com/example/demo/sounds/boodoodaloop.wav";
-	private SoundLoader soundLoader;
 
 	/**
 	 * Constructor to create an instance of WinImage.
