@@ -4,7 +4,6 @@ package com.example.demo.models;
  * Abstract class representing a projectile shot by sprites in the game.
  */
 public abstract class Projectile extends DestructibleSprite {
-
 	/**
 	 * Constructor to create an instance of Projectile.
 	 *

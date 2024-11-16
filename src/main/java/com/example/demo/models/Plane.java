@@ -39,6 +39,15 @@ public abstract class Plane extends DestructibleSprite {
 	}
 
 	/**
+	 * Get the health of the plane.
+	 *
+	 * @return the health of the plane
+	 */
+	public int getHealth() {
+		return health;
+	}
+
+	/**
 	 * Get the x position of the projectile fired by the plane.
 	 *
 	 * @param xPositionOffset - the offset for x position of the projectile
@@ -65,14 +74,5 @@ public abstract class Plane extends DestructibleSprite {
 	 */
 	private boolean healthAtZero() {
 		return health == 0;
-	}
-
-	/**
-	 * Get the health of the plane.
-	 *
-	 * @return the health of the plane
-	 */
-	public int getHealth() {
-		return health;
 	}
 }
