@@ -24,7 +24,7 @@ public class BossProjectile extends Projectile {
 		BossProjectile projectile = pool.get();
 		projectile.setX(INITIAL_X_POSITION);
 		projectile.setY(initialYPos);
-		projectile.isDestroyed = false;
+		projectile.resetIsDestroyed();
 		return projectile;
 	}
 

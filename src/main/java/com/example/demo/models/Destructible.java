@@ -1,7 +1,7 @@
 package com.example.demo.models;
 
 /**
- * Interface for sprites which can take damage and be destroyed in the game.
+ * Interface for objects which can take damage and be destroyed in the game.
  */
 public interface Destructible {
 	/**
@@ -13,4 +13,16 @@ public interface Destructible {
 	 * Destroy the destructible.
 	 */
 	void destroy();
+
+	/**
+	 * Check if the destructible is destroyed.
+	 *
+	 * @return true if destructible is destroyed, else false
+	 */
+	boolean isDestroyed();
+
+	/**
+	 * Reset the isDestroyed attribute to false.
+	 */
+	default void resetIsDestroyed() {}
 }
