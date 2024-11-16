@@ -84,7 +84,7 @@ public class LevelThree extends LevelParent {
 	@Override
     protected Map<KeyCode, Runnable> instantiateKeyActions() {
         Map<KeyCode, Runnable> keyActions = super.instantiateKeyActions();
-        keyActions.put(KeyCode.TAB, new FireAction(getRoot(), getUserProjectiles(), new SoundLoader(FIRE_BOMB), FIRE_COOL_DOWN, getUser()::fireBombs));
+        keyActions.put(KeyCode.TAB, new FireAction(getRoot(), getUserProjectiles(), new SoundLoader(FIRE_BOMB), FIRE_COOL_DOWN, getUser()::fireBomb));
         return keyActions;
     }
 

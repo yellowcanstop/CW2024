@@ -233,7 +233,7 @@ public abstract class LevelParent {
 	 */
 	protected Map<KeyCode, Runnable> instantiateKeyActions() {
 		Map<KeyCode, Runnable> keyActions = new HashMap<>();
-		keyActions.put(KeyCode.SPACE, new FireAction(getRoot(), getUserProjectiles(), new SoundLoader(FIRE_PROJECTILE), FIRE_COOL_DOWN, getUser()::fireProjectile));
+		keyActions.put(KeyCode.SPACE, new FireAction(getRoot(), getUserProjectiles(), new SoundLoader(FIRE_PROJECTILE), FIRE_COOL_DOWN, getUser()::fireBullet));
 		return keyActions;
 	}
 
@@ -241,7 +241,7 @@ public abstract class LevelParent {
 	 * Spawn projectiles for all enemy units.
 	 */
 	private void generateEnemyFire() {
-		enemyUnits.forEach(enemy -> spawnEnemyProjectile(((Plane) enemy).fireProjectile()));
+		enemyUnits.forEach(enemy -> spawnEnemyProjectile(((Plane) enemy).fireBullet()));
 	}
 
 	/**

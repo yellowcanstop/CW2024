@@ -66,21 +66,17 @@ public class UserPlane extends Plane implements InputControlledObject {
 	 * @return a projectile
 	 */
 	@Override
-	public DestructibleSprite fireProjectile() {
+	public DestructibleSprite fireBullet() {
 		return new UserBullet(getProjectileXPosition(PROJECTILE_X_POSITION_OFFSET), getProjectileYPosition(PROJECTILE_Y_POSITION_OFFSET));
 	}
 
-	public DestructibleSprite fireBombs() {
-		return new UserBomb(getProjectileXPosition(PROJECTILE_X_POSITION_OFFSET), getProjectileYPosition(PROJECTILE_Y_POSITION_OFFSET));
-	}
-
 	/**
-	 * Check if the user plane is moving.
+	 * Fire a bomb.
 	 *
-	 * @return true if the user plane is moving, else false
+	 * @return a bomb
 	 */
-	private boolean isMoving() {
-		return verticalVelocityMultiplier != 0 || horizontalVelocityMultiplier != 0;
+	public DestructibleSprite fireBomb() {
+		return new UserBomb(getProjectileXPosition(PROJECTILE_X_POSITION_OFFSET), getProjectileYPosition(PROJECTILE_Y_POSITION_OFFSET));
 	}
 
 	/**
@@ -133,5 +129,14 @@ public class UserPlane extends Plane implements InputControlledObject {
 	 */
 	public void incrementKillCount() {
 		numberOfKills++;
+	}
+
+	/**
+	 * Check if the user plane is moving.
+	 *
+	 * @return true if the user plane is moving, else false
+	 */
+	private boolean isMoving() {
+		return verticalVelocityMultiplier != 0 || horizontalVelocityMultiplier != 0;
 	}
 }

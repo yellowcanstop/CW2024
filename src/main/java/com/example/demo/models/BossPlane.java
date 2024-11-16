@@ -75,7 +75,7 @@ public class BossPlane extends Plane {
 	public void updateActor() {
 		updatePosition();
 		updateShield();
-		fireProjectile();
+		fireBullet();
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class BossPlane extends Plane {
 	 * @return the projectile fired by the boss if the boss fires in the current frame, else null
 	 */
 	@Override
-	public DestructibleSprite fireProjectile() {
+	public DestructibleSprite fireBullet() {
 		if (Math.random() < BOSS_FIRE_RATE) {
 			return BossBullet.create(getProjectileInitialPosition());
 		}

@@ -25,7 +25,7 @@ public abstract class Plane extends DestructibleSprite {
 	 *
 	 * @return a projectile
 	 */
-	public abstract DestructibleSprite fireProjectile();
+	public abstract DestructibleSprite fireBullet();
 
 	/**
 	 * Handle damage taken by the destructible.

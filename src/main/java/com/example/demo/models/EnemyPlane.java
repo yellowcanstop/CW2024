@@ -58,7 +58,7 @@ public class EnemyPlane extends Plane {
 	 * @return a projectile randomly based on the fire rate, else null
 	 */
 	@Override
-	public DestructibleSprite fireProjectile() {
+	public DestructibleSprite fireBullet() {
 		if (toFire()) {
 			return createProjectile();
 		}
