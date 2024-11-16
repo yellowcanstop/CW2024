@@ -1,12 +1,12 @@
 package com.example.demo.levels;
 
 import java.util.*;
+import com.example.demo.models.Plane;
 import com.example.demo.utils.CollisionHandler;
 import com.example.demo.utils.MusicLoader;
 import com.example.demo.utils.SoundLoader;
 import com.example.demo.views.components.Background;
 import com.example.demo.models.DestructibleSprite;
-import com.example.demo.models.Plane;
 import com.example.demo.models.UserPlane;
 import com.example.demo.controller.InputController;
 import com.example.demo.views.LevelView;
@@ -26,29 +26,30 @@ import javafx.beans.property.StringProperty;
  * Contains methods for instantiating a level's scene, handling collisions, and spawning sprites.
  */
 public abstract class LevelParent {
-	private static final double SCREEN_HEIGHT_ADJUSTMENT = 150;
-	private static final int MILLISECOND_DELAY = 50;
-	private final double screenHeight;
-	private final double screenWidth;
-	private final double enemyMaximumYPosition;
+	private final StringProperty levelNameProperty;
 	private final Group root;
 	private final Timeline timeline;
-	private final UserPlane user;
+	private static final int MILLISECOND_DELAY = 50;
 	private final Scene scene;
+	private final double screenHeight;
+	private final double screenWidth;
 	private final Background background;
+	private final MusicLoader musicLoader;
+	private final UserPlane user;
+	private final CollisionHandler collisionHandler;
 	private final List<DestructibleSprite> friendlyUnits;
 	private final List<DestructibleSprite> enemyUnits;
 	private final List<DestructibleSprite> userProjectiles;
 	private final List<DestructibleSprite> enemyProjectiles;
-	private int currentNumberOfEnemies;
-	// The GameController (InvalidationListener) observes this property for changes in the level name.
-	private final StringProperty levelNameProperty = new SimpleStringProperty();
-	private MusicLoader musicLoader;
-	private long lastFireTime = 0;
+	private final double enemyMaximumYPosition;
+	private static final double SCREEN_HEIGHT_ADJUSTMENT = 150;
 	private static final long FIRE_COOL_DOWN = 500;
-	private final CollisionHandler collisionHandler = new CollisionHandler();
+
+	private int currentNumberOfEnemies;
+	private long lastFireTime = 0;
+
 	public static final String FIRE_PROJECTILE = "/com/example/demo/sounds/laser_shot2.wav";
-	private SoundLoader soundLoader = new SoundLoader(FIRE_PROJECTILE);
+	private final SoundLoader soundLoader = new SoundLoader(FIRE_PROJECTILE);
 
 	/**
 	 * Constructor to create an instance of a LevelParent.
@@ -60,65 +61,41 @@ public abstract class LevelParent {
 	 * @param playerInitialHealth - initial number of lives for the player
 	 */
 	public LevelParent(String backgroundImageName, String musicName, double screenHeight, double screenWidth, int playerInitialHealth) {
+		this.levelNameProperty = new SimpleStringProperty();
 		this.root = new Group();
 		this.scene = new Scene(root, screenWidth, screenHeight);
 		this.timeline = new Timeline();
+		this.background = new Background(backgroundImageName);
+		this.screenHeight = screenHeight;
+		this.screenWidth = screenWidth;
+		this.musicLoader = new MusicLoader(musicName);
 		this.user = new UserPlane(playerInitialHealth);
 		this.friendlyUnits = new ArrayList<>();
 		this.enemyUnits = new ArrayList<>();
 		this.userProjectiles = new ArrayList<>();
 		this.enemyProjectiles = new ArrayList<>();
-		this.background = new Background(backgroundImageName);
-		this.screenHeight = screenHeight;
-		this.screenWidth = screenWidth;
+		this.collisionHandler = new CollisionHandler();
 		this.enemyMaximumYPosition = screenHeight - SCREEN_HEIGHT_ADJUSTMENT;
 		this.currentNumberOfEnemies = 0;
 		initializeTimeline();
-		friendlyUnits.add(user);
-		this.musicLoader = new MusicLoader(musicName);
 		musicLoader.playMusic();
+		friendlyUnits.add(user);
 	}
 
 	/**
-	 * Initialize the units for the game level.
-	 */
-	protected abstract void initializeUnits();
-
-
-	/**
-	 * Check if the game is over.
-	 */
-	protected abstract void checkIfGameOver();
-
-	/**
-	 * Spawn the enemy units for the game level.
-	 */
-	protected abstract void spawnEnemyUnits();
-
-	/**
-	 * Get the view for the game level.
-	 *
-	 * @return the view for the game level
-	 */
-	protected abstract LevelView getLevelView();
-
-	/**
-	 * Initialize the scene displaying the background, friendly units and heart for the game level.
+	 * Initialize the scene composed of background, units, and view for the game level.
 	 *
 	 * @return the scene for the game level
 	 */
 	public Scene initializeScene() {
 		initializeBackground();
 		initializeUnits();
-		getLevelView().showHeartDisplay();
-		getLevelView().showKillCounter();
+		initializeLevelView();
 		return scene;
 	}
 
 	/**
 	 * Start the game level by setting the focus to the background and starting the timeline.
-	 * <p>
-	 * This method is called in the GameController class.
 	 */
 	public void startGame() {
 		background.requestFocus();
@@ -146,6 +123,81 @@ public abstract class LevelParent {
 	}
 
 	/**
+	 * Initialize the units for the game level.
+	 */
+	protected abstract void initializeUnits();
+
+	/**
+	 * Check if the game is over.
+	 */
+	protected abstract void checkIfGameOver();
+
+	/**
+	 * Spawn the enemy units for the game level.
+	 */
+	protected abstract void spawnEnemyUnits();
+
+	/**
+	 * Get the view for the game level.
+	 *
+	 * @return the view for the game level
+	 */
+	protected abstract LevelView getLevelView();
+
+	/**
+	 * Initialize the level view for the game level.
+	 */
+	protected void initializeLevelView() {
+		getLevelView().showHeartDisplay();
+		getLevelView().showKillCounter();
+	}
+
+	/**
+	 * Update the level view by removing hearts from the display based on the player's health.
+	 */
+	protected void updateLevelView() {
+		getLevelView().removeHearts(user.getHealth());
+		getLevelView().updateCounter(user.getNumberOfKills());
+	}
+
+	/**
+	 * Indicate a game win by stopping the timeline and displaying a win image.
+	 */
+	protected void winGame() {
+		timeline.stop();
+		musicLoader.stopMusic();
+		getLevelView().showWinImage();
+	}
+
+	/**
+	 * Indicate a game loss by stopping the timeline and displaying a game over image.
+	 */
+	protected void loseGame() {
+		timeline.stop();
+		musicLoader.stopMusic();
+		getLevelView().showGameOverImage();
+	}
+
+	/**
+	 * Add an enemy unit to the game level.
+	 *
+	 * @param enemy - enemy unit to be added to the game level
+	 */
+	protected void addEnemyUnit(DestructibleSprite enemy) {
+		enemyUnits.add(enemy);
+		root.getChildren().add(enemy);
+	}
+
+	/**
+	 * Initialize the timeline for the game level.
+	 */
+	private void initializeTimeline() {
+		timeline.setCycleCount(Timeline.INDEFINITE);
+		KeyFrame gameLoop = new KeyFrame(Duration.millis(MILLISECOND_DELAY), e -> updateScene());
+		timeline.getKeyFrames().add(gameLoop);
+	}
+
+	/**
 	 * Update the scene by handling collisions and updating sprites, kill count, and level view.
 	 */
 	private void updateScene() {
@@ -162,15 +214,6 @@ public abstract class LevelParent {
 		updateKillCount();
 		updateLevelView();
 		checkIfGameOver();
-	}
-
-	/**
-	 * Initialize the timeline for the game level.
-	 */
-	private void initializeTimeline() {
-		timeline.setCycleCount(Timeline.INDEFINITE);
-		KeyFrame gameLoop = new KeyFrame(Duration.millis(MILLISECOND_DELAY), e -> updateScene());
-		timeline.getKeyFrames().add(gameLoop);
 	}
 
 	/**
@@ -211,10 +254,6 @@ public abstract class LevelParent {
 			lastFireTime = currentTime;
 			soundLoader.playSound();
 		}
-	}
-
-	public List<DestructibleSprite> getUserProjectiles() {
-		return userProjectiles;
 	}
 
 	/**
@@ -313,23 +352,6 @@ public abstract class LevelParent {
 	}
 
 	/**
-	 * Update the level view by removing hearts from the display based on the player's health.
-	 */
-	protected void updateLevelView() {
-		getLevelView().removeHearts(user.getHealth());
-		getLevelView().updateCounter(user.getNumberOfKills());
-	}
-
-	/**
-	 * Increment the kill count for each enemy unit which has been destroyed.
-	 */
-	private void updateKillCount() {
-		for (int i = 0; i < currentNumberOfEnemies - enemyUnits.size(); i++) {
-			user.incrementKillCount();
-		}
-	}
-
-	/**
 	 * Check if a destructible has moved off the screen.
 	 *
 	 * @param destructible - destructible whose position on the screen is being checked
@@ -340,21 +362,12 @@ public abstract class LevelParent {
 	}
 
 	/**
-	 * Indicate a game win by stopping the timeline and displaying a win image.
+	 * Increment the kill count for each enemy unit which has been destroyed.
 	 */
-	protected void winGame() {
-		timeline.stop();
-		musicLoader.stopMusic();
-		getLevelView().showWinImage();
-	}
-
-	/**
-	 * Indicate a game loss by stopping the timeline and displaying a game over image.
-	 */
-	protected void loseGame() {
-		timeline.stop();
-		musicLoader.stopMusic();
-		getLevelView().showGameOverImage();
+	private void updateKillCount() {
+		for (int i = 0; i < currentNumberOfEnemies - enemyUnits.size(); i++) {
+			user.incrementKillCount();
+		}
 	}
 
 	/**
@@ -385,16 +398,6 @@ public abstract class LevelParent {
 	}
 
 	/**
-	 * Add an enemy unit to the game level.
-	 *
-	 * @param enemy - enemy unit to be added to the game level
-	 */
-	protected void addEnemyUnit(DestructibleSprite enemy) {
-		enemyUnits.add(enemy);
-		root.getChildren().add(enemy);
-	}
-
-	/**
 	 * Get the maximum y position for an enemy unit.
 	 *
 	 * @return the maximum y position for an enemy unit
@@ -419,6 +422,15 @@ public abstract class LevelParent {
 	 */
 	protected boolean userIsDestroyed() {
 		return user.isDestroyed();
+	}
+
+	/**
+	 * Get the list of user projectiles.
+	 *
+	 * @return the list of user projectiles
+	 */
+	protected List<DestructibleSprite> getUserProjectiles() {
+		return userProjectiles;
 	}
 
 	/**

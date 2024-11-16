@@ -46,6 +46,12 @@ public class LevelThree extends LevelParent {
         getRoot().getChildren().add(getUser());
         getRoot().getChildren().add(bossPlane1.getShieldImage());
         getRoot().getChildren().add(bossPlane2.getShieldImage());
+
+    }
+
+    @Override
+    protected void initializeLevelView() {
+        super.initializeLevelView();
         getRoot().getChildren().add(getLevelView().getBossHealthLabel1());
         getRoot().getChildren().add(getLevelView().getBossHealthDisplay1());
         getRoot().getChildren().add(getLevelView().getBossHealthLabel2());
