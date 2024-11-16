@@ -8,7 +8,7 @@ import java.util.Objects;
 /**
  * View displaying image and playing sound when the game is won.
  */
-public class WinImage extends ImageView {
+public class WinDisplay extends ImageView implements Display {
 	private final SoundLoader soundLoader;
 	private static final int HEIGHT = 500;
 	private static final int WIDTH = 600;
@@ -16,12 +16,12 @@ public class WinImage extends ImageView {
 	public static final String WIN_SOUND = "/com/example/demo/sounds/boodoodaloop.wav";
 
 	/**
-	 * Constructor to create an instance of WinImage.
+	 * Constructor to create an instance of WinDisplay.
 	 *
 	 * @param xPosition - the x position of the image
 	 * @param yPosition - the y position of the image
 	 */
-	public WinImage(double xPosition, double yPosition) {
+	public WinDisplay(double xPosition, double yPosition) {
 		this.setImage(new Image(Objects.requireNonNull(getClass().getResource(YOU_WIN)).toExternalForm()));
 		this.setVisible(false);
 		this.setFitHeight(HEIGHT);
@@ -34,7 +34,7 @@ public class WinImage extends ImageView {
 	/**
 	 * Display the image when the game is won.
 	 */
-	public void showWinImage() {
+	public void show() {
 		this.setVisible(true);
 	}
 

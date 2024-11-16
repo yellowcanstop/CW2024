@@ -7,17 +7,17 @@ import java.util.Objects;
 /**
  * View component displaying an image of a shield which can be shown or hidden.
  */
-public class ShieldImage extends ImageView {
+public class Shield extends ImageView {
 	private static final int SHIELD_SIZE = 200;
 	public static final String SHIELD = "/com/example/demo/images/shield.png";
 
 	/**
-	 * Constructor to create an instance of a ShieldImage.
+	 * Constructor to create an instance of a Shield.
 	 *
 	 * @param xPosition - initial x position of the shield image
 	 * @param yPosition - initial y position of the shield image
 	 */
-	public ShieldImage(double xPosition, double yPosition) {
+	public Shield(double xPosition, double yPosition) {
 		this.setLayoutX(xPosition);
 		this.setLayoutY(yPosition);
 		this.setImage(new Image(Objects.requireNonNull(getClass().getResource(SHIELD)).toExternalForm()));

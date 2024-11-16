@@ -6,7 +6,7 @@ import javafx.scene.layout.HBox;
 /**
  * View component displaying a container of hearts representing the remaining lives of the player.
  */
-public class HeartDisplay {
+public class HeartContainer {
 	private final SoundLoader soundLoader;
 	private static final int INDEX_OF_FIRST_ITEM = 0;
 	private final HBox container;
@@ -14,13 +14,13 @@ public class HeartDisplay {
 	public static final String HEART_LOSS = "/com/example/demo/sounds/ugh.wav";
 
 	/**
-	 * Constructor to create an instance of HeartDisplay.
+	 * Constructor to create an instance of HeartContainer.
 	 *
 	 * @param xPosition - x position of the display
 	 * @param yPosition - y position of the display
 	 * @param heartsToDisplay - initial number of hearts to display
 	 */
-	public HeartDisplay(double xPosition, double yPosition, int heartsToDisplay) {
+	public HeartContainer(double xPosition, double yPosition, int heartsToDisplay) {
 		this.container = new HBox();
 		this.container.setLayoutX(xPosition);
 		this.container.setLayoutY(yPosition);
@@ -56,7 +56,7 @@ public class HeartDisplay {
 	}
 
 	/**
-	 * Get the container holding all the hearts representing the HeartDisplay.
+	 * Get the container holding all the hearts representing the HeartContainer.
 	 *
 	 * @return the container holding all the hearts
 	 */

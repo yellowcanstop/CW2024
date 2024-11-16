@@ -3,7 +3,7 @@ package com.example.demo.models;
 import java.util.*;
 
 import com.example.demo.utils.SoundLoader;
-import com.example.demo.views.components.ShieldImage;
+import com.example.demo.views.components.Shield;
 
 /**
  * BossPlane sprite for level two of the game.
@@ -28,7 +28,7 @@ public class BossPlane extends Plane {
 	private int consecutiveMovesInSameDirection;
 	private int indexOfCurrentMove;
 	private int framesWithShieldActivated;
-	private ShieldImage shieldImage;
+	private Shield shield;
 	public static final String DESTROY_ENEMY = "/com/example/demo/sounds/gameover.wav";
 	private SoundLoader soundLoader = new SoundLoader(DESTROY_ENEMY);
 	public static final String BOSS_PLANE = "/com/example/demo/images/bossplane.png";
@@ -46,9 +46,9 @@ public class BossPlane extends Plane {
 		maxHealth = HEALTH;
 		isShielded = false;
 		initializeMovePattern();
-		shieldImage = new ShieldImage(INITIAL_X_POSITION, INITIAL_Y_POSITION);
-		shieldImage.translateXProperty().bind(this.translateXProperty());
-		shieldImage.translateYProperty().bind(this.translateYProperty());
+		shield = new Shield(INITIAL_X_POSITION, INITIAL_Y_POSITION);
+		shield.translateXProperty().bind(this.translateXProperty());
+		shield.translateYProperty().bind(this.translateYProperty());
 	}
 
 	public int getMaxHealth() {
@@ -107,9 +107,9 @@ public class BossPlane extends Plane {
 	 */
 	public void toggleShieldVisibility() {
 		if (isShielded) {
-			shieldImage.showShield();
+			shield.showShield();
 		} else {
-			shieldImage.hideShield();
+			shield.hideShield();
 		}
 	}
 
@@ -130,8 +130,8 @@ public class BossPlane extends Plane {
 	 *
 	 * @return the shield image for the boss
 	 */
-	public ShieldImage getShieldImage() {
-		return shieldImage;
+	public Shield getShieldImage() {
+		return shield;
 	}
 
 	/**

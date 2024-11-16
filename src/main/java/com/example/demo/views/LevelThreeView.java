@@ -1,6 +1,6 @@
 package com.example.demo.views;
 
-import com.example.demo.views.components.ProgressDisplay;
+import com.example.demo.views.components.ProgressBarWithLabel;
 import javafx.scene.Group;
 
 /**
@@ -8,8 +8,8 @@ import javafx.scene.Group;
  */
 public class LevelThreeView extends LevelView {
     private final Group root;
-    private final ProgressDisplay bossHealthDisplay1;
-    private final ProgressDisplay bossHealthDisplay2;
+    private final ProgressBarWithLabel bossHealthDisplay1;
+    private final ProgressBarWithLabel bossHealthDisplay2;
     private static final int BOSS_HEALTH_X_POSITION = 1000;
     private static final int BOSS_HEALTH_Y_POSITION = 20;
 
@@ -22,8 +22,8 @@ public class LevelThreeView extends LevelView {
     public LevelThreeView(Group root, int heartsToDisplay) {
         super(root, heartsToDisplay);
         this.root = root;
-        this.bossHealthDisplay1 = new ProgressDisplay(BOSS_HEALTH_X_POSITION, BOSS_HEALTH_Y_POSITION, "Boss Health 1");
-        this.bossHealthDisplay2 = new ProgressDisplay(BOSS_HEALTH_X_POSITION, BOSS_HEALTH_Y_POSITION + 50, "Boss Health 2");
+        this.bossHealthDisplay1 = new ProgressBarWithLabel(BOSS_HEALTH_X_POSITION, BOSS_HEALTH_Y_POSITION, "Boss Health 1");
+        this.bossHealthDisplay2 = new ProgressBarWithLabel(BOSS_HEALTH_X_POSITION, BOSS_HEALTH_Y_POSITION + 50, "Boss Health 2");
     }
 
     /**
