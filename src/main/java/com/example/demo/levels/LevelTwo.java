@@ -84,6 +84,6 @@ public class LevelTwo extends LevelParent {
 	protected void updateLevelView() {
 		super.updateLevelView();
 		bossPlane.toggleShieldVisibility();
-		levelView.updateBossHealth(bossPlane.getHealth());
+		levelView.updateBossHealth(bossPlane.getHealth(), bossPlane.getMaxHealth());
 	}
 }

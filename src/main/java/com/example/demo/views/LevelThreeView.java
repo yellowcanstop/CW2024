@@ -14,7 +14,6 @@ public class LevelThreeView extends LevelView {
     private final ProgressDisplay bossHealthDisplay2;
     private static final int BOSS_HEALTH_X_POSITION = 1000;
     private static final int BOSS_HEALTH_Y_POSITION = 20;
-    private static final int BOSS_HEALTH_DIVISOR = 10;
 
     /**
      * Constructor to create an instance of the view for Level Two.
@@ -44,11 +43,11 @@ public class LevelThreeView extends LevelView {
      *
      * @param bossHealth - health of the boss
      */
-    public void updateBossHealth(int bossIndex, int bossHealth) {
+    public void updateBossHealth(int bossIndex, int bossHealth, int maxHealth) {
         if (bossIndex == 1) {
-            bossHealthDisplay1.updateProgress((double) bossHealth / BOSS_HEALTH_DIVISOR);
+            bossHealthDisplay1.updateProgress((double) bossHealth / maxHealth);
         } else if (bossIndex == 2) {
-            bossHealthDisplay2.updateProgress((double) bossHealth / BOSS_HEALTH_DIVISOR);
+            bossHealthDisplay2.updateProgress((double) bossHealth / maxHealth);
         }
     }
 }

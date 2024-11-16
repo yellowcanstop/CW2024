@@ -106,7 +106,7 @@ public class LevelThree extends LevelParent {
         super.updateLevelView();
         bossPlane1.toggleShieldVisibility();
         bossPlane2.toggleShieldVisibility();
-        levelView.updateBossHealth(1, bossPlane1.getHealth());
-        levelView.updateBossHealth(2, bossPlane2.getHealth());
+        levelView.updateBossHealth(1, bossPlane1.getHealth(), bossPlane1.getMaxHealth());
+        levelView.updateBossHealth(2, bossPlane2.getHealth(), bossPlane2.getMaxHealth());
     }
 }

@@ -11,7 +11,6 @@ public class LevelTwoView extends LevelView {
 	private final ProgressDisplay bossHealthDisplay;
 	private static final int BOSS_HEALTH_X_POSITION = 1000;
 	private static final int BOSS_HEALTH_Y_POSITION = 20;
-	private static final int BOSS_HEALTH_DIVISOR = 10;
 
 	/**
 	 * Constructor to create an instance of the view for Level Two.
@@ -38,7 +37,7 @@ public class LevelTwoView extends LevelView {
 	 *
 	 * @param bossHealth - health of the boss
 	 */
-	public void updateBossHealth(int bossHealth) {
-		bossHealthDisplay.updateProgress((double) bossHealth / BOSS_HEALTH_DIVISOR);
+	public void updateBossHealth(int bossHealth, int maxHealth) {
+		bossHealthDisplay.updateProgress((double) bossHealth / maxHealth);
 	}
 }

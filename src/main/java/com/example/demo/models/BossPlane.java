@@ -32,6 +32,7 @@ public class BossPlane extends Plane {
 	public static final String DESTROY_ENEMY = "/com/example/demo/sounds/gameover.wav";
 	private SoundLoader soundLoader = new SoundLoader(DESTROY_ENEMY);
 	public static final String BOSS_PLANE = "/com/example/demo/images/bossplane.png";
+	private int maxHealth;
 
 	/**
 	 * Constructor to create an instance of a BossPlane.
@@ -42,11 +43,16 @@ public class BossPlane extends Plane {
 		consecutiveMovesInSameDirection = 0;
 		indexOfCurrentMove = 0;
 		framesWithShieldActivated = 0;
+		maxHealth = HEALTH;
 		isShielded = false;
 		initializeMovePattern();
 		shieldImage = new ShieldImage(INITIAL_X_POSITION, INITIAL_Y_POSITION);
 		shieldImage.translateXProperty().bind(this.translateXProperty());
 		shieldImage.translateYProperty().bind(this.translateYProperty());
+	}
+
+	public int getMaxHealth() {
+		return maxHealth;
 	}
 
 	/**
