@@ -1,18 +1,17 @@
 package com.example.demo.views;
 
+import com.example.demo.views.components.ProgressDisplay;
 import javafx.scene.Group;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
 
 /**
  * View for level two of the game.
  */
 public class LevelTwoView extends LevelView {
 	private final Group root;
-	private final Label bossHealthLabel;
-	private final ProgressBar bossHealthDisplay;
+	private final ProgressDisplay bossHealthDisplay;
 	private static final int BOSS_HEALTH_X_POSITION = 1000;
 	private static final int BOSS_HEALTH_Y_POSITION = 20;
+	private static final int BOSS_HEALTH_DIVISOR = 10;
 
 	/**
 	 * Constructor to create an instance of the view for Level Two.
@@ -23,29 +22,15 @@ public class LevelTwoView extends LevelView {
 	public LevelTwoView(Group root, int heartsToDisplay) {
 		super(root, heartsToDisplay);
 		this.root = root;
-		this.bossHealthLabel = new Label("Boss Health");
-		this.bossHealthLabel.setLayoutX(BOSS_HEALTH_X_POSITION);
-		this.bossHealthLabel.setLayoutY(BOSS_HEALTH_Y_POSITION - 20);
-		this.bossHealthDisplay = new ProgressBar();
-		this.bossHealthDisplay.setLayoutX(BOSS_HEALTH_X_POSITION);
-		this.bossHealthDisplay.setLayoutY(BOSS_HEALTH_Y_POSITION);
-		this.bossHealthDisplay.setPrefWidth(200);
-		this.bossHealthDisplay.setProgress(1.0);
-		this.bossHealthDisplay.getStyleClass().add("boss-progress-bar");
-	}
-
-	/**
-	 * Show the boss health label.
-	 */
-	public void showBossHealthLabel() {
-		root.getChildren().add(bossHealthLabel);
+		this.bossHealthDisplay = new ProgressDisplay(BOSS_HEALTH_X_POSITION, BOSS_HEALTH_Y_POSITION, "Boss Health");
 	}
 
 	/**
 	 * Show the boss health display.
 	 */
 	public void showBossHealthDisplay() {
-		root.getChildren().add(bossHealthDisplay);
+		root.getChildren().add(bossHealthDisplay.getProgressLabel());
+		root.getChildren().add(bossHealthDisplay.getProgressBar());
 	}
 
 	/**
@@ -54,6 +39,6 @@ public class LevelTwoView extends LevelView {
 	 * @param bossHealth - health of the boss
 	 */
 	public void updateBossHealth(int bossHealth) {
-		bossHealthDisplay.setProgress((double) bossHealth / 10);
+		bossHealthDisplay.updateProgress((double) bossHealth / BOSS_HEALTH_DIVISOR);
 	}
 }

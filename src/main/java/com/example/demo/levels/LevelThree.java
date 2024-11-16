@@ -49,10 +49,7 @@ public class LevelThree extends LevelParent {
     @Override
     protected void initializeLevelView() {
         super.initializeLevelView();
-        getRoot().getChildren().add(levelView.getBossHealthLabel1());
-        getRoot().getChildren().add(levelView.getBossHealthDisplay1());
-        getRoot().getChildren().add(levelView.getBossHealthLabel2());
-        getRoot().getChildren().add(levelView.getBossHealthDisplay2());
+        levelView.showBossHealthDisplay();
     }
 
     /**
@@ -109,7 +106,7 @@ public class LevelThree extends LevelParent {
         super.updateLevelView();
         bossPlane1.toggleShieldVisibility();
         bossPlane2.toggleShieldVisibility();
-        levelView.updateBossHealth1(bossPlane1.getHealth());
-        levelView.updateBossHealth2(bossPlane2.getHealth());
+        levelView.updateBossHealth(1, bossPlane1.getHealth());
+        levelView.updateBossHealth(2, bossPlane2.getHealth());
     }
 }

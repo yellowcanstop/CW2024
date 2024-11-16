@@ -41,7 +41,6 @@ public class LevelTwo extends LevelParent {
 	@Override
 	protected void initializeLevelView() {
 		super.initializeLevelView();
-		levelView.showBossHealthLabel();
 		levelView.showBossHealthDisplay();
 	}
 
