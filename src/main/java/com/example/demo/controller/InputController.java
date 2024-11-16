@@ -7,7 +7,9 @@ import javafx.scene.input.KeyEvent;
 import java.util.Map;
 
 /**
- * Class implementing {@code EventHandler<KeyEvent>} to handle all keyboard input and support multiple actions using key-action mappings.
+ * Class implementing {@code EventHandler<KeyEvent>} to handle all keyboard input.
+ * <p>
+ * For extensibility, key-action mappings are used to support multiple actions (e.g. TAB to fireBomb).
  * <p>
  * Direct access to {@link UserPlane} since the plane is the only user-controlled object in this single-player game.
  */

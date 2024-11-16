@@ -12,9 +12,9 @@ import javafx.stage.Stage;
 public class MenuController implements ScreenController {
     private Scene scene;
     private Stage stage;
-    public Button button1;
-    public Button button2;
-    public Button button3;
+    public Button gameButton;
+    public Button helpButton;
+    public Button exitButton;
     public static final String MENU_MUSIC = "/com/example/demo/sounds/rain.mp3";
     private MusicLoader musicLoader;
     private ScreenController helpController;

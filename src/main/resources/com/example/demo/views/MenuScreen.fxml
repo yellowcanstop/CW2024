@@ -10,9 +10,9 @@
       <VBox alignment="CENTER" layoutX="5.0" layoutY="46.0" prefHeight="108.0" prefWidth="310.0">
          <children>
               <Label prefHeight="55.0" prefWidth="139.0" text="Welcome to Sky Battle!" />
-              <Button fx:id="button1" onAction="#startGame" text="Start game!" />
-              <Button fx:id="button2" onAction="#showHelpScreen" text="How to Play" />
-              <Button fx:id="button3" onAction="#exitGame" text="Exit" />
+              <Button fx:id="gameButton" onAction="#startGame" text="Start game!" />
+              <Button fx:id="helpButton" onAction="#showHelpScreen" text="How to Play" />
+              <Button fx:id="exitButton" onAction="#exitGame" text="Exit" />
          </children>
       </VBox>
     </children>
