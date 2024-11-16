@@ -4,7 +4,6 @@ import java.util.*;
 
 import com.example.demo.utils.SoundLoader;
 import com.example.demo.views.components.ShieldImage;
-import javafx.scene.media.AudioClip;
 
 /**
  * BossPlane sprite for level two of the game.
@@ -94,6 +93,17 @@ public class BossPlane extends Plane {
 		if (!isShielded) {
 			super.takeDamage();
 			soundLoader.playSound();
+		}
+	}
+
+	/**
+	 * Show or hide shield image based on whether the boss is shielded.
+	 */
+	public void toggleShieldVisibility() {
+		if (isShielded) {
+			shieldImage.showShield();
+		} else {
+			shieldImage.hideShield();
 		}
 	}
 

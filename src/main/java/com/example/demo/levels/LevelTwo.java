@@ -84,18 +84,7 @@ public class LevelTwo extends LevelParent {
 	@Override
 	protected void updateLevelView() {
 		super.updateLevelView();
-		checkIfBossShielded();
+		bossPlane.toggleShieldVisibility();
 		levelView.updateBossHealth(bossPlane.getHealth());
-	}
-
-	/**
-	 * Check if the boss is shielded and show the shield if it is.
-	 */
-	private void checkIfBossShielded() {
-		if (bossPlane.isShielded()) {
-			bossPlane.getShieldImage().showShield();
-		} else {
-			bossPlane.getShieldImage().hideShield();
-		}
 	}
 }

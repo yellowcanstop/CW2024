@@ -21,7 +21,7 @@ public class LevelThree extends LevelParent {
     public static final String FIRE_BOMB = "/com/example/demo/sounds/firebomb.wav";
 
     /**
-     * Constructor to create an instance of LevelThree. Initialize the bossPlane.
+     * Constructor to create an instance of LevelThree. Initialize the boss planes.
      *
      * @param screenHeight - the height of the screen
      * @param screenWidth - the width of the screen
@@ -34,7 +34,7 @@ public class LevelThree extends LevelParent {
     }
 
     /**
-     * Initialize the units for level two: the UserPlane and the Shield for the boss.
+     * Initialize units for the level.
      */
     @Override
     protected void initializeUnits() {
@@ -44,6 +44,9 @@ public class LevelThree extends LevelParent {
 
     }
 
+    /**
+     * Initialize the level view.
+     */
     @Override
     protected void initializeLevelView() {
         super.initializeLevelView();
@@ -54,7 +57,7 @@ public class LevelThree extends LevelParent {
     }
 
     /**
-     * Check if user is destroyed or has destroyed the bossPlane to win the game.
+     * Check if user is destroyed or has destroyed the boss planes to win the game.
      */
     @Override
     protected void checkIfGameOver() {
@@ -67,7 +70,7 @@ public class LevelThree extends LevelParent {
     }
 
     /**
-     * Spawn the bossPlane.
+     * Spawn the enemy units.
      */
     @Override
     protected void spawnEnemyUnits() {
@@ -77,6 +80,11 @@ public class LevelThree extends LevelParent {
         }
     }
 
+    /**
+     * Add key action to shoot bombs using TAB.
+     *
+     * @return the key actions
+     */
 	@Override
     protected Map<KeyCode, Runnable> instantiateKeyActions() {
         Map<KeyCode, Runnable> keyActions = super.instantiateKeyActions();
@@ -95,25 +103,14 @@ public class LevelThree extends LevelParent {
     }
 
     /**
-     * Update the level view and check if the boss is shielded.
+     * Update the level view and check if the boss planes are shielded.
      */
     @Override
     protected void updateLevelView() {
         super.updateLevelView();
-        checkIfBossShielded(bossPlane1);
-        checkIfBossShielded(bossPlane2);
+        bossPlane1.toggleShieldVisibility();
+        bossPlane2.toggleShieldVisibility();
         levelView.updateBossHealth1(bossPlane1.getHealth());
         levelView.updateBossHealth2(bossPlane2.getHealth());
-    }
-
-    /**
-     * Check if the boss is shielded and show the shield if it is.
-     */
-    private void checkIfBossShielded(BossPlane bossPlane) {
-        if (bossPlane.isShielded()) {
-            bossPlane.getShieldImage().showShield();
-        } else {
-            bossPlane.getShieldImage().hideShield();
-        }
     }
 }
