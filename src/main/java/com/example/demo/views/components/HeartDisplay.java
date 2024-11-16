@@ -44,8 +44,14 @@ public class HeartDisplay {
 	public void removeHeart() {
 		if (!container.getChildren().isEmpty()) {
 			container.getChildren().remove(INDEX_OF_FIRST_ITEM);
-			soundLoader.playSound();
 		}
+	}
+
+	/**
+	 * Play the sound of a heart being lost.
+	 */
+	public void playSound() {
+		soundLoader.playSound();
 	}
 
 	/**

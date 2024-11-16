@@ -88,6 +88,7 @@ public abstract class LevelView {
 		int heartsToRemove = heartDisplay.getCurrentNumberOfHearts() - heartsRemaining;
 		for (int i = 0; i < heartsToRemove; i++) {
 			heartDisplay.removeHeart();
+			heartDisplay.playSound();
 		}
 	}
 }
