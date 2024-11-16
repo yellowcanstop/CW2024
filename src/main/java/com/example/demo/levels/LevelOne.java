@@ -93,4 +93,22 @@ public class LevelOne extends LevelParent {
 	private boolean userHasReachedKillTarget() {
 		return getUser().getNumberOfKills() >= KILLS_TO_ADVANCE;
 	}
+
+	/**
+	 * Initialize the level view for the game level.
+	 */
+	@Override
+	protected void initializeLevelView() {
+		super.initializeLevelView();
+		levelView.showKillCounter();
+	}
+
+	/**
+	 * Update the level view by removing hearts from the display based on the player's health.
+	 */
+	@Override
+	protected void updateLevelView() {
+		super.updateLevelView();
+		levelView.updateCounter(getUser().getNumberOfKills());
+	}
 }

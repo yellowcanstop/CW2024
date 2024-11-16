@@ -6,7 +6,6 @@ import com.example.demo.views.components.HeartDisplay;
 import com.example.demo.views.components.WinImage;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
 /**
@@ -27,10 +26,6 @@ public abstract class LevelView {
 	private static final int RETURN_BUTTON_X_POSITION = 400;
 	private static final int RETURN_BUTTON_Y_POSITION = 200;
 
-	private final Label killCounterLabel;
-	private static final int KILL_COUNTER_X_POSITION = 5;
-	private static final int KILL_COUNTER_Y_POSITION = 75;
-
 	/**
 	 * Constructor to create an instance of LevelView.
 	 *
@@ -44,16 +39,6 @@ public abstract class LevelView {
 		this.gameOverImage = new GameOverImage(LOSS_IMAGE_X_POSITION, LOSS_IMAGE_Y_POSITION);
 		this.returnButton = new Button("Return to Menu");
 		this.returnButton.setOnAction(event -> Main.returnToMainScreen());
-		this.killCounterLabel = new Label("Kills: 0");
-		this.killCounterLabel.setLayoutX(KILL_COUNTER_X_POSITION);
-		this.killCounterLabel.setLayoutY(KILL_COUNTER_Y_POSITION);
-	}
-
-	/**
-	 * Show the kill counter.
-	 */
-	public void showKillCounter() {
-		root.getChildren().add(killCounterLabel);
 	}
 
 	/**
@@ -100,17 +85,9 @@ public abstract class LevelView {
 	 */
 	public void removeHearts(int heartsRemaining) {
 		int currentNumberOfHearts = heartDisplay.getContainer().getChildren().size();
-		for (int i = 0; i < currentNumberOfHearts - heartsRemaining; i++) {
+		int heartsToRemove = currentNumberOfHearts - heartsRemaining;
+		for (int i = 0; i < heartsToRemove; i++) {
 			heartDisplay.removeHeart();
 		}
-	}
-
-	/**
-	 * Update counter display to show the kills scored.
-	 *
-	 * @param killCount - the number of kills
-	 */
-	public void updateCounter(int killCount) {
-		killCounterLabel.setText("Kills: " + killCount);
 	}
 }
