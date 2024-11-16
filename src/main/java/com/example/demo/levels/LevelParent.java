@@ -195,7 +195,7 @@ public abstract class LevelParent {
 	}
 
 	/**
-	 * Update the scene by handling collisions and updating sprites, kill count, and level view.
+	 * Update the scene by spawning and cleaning up sprites, handle collisions, update view, check state of level.
 	 */
 	private void updateScene() {
 		spawnEnemyUnits();
