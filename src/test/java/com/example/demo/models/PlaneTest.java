@@ -7,11 +7,21 @@ import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test class for the BossPlane, UserPlane and EnemyPlane classes.
+ */
 public class PlaneTest extends ApplicationTest {
     private BossPlane bossPlane;
     private UserPlane userPlane;
     private EnemyPlane enemyPlane;
 
+    /**
+     * Start method for the JavaFX application, required for ApplicationTest.
+     * <p>
+     * If TestFX is not used, throws RuntimeException: Internal graphics not initialized yet.
+     *
+     * @param stage - the primary stage for the JavaFX application
+     */
     @Override
     public void start(Stage stage) {
         Pane root = new Pane();
@@ -23,11 +33,17 @@ public class PlaneTest extends ApplicationTest {
         stage.show();
     }
 
+    /**
+     * Test if Boss Plane has shield.
+     */
     @Test
     public void testBossPlaneHasShield() {
         assertNotNull(bossPlane.getShield());
     }
 
+    /**
+     * Test if Enemy Plane moves.
+     */
     @Test
     public void testEnemyPlaneMovement() {
         double initialX = enemyPlane.getTranslateX();
@@ -35,6 +51,9 @@ public class PlaneTest extends ApplicationTest {
         assertNotEquals(initialX, enemyPlane.getTranslateX());
     }
 
+    /**
+     * Test if User Plane can fire bullet.
+     */
     @Test
     public void testUserPlaneFireBullet() {
         DestructibleSprite bullet = userPlane.fireBullet();
@@ -42,6 +61,9 @@ public class PlaneTest extends ApplicationTest {
         assertInstanceOf(UserBullet.class, bullet);
     }
 
+    /**
+     * Test if User Plane can fire bomb.
+     */
     @Test
     public void testUserPlaneFireBomb() {
         DestructibleSprite bomb = userPlane.fireBomb();
@@ -49,6 +71,9 @@ public class PlaneTest extends ApplicationTest {
         assertInstanceOf(UserBomb.class, bomb);
     }
 
+    /**
+     * Test if Boss Plane can take damage when shield is deactivated.
+     */
     @Test
     public void testBossPlaneTakingDamage() {
         int initialHealth = bossPlane.getHealth();
@@ -57,6 +82,9 @@ public class PlaneTest extends ApplicationTest {
         assertEquals(initialHealth - 1, bossPlane.getHealth());
     }
 
+    /**
+     * Test if User Plane can take damage.
+     */
     @Test
     public void testUserPlaneTakingDamage() {
         int initialHealth = userPlane.getHealth();
@@ -64,6 +92,9 @@ public class PlaneTest extends ApplicationTest {
         assertEquals(initialHealth - 1, userPlane.getHealth());
     }
 
+    /**
+     * Test if Enemy Plane can take damage.
+     */
     @Test
     public void testEnemyPlaneTakingDamage() {
         int initialHealth = enemyPlane.getHealth();
