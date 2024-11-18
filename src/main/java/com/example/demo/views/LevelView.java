@@ -39,6 +39,7 @@ public abstract class LevelView {
 		this.gameOverDisplay = new GameOverDisplay(LOSS_IMAGE_X_POSITION, LOSS_IMAGE_Y_POSITION);
         Button returnButton = new Button("Return to Menu");
 		returnButton.setOnAction(event -> Main.returnToMainScreen());
+		returnButton.getStyleClass().add("button");
 		this.buttonContainer = new VBox(returnButton);
 		buttonContainer.setLayoutX(RETURN_BUTTON_X_POSITION);
 		buttonContainer.setLayoutY(RETURN_BUTTON_Y_POSITION);

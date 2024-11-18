@@ -22,3 +22,14 @@
     -fx-background-color: black;
     -fx-text-fill: rgba(255, 255, 255, 0.25);
 }
+
+.progress-label {
+    -fx-font-family: "Lucida Console";
+    -fx-font-size: 16px;
+    -fx-text-fill: black;
+}
+
+.progress-bar {
+    -fx-accent: green;
+    -fx-control-inner-background: lightgrey;
+}

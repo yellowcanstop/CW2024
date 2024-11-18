@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
 import java.lang.reflect.Constructor;
+import java.util.Objects;
+
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.scene.Scene;
@@ -59,10 +61,12 @@ public class GameController implements InvalidationListener {
             myLevel = (LevelParent) constructor.newInstance(stage.getHeight(), stage.getWidth());
 			myLevel.getLevelNameProperty().addListener(this);
 			Scene scene = myLevel.initializeScene();
+			scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/example/demo/styles/styles.css")).toExternalForm());
 			stage.setScene(scene);
 			myLevel.startGame();
 		} catch (Exception e) {
 			AlertException.alertException(e);
+			e.printStackTrace();
 		}
 	}
 

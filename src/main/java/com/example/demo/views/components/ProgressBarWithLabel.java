@@ -22,11 +22,13 @@ public class ProgressBarWithLabel {
         this.progressLabel = new Label(labelText);
         progressLabel.setLayoutX(xPosition);
         progressLabel.setLayoutY(yPosition - LABEL_BAR_OFFSET);
+        progressLabel.getStyleClass().add("progress-label");
         this.progressBar = new ProgressBar();
         this.progressBar.setLayoutX(xPosition);
         this.progressBar.setLayoutY(yPosition);
         this.progressBar.setPrefWidth(200);
         this.progressBar.setProgress(1.0);
+        progressBar.getStyleClass().add("progress-bar");
     }
 
     /**
