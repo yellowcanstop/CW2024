@@ -15,17 +15,17 @@ import javafx.scene.layout.VBox;
 public abstract class LevelView {
 	private final Group root;
 	private final WinDisplay winDisplay;
-	private static final int WIN_IMAGE_X_POSITION = 355;
-	private static final int WIN_IMAGE_Y_POSITION = 175;
+	private static final int WIN_IMAGE_X_POSITION = 455;
+	private static final int WIN_IMAGE_Y_POSITION = 150;
 	private final GameOverDisplay gameOverDisplay;
-	private static final int LOSS_IMAGE_X_POSITION = -160;
-	private static final int LOSS_IMAGE_Y_POSITION = -375;
+	private static final int LOSS_IMAGE_X_POSITION = 455;
+	private static final int LOSS_IMAGE_Y_POSITION = 150;
 	private final HeartContainer heartContainer;
-	private static final int HEART_DISPLAY_X_POSITION = 5;
+	private static final int HEART_DISPLAY_X_POSITION = 20;
 	private static final int HEART_DISPLAY_Y_POSITION = 25;
 	private final VBox buttonContainer;
-    private static final int RETURN_BUTTON_X_POSITION = 400;
-	private static final int RETURN_BUTTON_Y_POSITION = 200;
+    private static final int RETURN_BUTTON_X_POSITION = 500;
+	private static final int RETURN_BUTTON_Y_POSITION = 580;
 
 	/**
 	 * Constructor to create an instance of LevelView.

@@ -10,8 +10,6 @@ import java.util.Objects;
  */
 public class WinDisplay extends ImageView implements Display {
 	private final SoundLoader soundLoader;
-	private static final int HEIGHT = 500;
-	private static final int WIDTH = 600;
 	public static final String YOU_WIN = "/com/example/demo/images/youwin.png";
 	public static final String WIN_SOUND = "/com/example/demo/sounds/win.wav";
 
@@ -24,8 +22,6 @@ public class WinDisplay extends ImageView implements Display {
 	public WinDisplay(double xPosition, double yPosition) {
 		this.setImage(new Image(Objects.requireNonNull(getClass().getResource(YOU_WIN)).toExternalForm()));
 		this.setVisible(false);
-		this.setFitHeight(HEIGHT);
-		this.setFitWidth(WIDTH);
 		this.setLayoutX(xPosition);
 		this.setLayoutY(yPosition);
 		this.soundLoader = new SoundLoader(WIN_SOUND);
