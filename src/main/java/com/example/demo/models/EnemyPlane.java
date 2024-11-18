@@ -7,7 +7,7 @@ import com.example.demo.utils.SoundLoader;
  */
 public class EnemyPlane extends Plane {
 	private final SoundLoader soundLoader;
-	public static final String DAMAGE_ENEMY_SOUND = "/com/example/demo/sounds/gameover.wav";
+	public static final String DAMAGE_ENEMY_SOUND = "/com/example/demo/sounds/hurt.wav";
 	public static final String ENEMY_PLANE = "/com/example/demo/images/enemyplane.png";
 	private static final int IMAGE_HEIGHT = 150;
 	private static final int HORIZONTAL_VELOCITY = -6;

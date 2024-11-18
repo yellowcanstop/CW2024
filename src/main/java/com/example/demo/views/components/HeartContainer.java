@@ -11,7 +11,7 @@ public class HeartContainer {
 	private static final int INDEX_OF_FIRST_ITEM = 0;
 	private final HBox container;
 	private final int numberOfHeartsToDisplay;
-	public static final String HEART_LOSS = "/com/example/demo/sounds/ugh.wav";
+	public static final String HEART_LOSS = "/com/example/demo/sounds/ugh.mp3";
 
 	/**
 	 * Constructor to create an instance of HeartContainer.

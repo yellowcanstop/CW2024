@@ -13,7 +13,7 @@ public class WinDisplay extends ImageView implements Display {
 	private static final int HEIGHT = 500;
 	private static final int WIDTH = 600;
 	public static final String YOU_WIN = "/com/example/demo/images/youwin.png";
-	public static final String WIN_SOUND = "/com/example/demo/sounds/boodoodaloop.wav";
+	public static final String WIN_SOUND = "/com/example/demo/sounds/win.wav";
 
 	/**
 	 * Constructor to create an instance of WinDisplay.

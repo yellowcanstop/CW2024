@@ -11,7 +11,7 @@ import java.util.Objects;
 public class GameOverDisplay extends ImageView implements Display {
 	private final SoundLoader soundLoader;
 	public static final String GAMEOVER = "/com/example/demo/images/gameover.png";
-	public static final String GAMEOVER_SOUND = "/com/example/demo/sounds/ugh.wav";
+	public static final String GAMEOVER_SOUND = "/com/example/demo/sounds/gameover.mp3";
 
 	/**
 	 * Constructor to create an instance of GameOverDisplay.

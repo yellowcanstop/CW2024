@@ -9,7 +9,7 @@ import com.example.demo.views.components.Shield;
  */
 public class BossPlane extends Plane {
 	private final SoundLoader soundLoader;
-	public static final String DAMAGE_BOSS_SOUND = "/com/example/demo/sounds/gameover.wav";
+	public static final String DAMAGE_BOSS_SOUND = "/com/example/demo/sounds/hurt.wav";
 	public static final String BOSS_PLANE = "/com/example/demo/images/bossplane.png";
 	private static final int IMAGE_HEIGHT = 300;
 	private static final double INITIAL_X_POSITION = 1000.0;
