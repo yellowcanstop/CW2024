@@ -15,8 +15,8 @@ public class LevelThree extends LevelParent {
     private final BossPlane bossPlane1;
     private final BossPlane bossPlane2;
     private static final int PLAYER_INITIAL_HEALTH = 10;
-    public static final String BACKGROUND3 = "/com/example/demo/images/background1.jpg";
-    public static final String MUSIC3 = "/com/example/demo/sounds/game.mp3";
+    public static final String BACKGROUND3 = "/com/example/demo/images/levelthreeBG.png";
+    public static final String MUSIC3 = "/com/example/demo/sounds/battle.wav";
     private static final long FIRE_COOL_DOWN = 1000;
     public static final String FIRE_BOMB = "/com/example/demo/sounds/firebomb.wav";
 

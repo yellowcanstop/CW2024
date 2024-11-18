@@ -11,7 +11,7 @@ public class LevelThreeView extends LevelView {
     private final ProgressBarWithLabel bossHealthDisplay1;
     private final ProgressBarWithLabel bossHealthDisplay2;
     private static final int BOSS_HEALTH_X_POSITION = 1000;
-    private static final int BOSS_HEALTH_Y_POSITION = 20;
+    private static final int BOSS_HEALTH_Y_POSITION = 50;
 
     /**
      * Constructor to create an instance of the view for Level Two.

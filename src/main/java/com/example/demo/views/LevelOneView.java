@@ -9,8 +9,8 @@ import javafx.scene.control.Label;
 public class LevelOneView extends LevelView {
     private final Group root;
     private final Label killCounterLabel;
-    private static final int KILL_COUNTER_X_POSITION = 5;
-    private static final int KILL_COUNTER_Y_POSITION = 75;
+    private static final int KILL_COUNTER_X_POSITION = 1000;
+    private static final int KILL_COUNTER_Y_POSITION = 50;
 
     /**
      * Constructor to create an instance of the view for Level One.
@@ -24,6 +24,7 @@ public class LevelOneView extends LevelView {
         this.killCounterLabel = new Label("Kills: 0");
         this.killCounterLabel.setLayoutX(KILL_COUNTER_X_POSITION);
         this.killCounterLabel.setLayoutY(KILL_COUNTER_Y_POSITION);
+        killCounterLabel.getStyleClass().add("kill-label");
     }
 
     /**

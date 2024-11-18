@@ -10,7 +10,7 @@ public class LevelTwoView extends LevelView {
 	private final Group root;
 	private final ProgressBarWithLabel bossHealthDisplay;
 	private static final int BOSS_HEALTH_X_POSITION = 1000;
-	private static final int BOSS_HEALTH_Y_POSITION = 20;
+	private static final int BOSS_HEALTH_Y_POSITION = 50;
 
 	/**
 	 * Constructor to create an instance of the view for Level Two.

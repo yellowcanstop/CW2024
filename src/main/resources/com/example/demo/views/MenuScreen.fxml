@@ -2,13 +2,20 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="menuAnchorPane" prefHeight="750.0" prefWidth="1300.0" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/19.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controller.MenuController">
     <children>
-        <Label fx:id="titleLabel" layoutX="8.0" layoutY="159.0" prefHeight="55.0" prefWidth="1300.0" text="SKY BATTLE" />
-        <Button fx:id="gameButton" layoutX="395.0" layoutY="280.0" onAction="#startGame" prefHeight="100" prefWidth="470" text="Start game!" />
-        <Button fx:id="helpButton" layoutX="395.0" layoutY="397.0" onAction="#showHelpScreen" prefHeight="100" prefWidth="470" text="How to Play" />
-        <Button fx:id="exitButton" layoutX="395.0" layoutY="517.0" onAction="#exitGame" prefHeight="100" prefWidth="470" text="Exit" />
+      <ImageView fitHeight="768.0" fitWidth="1370.0" opacity="0.83" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/menuBG.png" />
+         </image>
+      </ImageView>
+        <Label fx:id="titleLabel" layoutY="92.0" prefHeight="55.0" prefWidth="1366.0" styleClass="title-label" text="SKY BATTLE" />
+        <Button fx:id="gameButton" layoutX="437.0" layoutY="252.0" onAction="#startGame" opacity="0.85" prefHeight="55.0" prefWidth="470.0" text="Start game!" />
+        <Button fx:id="helpButton" layoutX="439.0" layoutY="346.0" onAction="#showHelpScreen" opacity="0.85" prefHeight="55.0" prefWidth="470" text="How to Play" />
+        <Button fx:id="exitButton" layoutX="439.0" layoutY="439.0" onAction="#exitGame" opacity="0.85" prefHeight="55.0" prefWidth="470" text="Exit" />
     </children>
 </AnchorPane>

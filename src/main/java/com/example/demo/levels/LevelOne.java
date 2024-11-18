@@ -11,8 +11,8 @@ public class LevelOne extends LevelParent {
 	private final LevelOneView levelView;
 	private static final String NEXT_LEVEL = "com.example.demo.levels.LevelTwo";
 	private static final int PLAYER_INITIAL_HEALTH = 5;
-	public static final String BACKGROUND1 = "/com/example/demo/images/background1.jpg";
-	public static final String MUSIC1 = "/com/example/demo/sounds/game.mp3";
+	public static final String BACKGROUND1 = "/com/example/demo/images/leveloneBG.png";
+	public static final String MUSIC1 = "/com/example/demo/sounds/loading.wav";
 	private static final int TOTAL_ENEMIES = 5;
 	private static final int KILLS_TO_ADVANCE = 10;
 	private static final double ENEMY_SPAWN_PROBABILITY = .20;

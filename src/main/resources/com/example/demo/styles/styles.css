@@ -1,13 +1,13 @@
 .label {
     -fx-font-family: "Lucida Console";
     -fx-font-size: 20px;
-    -fx-text-fill: black;
+    -fx-text-fill: white;
     -fx-alignment: center;
-    -fx-effect: dropshadow(gaussian, grey, 30, 0.5, 0, 0);
+    -fx-effect: dropshadow(gaussian, #36013f, 30, 0.5, 0, 0);
 }
 
 .button {
-    -fx-background-color: black;
+    -fx-background-color: #36013f;
     -fx-text-fill: white;
     -fx-font-size: 20px;
     -fx-font-family: "Lucida Console";
@@ -19,17 +19,73 @@
 }
 
 .button:default {
-    -fx-background-color: black;
+    -fx-background-color: #36013f;
     -fx-text-fill: rgba(255, 255, 255, 0.25);
 }
 
 .progress-label {
     -fx-font-family: "Lucida Console";
     -fx-font-size: 16px;
-    -fx-text-fill: black;
+    -fx-text-fill: white;
 }
 
 .progress-bar {
-    -fx-accent: green;
+    -fx-accent: red;
     -fx-control-inner-background: lightgrey;
+}
+
+.kill-label {
+    -fx-font-family: "Lucida Console";
+    -fx-font-size: 22px;
+    -fx-text-fill: white;
+}
+
+.title-label {
+    -fx-font-family: "Lucida Console";
+    -fx-font-size: 55px;
+    -fx-text-fill: lightgrey;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, black, 30, 0.6, 0, 0);
+}
+
+#levelDesc1 {
+    -fx-font-family: "Lucida Console";
+    -fx-font-size: 14px;
+    -fx-text-fill: lightblue;
+    -fx-effect: dropshadow(gaussian, #36013f, 30, 0.8, 0, 0);
+}
+
+#levelDesc2 {
+    -fx-font-family: "Lucida Console";
+    -fx-font-size: 14px;
+    -fx-text-fill: yellow;
+    -fx-effect: dropshadow(gaussian, #36013f, 30, 0.8, 0, 0);
+}
+
+#levelDesc3 {
+    -fx-font-family: "Lucida Console";
+    -fx-font-size: 14px;
+    -fx-text-fill: pink;
+    -fx-effect: dropshadow(gaussian, #36013f, 30, 0.8, 0, 0);
+}
+
+#keyActions1 {
+    -fx-font-family: "Lucida Console";
+    -fx-font-size: 14px;
+    -fx-text-fill: pink;
+    -fx-effect: dropshadow(gaussian, #36013f, 30, 0.8, 0, 0);
+}
+
+#keyActions2 {
+    -fx-font-family: "Lucida Console";
+    -fx-font-size: 14px;
+    -fx-text-fill: lightblue;
+    -fx-effect: dropshadow(gaussian, #36013f, 30, 0.8, 0, 0);
+}
+
+#keyActions3 {
+    -fx-font-family: "Lucida Console";
+    -fx-font-size: 14px;
+    -fx-text-fill: yellow;
+    -fx-effect: dropshadow(gaussian, #36013f, 30, 0.8, 0, 0);
 }

@@ -11,8 +11,8 @@ public class LevelTwo extends LevelParent {
 	private final BossPlane bossPlane;
 	private static final String NEXT_LEVEL = "com.example.demo.levels.LevelThree";
 	private static final int PLAYER_INITIAL_HEALTH = 5;
-	public static final String BACKGROUND2 = "/com/example/demo/images/background2.jpg";
-	public static final String MUSIC2 = "/com/example/demo/sounds/rain.mp3";
+	public static final String BACKGROUND2 = "/com/example/demo/images/leveltwoBG.png";
+	public static final String MUSIC2 = "/com/example/demo/sounds/loading.wav";
 
 	/**
 	 * Constructor to create an instance of LevelTwo. Initialize the bossPlane.

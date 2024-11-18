@@ -3,12 +3,23 @@ package com.example.demo.controller;
 import com.example.demo.Main;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 /**
  * Controller for the help screen.
  */
 public class HelpController implements ScreenController {
+    public Button returnButton;
+    public Label levelDescHeading;
+    public Label levelDesc1;
+    public Label levelDesc2;
+    public Label levelDesc3;
+    public Label keyActionsHeading;
+    public Label keyActions1;
+    public Label keyActions2;
+    public Label keyActions3;
     private Stage stage;
     private Scene scene;
 

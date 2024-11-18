@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
@@ -18,7 +17,7 @@ public class MenuController implements ScreenController {
     public Button gameButton;
     public Button helpButton;
     public Button exitButton;
-    public static final String MENU_MUSIC = "/com/example/demo/sounds/rain.mp3";
+    public static final String MENU_MUSIC = "/com/example/demo/sounds/princess.wav";
     private MusicLoader musicLoader;
     private ScreenController helpController;
 
