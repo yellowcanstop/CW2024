@@ -4,12 +4,15 @@ import com.example.demo.utils.MusicLoader;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
  * Controller for the menu screen.
  */
 public class MenuController implements ScreenController {
+    public Label titleLabel;
     private Scene scene;
     private Stage stage;
     public Button gameButton;
