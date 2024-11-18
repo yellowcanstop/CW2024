@@ -1,6 +1,7 @@
 package com.example.demo.views;
 
 import com.example.demo.Main;
+import com.example.demo.models.EnemyBullet;
 import com.example.demo.views.components.GameOverDisplay;
 import com.example.demo.views.components.HeartContainer;
 import com.example.demo.views.components.WinDisplay;
@@ -59,6 +60,7 @@ public abstract class LevelView {
 		root.getChildren().add(winDisplay);
 		winDisplay.show();
 		winDisplay.playSound();
+		EnemyBullet.resetPool();
 		showReturnButton();
 	}
 
@@ -69,6 +71,7 @@ public abstract class LevelView {
 		root.getChildren().add(gameOverDisplay);
 		gameOverDisplay.show();
 		gameOverDisplay.playSound();
+		EnemyBullet.resetPool();
 		showReturnButton();
 	}
 

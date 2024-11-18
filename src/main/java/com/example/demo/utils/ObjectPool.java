@@ -48,6 +48,13 @@ public class ObjectPool<T> {
     }
 
     /**
+     * Reset the object pool.
+     */
+    public void resetPool() {
+        pool.clear();
+    }
+
+    /**
      * Interface to create new objects.
      *
      * @param <T> - the type of object to be created.

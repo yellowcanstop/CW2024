@@ -34,6 +34,13 @@ public class EnemyBullet extends Projectile implements Poolable {
 	}
 
 	/**
+	 * Reset the object pool. Called when game is lost or won.
+	 */
+	public static void resetPool() {
+		pool.resetPool();
+	}
+
+	/**
 	 * Release the projectile back to the object pool.
 	 */
 	@Override
