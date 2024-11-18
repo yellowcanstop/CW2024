@@ -50,42 +50,42 @@
 
 #levelDesc1 {
     -fx-font-family: "Lucida Console";
-    -fx-font-size: 14px;
+    -fx-font-size: 16px;
     -fx-text-fill: lightblue;
     -fx-effect: dropshadow(gaussian, #36013f, 30, 0.8, 0, 0);
 }
 
 #levelDesc2 {
     -fx-font-family: "Lucida Console";
-    -fx-font-size: 14px;
+    -fx-font-size: 16px;
     -fx-text-fill: yellow;
     -fx-effect: dropshadow(gaussian, #36013f, 30, 0.8, 0, 0);
 }
 
 #levelDesc3 {
     -fx-font-family: "Lucida Console";
-    -fx-font-size: 14px;
+    -fx-font-size: 16px;
     -fx-text-fill: pink;
     -fx-effect: dropshadow(gaussian, #36013f, 30, 0.8, 0, 0);
 }
 
 #keyActions1 {
     -fx-font-family: "Lucida Console";
-    -fx-font-size: 14px;
+    -fx-font-size: 16px;
     -fx-text-fill: pink;
     -fx-effect: dropshadow(gaussian, #36013f, 30, 0.8, 0, 0);
 }
 
 #keyActions2 {
     -fx-font-family: "Lucida Console";
-    -fx-font-size: 14px;
+    -fx-font-size: 16px;
     -fx-text-fill: lightblue;
     -fx-effect: dropshadow(gaussian, #36013f, 30, 0.8, 0, 0);
 }
 
 #keyActions3 {
     -fx-font-family: "Lucida Console";
-    -fx-font-size: 14px;
+    -fx-font-size: 16px;
     -fx-text-fill: yellow;
     -fx-effect: dropshadow(gaussian, #36013f, 30, 0.8, 0, 0);
 }

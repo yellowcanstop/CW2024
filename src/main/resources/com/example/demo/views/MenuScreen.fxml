@@ -13,9 +13,9 @@
             <Image url="@../images/menuBG.png" />
          </image>
       </ImageView>
-        <Label fx:id="titleLabel" layoutY="92.0" prefHeight="55.0" prefWidth="1366.0" styleClass="title-label" text="SKY BATTLE" />
-        <Button fx:id="gameButton" layoutX="437.0" layoutY="252.0" onAction="#startGame" opacity="0.85" prefHeight="55.0" prefWidth="470.0" text="Start game!" />
-        <Button fx:id="helpButton" layoutX="439.0" layoutY="346.0" onAction="#showHelpScreen" opacity="0.85" prefHeight="55.0" prefWidth="470" text="How to Play" />
-        <Button fx:id="exitButton" layoutX="439.0" layoutY="439.0" onAction="#exitGame" opacity="0.85" prefHeight="55.0" prefWidth="470" text="Exit" />
+        <Label fx:id="titleLabel" layoutX="189.0" layoutY="128.0" prefHeight="59.0" prefWidth="851.0" styleClass="title-label" text="SKY BATTLE" />
+        <Button fx:id="gameButton" layoutX="380.0" layoutY="250.0" onAction="#startGame" opacity="0.85" prefHeight="55.0" prefWidth="470.0" text="Start game!" />
+        <Button fx:id="helpButton" layoutX="380.0" layoutY="350.0" onAction="#showHelpScreen" opacity="0.85" prefHeight="55.0" prefWidth="470" text="How to Play" />
+        <Button fx:id="exitButton" layoutX="380.0" layoutY="450.0" onAction="#exitGame" opacity="0.85" prefHeight="55.0" prefWidth="470" text="Exit" />
     </children>
 </AnchorPane>

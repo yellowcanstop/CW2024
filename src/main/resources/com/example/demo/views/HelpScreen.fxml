@@ -13,14 +13,14 @@
                 <Image url="@../images/menuBG.png" />
             </image>
         </ImageView>
-        <Label fx:id="levelDescHeading" layoutX="380.0" layoutY="102.0" text="ARE YOU READY?" />
-        <Label fx:id="levelDesc1" layoutX="380.0" layoutY="143.0" text="Level 1: Destroy enough enemy planes while staying alive!" />
+        <Label fx:id="levelDescHeading" layoutX="380.0" layoutY="100.0" text="ARE YOU READY?" />
+        <Label fx:id="levelDesc1" layoutX="380.0" layoutY="140.0" text="Level 1: Destroy enough enemy planes while staying alive!" />
         <Label fx:id="levelDesc2" layoutX="380.0" layoutY="180.0" text="Level 2: Destroy the boss plane when it unshields!" />
-        <Label fx:id="levelDesc3" layoutX="380.0" layoutY="216.0" text="Level 3: Destroy the boss planes but now you can bomb their shields!" />
-        <Label fx:id="keyActionsHeading" layoutX="379.0" layoutY="292.0" text="HOW TO PLAY?" />
-        <Label fx:id="keyActions1" layoutX="381.0" layoutY="331.0" text="UP/DOWN/LEFT/RIGHT to move." />
-        <Label fx:id="keyActions2" layoutX="382.0" layoutY="368.0" text="SPACE to shoot bullets." />
-        <Label fx:id="keyActions3" layoutX="384.0" layoutY="408.0" text="TAB to bomb boss shield (Level 3 only)." />
-        <Button fx:id="returnButton" layoutX="381.0" layoutY="498.0" onAction="#returnToMenu" text="Return to Menu" />
+        <Label fx:id="levelDesc3" layoutX="380.0" layoutY="220.0" text="Level 3: Destroy the boss planes but now you can bomb their shields!" />
+        <Label fx:id="keyActionsHeading" layoutX="379.0" layoutY="300.0" text="HOW TO PLAY?" />
+        <Label fx:id="keyActions1" layoutX="380.0" layoutY="340.0" text="UP/DOWN/LEFT/RIGHT to move." />
+        <Label fx:id="keyActions2" layoutX="380.0" layoutY="380.0" text="SPACE to shoot bullets." />
+        <Label fx:id="keyActions3" layoutX="380.0" layoutY="420.0" text="TAB to bomb boss shield (Level 3 only)." />
+        <Button fx:id="returnButton" layoutX="380.0" layoutY="500.0" onAction="#returnToMenu" text="Return to Menu" />
     </children>
 </AnchorPane>
