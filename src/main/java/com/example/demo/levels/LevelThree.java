@@ -60,7 +60,7 @@ public class LevelThree extends LevelParent {
         if (userIsDestroyed()) {
             loseGame();
         }
-        else if (bossPlane1.isDestroyed() && bossPlane2.isDestroyed()) {
+        else if (bossesAreDestroyed()) {
             winGame();
         }
     }
@@ -108,5 +108,14 @@ public class LevelThree extends LevelParent {
         bossPlane2.toggleShieldVisibility();
         levelView.updateBossHealth(1, bossPlane1.getHealth(), bossPlane1.getMaxHealth());
         levelView.updateBossHealth(2, bossPlane2.getHealth(), bossPlane2.getMaxHealth());
+    }
+
+    /**
+     * Check if the boss planes are destroyed.
+     *
+     * @return true if the boss planes are destroyed, else false
+     */
+    boolean bossesAreDestroyed() {
+        return bossPlane1.isDestroyed() && bossPlane2.isDestroyed();
     }
 }

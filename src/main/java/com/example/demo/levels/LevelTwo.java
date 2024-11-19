@@ -9,7 +9,7 @@ import com.example.demo.views.LevelTwoView;
 public class LevelTwo extends LevelParent {
 	private final LevelTwoView levelView;
 	private final BossPlane bossPlane;
-	private static final String NEXT_LEVEL = "com.example.demo.levels.LevelThree";
+	static final String NEXT_LEVEL = "com.example.demo.levels.LevelThree";
 	private static final int PLAYER_INITIAL_HEALTH = 5;
 	public static final String BACKGROUND2 = "/com/example/demo/images/leveltwoBG.png";
 	public static final String MUSIC2 = "/com/example/demo/sounds/loading.wav";
@@ -52,7 +52,7 @@ public class LevelTwo extends LevelParent {
 		if (userIsDestroyed()) {
 			loseGame();
 		}
-		else if (bossPlane.isDestroyed()) {
+		else if (bossIsDestroyed()) {
 			goToNextLevel(NEXT_LEVEL);
 		}
 	}
@@ -85,5 +85,14 @@ public class LevelTwo extends LevelParent {
 		super.updateLevelView();
 		bossPlane.toggleShieldVisibility();
 		levelView.updateBossHealth(bossPlane.getHealth(), bossPlane.getMaxHealth());
+	}
+
+	/**
+	 * Check if the boss plane is destroyed.
+	 *
+	 * @return true if the boss plane is destroyed, else false
+	 */
+	boolean bossIsDestroyed() {
+		return bossPlane.isDestroyed();
 	}
 }
