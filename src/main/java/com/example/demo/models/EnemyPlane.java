@@ -9,12 +9,12 @@ public class EnemyPlane extends Plane {
 	private final SoundLoader soundLoader;
 	public static final String DAMAGE_ENEMY_SOUND = "/com/example/demo/sounds/hurt.wav";
 	public static final String ENEMY_PLANE = "/com/example/demo/images/enemyplane.png";
-	private static final int IMAGE_HEIGHT = 150;
-	private static final int HORIZONTAL_VELOCITY = -6;
+	private static final int IMAGE_HEIGHT = 100;
+	private static final int HORIZONTAL_VELOCITY = -8;
 	private static final double PROJECTILE_X_POSITION_OFFSET = -100.0;
 	private static final double PROJECTILE_Y_POSITION_OFFSET = 50.0;
 	private static final int INITIAL_HEALTH = 1;
-	private static final double FIRE_RATE = .01;
+	private static final double FIRE_RATE = .02;
 
 	/**
 	 * Constructor to create an instance of an EnemyPlane.

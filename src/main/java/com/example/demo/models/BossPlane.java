@@ -19,7 +19,7 @@ public class BossPlane extends Plane {
 	private static final double PROJECTILE_Y_POSITION_OFFSET = 75.0;
 	private static final double BOSS_FIRE_RATE = .04;
 	private final List<Integer> movePattern;
-	private static final int VERTICAL_VELOCITY = 8;
+	private static final int VERTICAL_VELOCITY = 10;
 	private static final int MOVE_FREQUENCY_PER_CYCLE = 7;
 	private static final int ZERO = 0;
 	private static final int MAX_FRAMES_WITH_SAME_MOVE = 10;

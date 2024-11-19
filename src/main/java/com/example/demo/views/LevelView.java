@@ -15,7 +15,7 @@ import javafx.scene.layout.VBox;
 public abstract class LevelView {
 	private final Group root;
 	private final WinDisplay winDisplay;
-	private static final int WIN_IMAGE_X_POSITION = 455;
+	private static final int WIN_IMAGE_X_POSITION = 400;
 	private static final int WIN_IMAGE_Y_POSITION = 150;
 	private final GameOverDisplay gameOverDisplay;
 	private static final int LOSS_IMAGE_X_POSITION = 455;
