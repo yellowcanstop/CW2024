@@ -14,6 +14,10 @@ public class PlaneTest extends ApplicationTest {
     private BossPlane bossPlane;
     private UserPlane userPlane;
     private EnemyPlane enemyPlane;
+    public static final int SCREEN_WIDTH = 1300;
+    public static final int SCREEN_HEIGHT = 750;
+    public static final int USER_HEALTH = 5;
+    public static final int ENEMY_Y_POSITION = 600;
 
     /**
      * Start method for the JavaFX application, required for ApplicationTest.
@@ -26,10 +30,10 @@ public class PlaneTest extends ApplicationTest {
     public void start(Stage stage) {
         Pane root = new Pane();
         bossPlane = new BossPlane();
-        userPlane = new UserPlane(5);
-        enemyPlane = new EnemyPlane(1300, 600);
+        userPlane = new UserPlane(USER_HEALTH);
+        enemyPlane = new EnemyPlane(SCREEN_WIDTH, ENEMY_Y_POSITION);
         root.getChildren().addAll(bossPlane, userPlane, enemyPlane);
-        stage.setScene(new Scene(root, 1300, 750));
+        stage.setScene(new Scene(root, SCREEN_WIDTH, SCREEN_HEIGHT));
         stage.show();
     }
 
