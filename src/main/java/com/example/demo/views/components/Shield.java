@@ -8,7 +8,7 @@ import java.util.Objects;
  * View component displaying an image of a shield which can be shown or hidden.
  */
 public class Shield extends ImageView {
-	private static final int SHIELD_SIZE = 200;
+	private static final int SHIELD_SIZE = 80;
 	public static final String SHIELD = "/com/example/demo/images/shield.png";
 
 	/**
