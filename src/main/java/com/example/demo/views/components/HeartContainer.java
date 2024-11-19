@@ -2,6 +2,9 @@ package com.example.demo.views.components;
 
 import com.example.demo.utils.SoundLoader;
 import javafx.scene.layout.HBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import java.util.Objects;
 
 /**
  * View component displaying a container of hearts representing the remaining lives of the player.
@@ -12,6 +15,8 @@ public class HeartContainer {
 	private final HBox container;
 	private final int numberOfHeartsToDisplay;
 	public static final String HEART_LOSS = "/com/example/demo/sounds/ugh.mp3";
+	private static final int HEART_HEIGHT = 50;
+	public static final String HEART = "/com/example/demo/images/heart.png";
 
 	/**
 	 * Constructor to create an instance of HeartContainer.
@@ -34,7 +39,10 @@ public class HeartContainer {
 	 */
 	private void initializeHearts() {
 		for (int i = 0; i < numberOfHeartsToDisplay; i++) {
-			Heart heart = new Heart();
+			ImageView heart = new ImageView();
+			heart.setImage(new Image(Objects.requireNonNull(getClass().getResource(HEART)).toExternalForm()));
+			heart.setFitHeight(HEART_HEIGHT);
+			heart.setPreserveRatio(true);
 			container.getChildren().add(heart);
 		}
 	}
