@@ -6,7 +6,6 @@ import com.example.demo.utils.CollisionHandler;
 import com.example.demo.utils.FireAction;
 import com.example.demo.utils.MusicLoader;
 import com.example.demo.utils.SoundLoader;
-import com.example.demo.views.components.Background;
 import com.example.demo.models.DestructibleSprite;
 import com.example.demo.models.UserPlane;
 import com.example.demo.controller.InputController;
@@ -18,6 +17,8 @@ import javafx.scene.input.*;
 import javafx.util.Duration;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  * Abstract class which defines the behaviour of a level in the game.
@@ -34,7 +35,7 @@ public abstract class LevelParent {
 	private final Scene scene;
 	private final double screenHeight;
 	private final double screenWidth;
-	private final Background background;
+	private final ImageView background;
 	private final MusicLoader musicLoader;
 	private final UserPlane user;
 	private final CollisionHandler collisionHandler;
@@ -62,7 +63,8 @@ public abstract class LevelParent {
 		this.root = new Group();
 		this.scene = new Scene(root, screenWidth, screenHeight);
 		this.timeline = new Timeline();
-		this.background = new Background(backgroundImageName);
+		this.background = new ImageView();
+		background.setImage(new Image(Objects.requireNonNull(getClass().getResource(backgroundImageName)).toExternalForm()));
 		this.screenHeight = screenHeight;
 		this.screenWidth = screenWidth;
 		this.musicLoader = new MusicLoader(musicName);
