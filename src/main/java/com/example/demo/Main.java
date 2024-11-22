@@ -32,7 +32,6 @@ public class Main extends Application {
             screenController = ScreenFactory.createMenuScreen(stage);
             screenController.showScreen();
         } catch (Exception e) {
-            e.printStackTrace();
             AlertException.alertException(e);
         }
     }

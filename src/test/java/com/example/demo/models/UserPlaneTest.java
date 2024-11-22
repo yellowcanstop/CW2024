@@ -8,7 +8,7 @@ import org.testfx.framework.junit5.ApplicationTest;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Test class for the user plane..
+ * Test class for the user plane.
  */
 public class UserPlaneTest extends ApplicationTest {
     private UserPlane userPlane;

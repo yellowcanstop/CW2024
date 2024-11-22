@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import java.lang.reflect.Constructor;
 import java.util.Objects;
-
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.scene.Scene;
@@ -66,7 +65,6 @@ public class GameController implements InvalidationListener {
 			myLevel.startGame();
 		} catch (Exception e) {
 			AlertException.alertException(e);
-			e.printStackTrace();
 		}
 	}
 

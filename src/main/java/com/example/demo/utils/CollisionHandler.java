@@ -5,6 +5,9 @@ import com.example.demo.models.DestructibleSprite;
 import com.example.demo.models.UserBomb;
 import java.util.List;
 
+/**
+ * Utility class to handle collisions in the game.
+ */
 public class CollisionHandler {
     public static final String DEACTIVATE_SHIELD = "/com/example/demo/sounds/minty_attack.wav";
     private final SoundLoader soundLoader = new SoundLoader(DEACTIVATE_SHIELD);
