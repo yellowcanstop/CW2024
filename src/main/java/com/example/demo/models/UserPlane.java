@@ -1,9 +1,13 @@
 package com.example.demo.models;
 
+import com.example.demo.utils.SoundLoader;
+
 /**
  * User-controlled plane sprite for the game.
  */
 public class UserPlane extends Plane implements InputControlledObject {
+	private final SoundLoader soundLoader;
+	public static final String DAMAGE_USER_SOUND = "/com/example/demo/sounds/ouch.wav";
 	private static final double X_UPPER_BOUND = 10;
 	private static final double X_LOWER_BOUND = 600;
 	private static final double Y_UPPER_BOUND = 90;
@@ -27,6 +31,7 @@ public class UserPlane extends Plane implements InputControlledObject {
 	 */
 	public UserPlane(int initialHealth) {
 		super(USER_PLANE, IMAGE_HEIGHT, INITIAL_X_POSITION, INITIAL_Y_POSITION, initialHealth);
+		this.soundLoader = new SoundLoader(DAMAGE_USER_SOUND);
 		verticalVelocityMultiplier = 0;
 		horizontalVelocityMultiplier = 0;
 	}
@@ -58,6 +63,15 @@ public class UserPlane extends Plane implements InputControlledObject {
 	@Override
 	public void updateActor() {
 		updatePosition();
+	}
+
+	/**
+	 * Handle damage and play sound effect.
+	 */
+	@Override
+	public void takeDamage() {
+		super.takeDamage();
+		soundLoader.playSound();
 	}
 
 	/**

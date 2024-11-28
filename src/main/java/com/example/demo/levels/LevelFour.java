@@ -18,6 +18,8 @@ public class LevelFour extends LevelParent {
     private final BossPlane bossPlane1;
     private final BossPlane bossPlane2;
     private static final int PLAYER_INITIAL_HEALTH = 10;
+    private static final int BABY_INITIAL_HEALTH = 5;
+    private static final int BABY_INITIAL_Y_POSITION = 500;
     public static final String BACKGROUND3 = "/com/example/demo/images/levelthreeBG.png";
     public static final String MUSIC3 = "/com/example/demo/sounds/battle.wav";
     private static final long FIRE_COOL_DOWN = 1000;
@@ -31,10 +33,10 @@ public class LevelFour extends LevelParent {
      */
     public LevelFour(double screenHeight, double screenWidth) {
         super(BACKGROUND3, MUSIC3, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
-        babyPlane = new BabyPlane(500);
+        babyPlane = new BabyPlane(BABY_INITIAL_Y_POSITION, BABY_INITIAL_HEALTH);
         bossPlane1 = new BossPlane();
         bossPlane2 = new BossPlane();
-        this.levelView = new LevelFourView(getRoot(), PLAYER_INITIAL_HEALTH);
+        this.levelView = new LevelFourView(getRoot(), PLAYER_INITIAL_HEALTH, BABY_INITIAL_HEALTH);
     }
 
     /**
@@ -62,7 +64,11 @@ public class LevelFour extends LevelParent {
      */
     @Override
     protected void checkIfGameOver() {
-        if (userIsDestroyed() || babyIsDestroyed()) {
+        if (userIsDestroyed()) {
+            loseGame();
+        }
+        else if (babyIsDestroyed()) {
+            babyPlane.hide();
             loseGame();
         }
         else if (bossesAreDestroyed()) {
@@ -114,6 +120,7 @@ public class LevelFour extends LevelParent {
         levelView.updateBossHealth(1, bossPlane1.getHealth(), bossPlane1.getMaxHealth());
         levelView.updateBossHealth(2, bossPlane2.getHealth(), bossPlane2.getMaxHealth());
         spawnProjectile(babyPlane.fireBullet());
+        levelView.removeHearts(babyPlane.getHealth());
     }
 
     /**

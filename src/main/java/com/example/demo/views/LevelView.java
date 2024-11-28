@@ -21,6 +21,7 @@ public abstract class LevelView {
 	private static final int LOSS_IMAGE_X_POSITION = 455;
 	private static final int LOSS_IMAGE_Y_POSITION = 150;
 	private final HeartContainer heartContainer;
+	private static final int DEFAULT_HEART_HEIGHT = 50;
 	private static final int HEART_DISPLAY_X_POSITION = 20;
 	private static final int HEART_DISPLAY_Y_POSITION = 25;
 	private final VBox buttonContainer;
@@ -35,7 +36,7 @@ public abstract class LevelView {
 	 */
 	public LevelView(Group root, int heartsToDisplay) {
 		this.root = root;
-		this.heartContainer = new HeartContainer(HEART_DISPLAY_X_POSITION, HEART_DISPLAY_Y_POSITION, heartsToDisplay);
+		this.heartContainer = new HeartContainer(DEFAULT_HEART_HEIGHT, HEART_DISPLAY_X_POSITION, HEART_DISPLAY_Y_POSITION, heartsToDisplay);
 		this.winDisplay = new WinDisplay(WIN_IMAGE_X_POSITION, WIN_IMAGE_Y_POSITION);
 		this.gameOverDisplay = new GameOverDisplay(LOSS_IMAGE_X_POSITION, LOSS_IMAGE_Y_POSITION);
         Button returnButton = new Button("Return to Menu");
@@ -91,7 +92,6 @@ public abstract class LevelView {
 		int heartsToRemove = heartContainer.getCurrentNumberOfHearts() - heartsRemaining;
 		for (int i = 0; i < heartsToRemove; i++) {
 			heartContainer.removeHeart();
-			heartContainer.playSound();
 		}
 	}
 }

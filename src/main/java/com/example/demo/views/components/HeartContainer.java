@@ -1,6 +1,5 @@
 package com.example.demo.views.components;
 
-import com.example.demo.utils.SoundLoader;
 import javafx.scene.layout.HBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -10,12 +9,10 @@ import java.util.Objects;
  * View component displaying a container of hearts representing the remaining lives of the player.
  */
 public class HeartContainer {
-	private final SoundLoader soundLoader;
 	private static final int INDEX_OF_FIRST_ITEM = 0;
 	private final HBox container;
+	private final double heartHeight;
 	private final int numberOfHeartsToDisplay;
-	public static final String HEART_LOSS = "/com/example/demo/sounds/ugh.mp3";
-	private static final int HEART_HEIGHT = 50;
 	public static final String HEART = "/com/example/demo/images/heart.png";
 
 	/**
@@ -25,12 +22,12 @@ public class HeartContainer {
 	 * @param yPosition - y position of the display
 	 * @param heartsToDisplay - initial number of hearts to display
 	 */
-	public HeartContainer(double xPosition, double yPosition, int heartsToDisplay) {
+	public HeartContainer(double heartHeight, double xPosition, double yPosition, int heartsToDisplay) {
+		this.heartHeight = heartHeight;
 		this.container = new HBox();
 		this.container.setLayoutX(xPosition);
 		this.container.setLayoutY(yPosition);
 		this.numberOfHeartsToDisplay = heartsToDisplay;
-		this.soundLoader = new SoundLoader(HEART_LOSS);
 		initializeHearts();
 	}
 
@@ -41,7 +38,7 @@ public class HeartContainer {
 		for (int i = 0; i < numberOfHeartsToDisplay; i++) {
 			ImageView heart = new ImageView();
 			heart.setImage(new Image(Objects.requireNonNull(getClass().getResource(HEART)).toExternalForm()));
-			heart.setFitHeight(HEART_HEIGHT);
+			heart.setFitHeight(heartHeight);
 			heart.setPreserveRatio(true);
 			container.getChildren().add(heart);
 		}
@@ -54,13 +51,6 @@ public class HeartContainer {
 		if (!container.getChildren().isEmpty()) {
 			container.getChildren().remove(INDEX_OF_FIRST_ITEM);
 		}
-	}
-
-	/**
-	 * Play the sound of a heart being lost.
-	 */
-	public void playSound() {
-		soundLoader.playSound();
 	}
 
 	/**

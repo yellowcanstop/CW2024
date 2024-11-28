@@ -11,12 +11,11 @@ import java.util.List;
  */
 public class BabyPlane extends Plane {
     private final SoundLoader soundLoader;
-    public static final String DAMAGE_BABY_SOUND = "/com/example/demo/sounds/baby_hit.wav";
+    public static final String DAMAGE_BABY_SOUND = "/com/example/demo/sounds/ugh.mp3";
     public static final String BABY_PLANE = "/com/example/demo/images/userplane.png";
     private static final int IMAGE_HEIGHT = 70;
-    private static final int Y_POSITION_UPPER_BOUND = 90;
+    private static final int Y_POSITION_UPPER_BOUND = 120;
     private static final int Y_POSITION_LOWER_BOUND = 560;
-    private static final int INITIAL_HEALTH = 10;
     private static final int INITIAL_X_POSITION = 40;
     private static final int PROJECTILE_X_POSITION_OFFSET = 70;
     private static final int PROJECTILE_Y_POSITION_OFFSET = 20;
@@ -34,8 +33,8 @@ public class BabyPlane extends Plane {
      *
      * @param initialYPos - the initial y coordinate position of the plane
      */
-    public BabyPlane(double initialYPos) {
-        super(BABY_PLANE, IMAGE_HEIGHT, INITIAL_X_POSITION, initialYPos, INITIAL_HEALTH);
+    public BabyPlane(double initialYPos, int health) {
+        super(BABY_PLANE, IMAGE_HEIGHT, INITIAL_X_POSITION, initialYPos, health);
         this.soundLoader = new SoundLoader(DAMAGE_BABY_SOUND);
         movePattern = new ArrayList<>();
         consecutiveMovesInSameDirection = 0;
@@ -84,6 +83,13 @@ public class BabyPlane extends Plane {
             return new UserBullet(INITIAL_X_POSITION + PROJECTILE_X_POSITION_OFFSET, getProjectileInitialPosition());
         }
         return null;
+    }
+
+    /**
+     * Hide the plane.
+     */
+    public void hide() {
+        this.setVisible(false);
     }
 
     /**
