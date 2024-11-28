@@ -30,7 +30,7 @@ mvnw.cmd javafx:run			// Windows
 ```
 6. **Run tests inside the IDE (IntelliJ):**
 - In Project Structure, right-click on *"CW2024\src\test\java\com\example\demo"*
-- Select the option *"Run Tests in 'demo'"* to run all 16 tests.
+- Select the option *"Run Tests in 'demo'"* to run all 21 tests.
 
 ### Implemented and Working Properly
 
