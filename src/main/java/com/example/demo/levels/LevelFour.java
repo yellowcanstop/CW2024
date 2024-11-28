@@ -2,6 +2,7 @@ package com.example.demo.levels;
 
 import com.example.demo.models.BabyPlane;
 import com.example.demo.models.BossPlane;
+import com.example.demo.models.DestructibleSprite;
 import com.example.demo.utils.FireAction;
 import com.example.demo.utils.SoundLoader;
 import com.example.demo.views.LevelFourView;
@@ -30,7 +31,7 @@ public class LevelFour extends LevelParent {
      */
     public LevelFour(double screenHeight, double screenWidth) {
         super(BACKGROUND3, MUSIC3, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
-        babyPlane = new BabyPlane( 40, 500);
+        babyPlane = new BabyPlane(500);
         bossPlane1 = new BossPlane();
         bossPlane2 = new BossPlane();
         this.levelView = new LevelFourView(getRoot(), PLAYER_INITIAL_HEALTH);
@@ -112,6 +113,19 @@ public class LevelFour extends LevelParent {
         bossPlane2.toggleShieldVisibility();
         levelView.updateBossHealth(1, bossPlane1.getHealth(), bossPlane1.getMaxHealth());
         levelView.updateBossHealth(2, bossPlane2.getHealth(), bossPlane2.getMaxHealth());
+        spawnProjectile(babyPlane.fireBullet());
+    }
+
+    /**
+     * Display projectile fired by an enemy unit.
+     *
+     * @param projectile - the projectile to be displayed
+     */
+    public void spawnProjectile(DestructibleSprite projectile) {
+        if (projectile != null) {
+            getRoot().getChildren().add(projectile);
+            getUserProjectiles().add(projectile);
+        }
     }
 
     /**
