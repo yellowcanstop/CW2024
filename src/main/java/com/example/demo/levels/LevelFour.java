@@ -3,18 +3,17 @@ package com.example.demo.levels;
 import com.example.demo.models.BossPlane;
 import com.example.demo.utils.FireAction;
 import com.example.demo.utils.SoundLoader;
-import com.example.demo.views.LevelThreeView;
+import com.example.demo.views.LevelFourView;
 import javafx.scene.input.KeyCode;
 import java.util.Map;
 
 /**
- * Level three of the game.
+ * Level four of the game.
  */
-public class LevelThree extends LevelParent {
-    private final LevelThreeView levelView;
+public class LevelFour extends LevelParent {
+    private final LevelFourView levelView;
     private final BossPlane bossPlane1;
     private final BossPlane bossPlane2;
-    static final String NEXT_LEVEL = "com.example.demo.levels.LevelFour";
     private static final int PLAYER_INITIAL_HEALTH = 10;
     public static final String BACKGROUND3 = "/com/example/demo/images/levelthreeBG.png";
     public static final String MUSIC3 = "/com/example/demo/sounds/battle.wav";
@@ -27,11 +26,11 @@ public class LevelThree extends LevelParent {
      * @param screenHeight - the height of the screen
      * @param screenWidth - the width of the screen
      */
-    public LevelThree(double screenHeight, double screenWidth) {
+    public LevelFour(double screenHeight, double screenWidth) {
         super(BACKGROUND3, MUSIC3, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
         bossPlane1 = new BossPlane();
         bossPlane2 = new BossPlane();
-        this.levelView = new LevelThreeView(getRoot(), PLAYER_INITIAL_HEALTH);
+        this.levelView = new LevelFourView(getRoot(), PLAYER_INITIAL_HEALTH);
     }
 
     /**
@@ -62,7 +61,7 @@ public class LevelThree extends LevelParent {
             loseGame();
         }
         else if (bossesAreDestroyed()) {
-            goToNextLevel(NEXT_LEVEL);
+            winGame();
         }
     }
 
@@ -82,7 +81,7 @@ public class LevelThree extends LevelParent {
      *
      * @return the key actions
      */
-	@Override
+    @Override
     protected Map<KeyCode, Runnable> instantiateKeyActions() {
         Map<KeyCode, Runnable> keyActions = super.instantiateKeyActions();
         keyActions.put(KeyCode.TAB, new FireAction(getRoot(), getUserProjectiles(), new SoundLoader(FIRE_BOMB), FIRE_COOL_DOWN, getUser()::fireBomb));
@@ -95,7 +94,7 @@ public class LevelThree extends LevelParent {
      * @return the level view
      */
     @Override
-    protected LevelThreeView getLevelView() {
+    protected LevelFourView getLevelView() {
         return levelView;
     }
 
