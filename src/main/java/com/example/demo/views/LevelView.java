@@ -18,7 +18,7 @@ public abstract class LevelView {
 	private static final int WIN_IMAGE_X_POSITION = 400;
 	private static final int WIN_IMAGE_Y_POSITION = 150;
 	private final GameOverDisplay gameOverDisplay;
-	private static final int LOSS_IMAGE_X_POSITION = 455;
+	private static final int LOSS_IMAGE_X_POSITION = 435;
 	private static final int LOSS_IMAGE_Y_POSITION = 150;
 	private final HeartContainer heartContainer;
 	private static final int DEFAULT_HEART_HEIGHT = 50;

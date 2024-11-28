@@ -46,7 +46,7 @@ public class LevelThreeTest extends ApplicationTest {
         doNothing().when(levelThree).loseGame();
         levelThree.checkIfGameOver();
         verify(levelThree, times(1)).loseGame();
-        verify(levelThree, never()).winGame();
+        verify(levelThree, never()).goToNextLevel(anyString());
     }
 
     /**
@@ -57,7 +57,7 @@ public class LevelThreeTest extends ApplicationTest {
         doReturn(false).when(levelThree).userIsDestroyed();
         doReturn(true).when(levelThree).bossesAreDestroyed();
         levelThree.checkIfGameOver();
-        verify(levelThree, times(1)).winGame();
+        verify(levelThree, times(1)).goToNextLevel(anyString());
         verify(levelThree, never()).loseGame();
     }
 
@@ -70,6 +70,6 @@ public class LevelThreeTest extends ApplicationTest {
         doReturn(false).when(levelThree).bossesAreDestroyed();
         levelThree.checkIfGameOver();
         verify(levelThree, never()).loseGame();
-        verify(levelThree, never()).winGame();
+        verify(levelThree, never()).goToNextLevel(anyString());
     }
 }
