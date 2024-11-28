@@ -44,7 +44,7 @@ public abstract class LevelParent {
 	private final List<DestructibleSprite> userProjectiles;
 	private final List<DestructibleSprite> enemyProjectiles;
 	private final double enemyMaximumYPosition;
-	private static final double SCREEN_HEIGHT_ADJUSTMENT = 150;
+	private static final double SCREEN_HEIGHT_ADJUSTMENT = 250;
 	private static final long FIRE_COOL_DOWN = 500;
 	public static final String FIRE_PROJECTILE = "/com/example/demo/sounds/laser_shot2.wav";
 	private int currentNumberOfEnemies;
