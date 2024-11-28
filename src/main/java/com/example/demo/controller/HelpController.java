@@ -20,6 +20,7 @@ public class HelpController implements ScreenController {
     public Label keyActions1;
     public Label keyActions2;
     public Label keyActions3;
+    public Label levelDesc4;
     private Stage stage;
     private Scene scene;
 

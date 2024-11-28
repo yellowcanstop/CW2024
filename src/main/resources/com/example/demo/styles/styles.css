@@ -79,6 +79,13 @@
     -fx-effect: dropshadow(gaussian, #36013f, 30, 0.8, 0, 0);
 }
 
+#levelDesc4 {
+    -fx-font-family: "Lucida Console";
+    -fx-font-size: 16px;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, #36013f, 30, 0.8, 0, 0);
+}
+
 #keyActions1 {
     -fx-font-family: "Lucida Console";
     -fx-font-size: 16px;
