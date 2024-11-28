@@ -120,7 +120,7 @@ public class LevelFour extends LevelParent {
         levelView.updateBossHealth(1, bossPlane1.getHealth(), bossPlane1.getMaxHealth());
         levelView.updateBossHealth(2, bossPlane2.getHealth(), bossPlane2.getMaxHealth());
         spawnProjectile(babyPlane.fireBullet());
-        levelView.removeHearts(babyPlane.getHealth());
+        levelView.removeBabyHearts(babyPlane.getHealth());
     }
 
     /**

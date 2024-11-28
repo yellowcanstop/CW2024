@@ -46,7 +46,7 @@ public class LevelFourView extends LevelView {
      *
      * @param heartsRemaining - the current number of hearts to be displayed
      */
-    public void removeHearts(int heartsRemaining) {
+    public void removeBabyHearts(int heartsRemaining) {
         int heartsToRemove = babyHeartContainer.getCurrentNumberOfHearts() - heartsRemaining;
         for (int i = 0; i < heartsToRemove; i++) {
             babyHeartContainer.removeHeart();
