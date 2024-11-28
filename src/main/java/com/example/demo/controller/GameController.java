@@ -23,7 +23,8 @@ import com.example.demo.levels.LevelParent;
  * @see <a href="https://www.pragmaticcoding.ca/javafx/elements/listeners">pragmaticcoding.ca/javafx/elements/listeners</a>
  */
 public class GameController implements InvalidationListener {
-	private static final String LEVEL_ONE_CLASS_NAME = "com.example.demo.levels.LevelOne";
+	//private static final String LEVEL_ONE_CLASS_NAME = "com.example.demo.levels.LevelOne";
+	private static final String LEVEL_ONE_CLASS_NAME = "com.example.demo.levels.LevelFour";
 	private final Stage stage;
 	private LevelParent myLevel;
 

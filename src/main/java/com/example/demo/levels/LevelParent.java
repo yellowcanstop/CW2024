@@ -188,6 +188,16 @@ public abstract class LevelParent {
 	}
 
 	/**
+	 * Add a friendly unit to the game level.
+	 *
+	 * @param friend - friendly unit to be added to the game level
+	 */
+	protected void addFriendlyUnit(DestructibleSprite friend) {
+		friendlyUnits.add(friend);
+		root.getChildren().add(friend);
+	}
+
+	/**
 	 * Initialize the timeline for the game level.
 	 */
 	private void initializeTimeline() {

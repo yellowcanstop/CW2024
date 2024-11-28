@@ -1,5 +1,6 @@
 package com.example.demo.levels;
 
+import com.example.demo.models.BabyPlane;
 import com.example.demo.models.BossPlane;
 import com.example.demo.utils.FireAction;
 import com.example.demo.utils.SoundLoader;
@@ -12,6 +13,7 @@ import java.util.Map;
  */
 public class LevelFour extends LevelParent {
     private final LevelFourView levelView;
+    private final BabyPlane babyPlane;
     private final BossPlane bossPlane1;
     private final BossPlane bossPlane2;
     private static final int PLAYER_INITIAL_HEALTH = 10;
@@ -28,6 +30,7 @@ public class LevelFour extends LevelParent {
      */
     public LevelFour(double screenHeight, double screenWidth) {
         super(BACKGROUND3, MUSIC3, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
+        babyPlane = new BabyPlane( 40, 500);
         bossPlane1 = new BossPlane();
         bossPlane2 = new BossPlane();
         this.levelView = new LevelFourView(getRoot(), PLAYER_INITIAL_HEALTH);
@@ -39,6 +42,7 @@ public class LevelFour extends LevelParent {
     @Override
     protected void initializeUnits() {
         super.initializeUnits();
+        addFriendlyUnit(babyPlane);
         getRoot().getChildren().add(bossPlane1.getShield());
         getRoot().getChildren().add(bossPlane2.getShield());
     }
@@ -57,7 +61,7 @@ public class LevelFour extends LevelParent {
      */
     @Override
     protected void checkIfGameOver() {
-        if (userIsDestroyed()) {
+        if (userIsDestroyed() || babyIsDestroyed()) {
             loseGame();
         }
         else if (bossesAreDestroyed()) {
@@ -117,5 +121,14 @@ public class LevelFour extends LevelParent {
      */
     boolean bossesAreDestroyed() {
         return bossPlane1.isDestroyed() && bossPlane2.isDestroyed();
+    }
+
+    /**
+     * Check if the boss planes are destroyed.
+     *
+     * @return true if the boss planes are destroyed, else false
+     */
+    boolean babyIsDestroyed() {
+        return babyPlane.isDestroyed();
     }
 }

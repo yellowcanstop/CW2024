@@ -14,13 +14,13 @@ public class BossPlane extends Plane {
 	private static final int IMAGE_HEIGHT = 200;
 	private static final double INITIAL_X_POSITION = 1000.0;
 	private static final double INITIAL_Y_POSITION = 400;
-	private static final int Y_POSITION_UPPER_BOUND = -50;
-	private static final int Y_POSITION_LOWER_BOUND = 475;
+	private static final int Y_POSITION_UPPER_BOUND = 90;
+	private static final int Y_POSITION_LOWER_BOUND = 490;
 	private static final double PROJECTILE_Y_POSITION_OFFSET = 75.0;
 	private static final double BOSS_FIRE_RATE = .04;
 	private final List<Integer> movePattern;
 	private static final int VERTICAL_VELOCITY = 10;
-	private static final int MOVE_FREQUENCY_PER_CYCLE = 7;
+	private static final int MOVE_FREQUENCY_PER_CYCLE = 10;
 	private static final int ZERO = 0;
 	private static final int MAX_FRAMES_WITH_SAME_MOVE = 10;
 	private final int maxHealth;
