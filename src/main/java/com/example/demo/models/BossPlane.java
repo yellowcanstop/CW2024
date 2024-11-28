@@ -5,7 +5,7 @@ import com.example.demo.utils.SoundLoader;
 import com.example.demo.views.components.Shield;
 
 /**
- * BossPlane sprite for level two of the game.
+ * BossPlane sprite for the game.
  */
 public class BossPlane extends Plane {
 	private final SoundLoader soundLoader;
