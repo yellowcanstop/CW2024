@@ -19,10 +19,11 @@ public class LevelFourView extends LevelView {
     private static final int BOSS_HEALTH_Y_POSITION = 50;
 
     /**
-     * Constructor to create an instance of the view for Level Two.
+     * Constructor to create an instance of the view for Level Four.
      *
      * @param root - group of all nodes to be displayed in the scene
      * @param heartsToDisplay - the initial number of hearts to be displayed
+     * @param babyHeartsToDisplay - the initial number of baby hearts to be displayed
      */
     public LevelFourView(Group root, int heartsToDisplay, int babyHeartsToDisplay) {
         super(root, heartsToDisplay);
@@ -33,7 +34,7 @@ public class LevelFourView extends LevelView {
     }
 
     /**
-     * Show a container of hearts representing the remaining lives of the player.
+     * Show additional heart display for baby plane.
      */
     @Override
     public void showHeartDisplay() {
@@ -42,7 +43,7 @@ public class LevelFourView extends LevelView {
     }
 
     /**
-     * Remove hearts from the heart display.
+     * Remove hearts from baby heart display.
      *
      * @param heartsRemaining - the current number of hearts to be displayed
      */
@@ -52,7 +53,6 @@ public class LevelFourView extends LevelView {
             babyHeartContainer.removeHeart();
         }
     }
-
 
     /**
      * Show the boss health display.

@@ -26,7 +26,7 @@ public class LevelFour extends LevelParent {
     public static final String FIRE_BOMB = "/com/example/demo/sounds/firebomb.wav";
 
     /**
-     * Constructor to create an instance of LevelThree. Initialize the boss planes.
+     * Constructor to create an instance of LevelFour. Initialize the boss planes and baby plane.
      *
      * @param screenHeight - the height of the screen
      * @param screenWidth - the width of the screen
@@ -60,7 +60,7 @@ public class LevelFour extends LevelParent {
     }
 
     /**
-     * Check if user is destroyed or has destroyed the boss planes to win the game.
+     * Check if user is destroyed, baby is destroyed, or has destroyed the boss planes to win the game.
      */
     @Override
     protected void checkIfGameOver() {
@@ -110,7 +110,7 @@ public class LevelFour extends LevelParent {
     }
 
     /**
-     * Update the level view and check if the boss planes are shielded.
+     * Update the level view and states of boss planes and baby plane.
      */
     @Override
     protected void updateLevelView() {
@@ -119,16 +119,16 @@ public class LevelFour extends LevelParent {
         bossPlane2.toggleShieldVisibility();
         levelView.updateBossHealth(1, bossPlane1.getHealth(), bossPlane1.getMaxHealth());
         levelView.updateBossHealth(2, bossPlane2.getHealth(), bossPlane2.getMaxHealth());
-        spawnProjectile(babyPlane.fireBullet());
+        spawnBabyProjectile(babyPlane.fireBullet());
         levelView.removeBabyHearts(babyPlane.getHealth());
     }
 
     /**
-     * Display projectile fired by an enemy unit.
+     * Display projectile fired by the baby plane.
      *
      * @param projectile - the projectile to be displayed
      */
-    public void spawnProjectile(DestructibleSprite projectile) {
+    private void spawnBabyProjectile(DestructibleSprite projectile) {
         if (projectile != null) {
             getRoot().getChildren().add(projectile);
             getUserProjectiles().add(projectile);
@@ -145,9 +145,9 @@ public class LevelFour extends LevelParent {
     }
 
     /**
-     * Check if the boss planes are destroyed.
+     * Check if the baby plane is destroyed.
      *
-     * @return true if the boss planes are destroyed, else false
+     * @return true if the baby plane is destroyed, else false
      */
     boolean babyIsDestroyed() {
         return babyPlane.isDestroyed();

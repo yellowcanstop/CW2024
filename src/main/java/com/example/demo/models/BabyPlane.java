@@ -1,7 +1,6 @@
 package com.example.demo.models;
 
 import com.example.demo.utils.SoundLoader;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -29,9 +28,10 @@ public class BabyPlane extends Plane {
     private int indexOfCurrentMove;
 
     /**
-     * Constructor to create an instance of an EnemyPlane.
+     * Constructor to create an instance of a BabyPlane.
      *
      * @param initialYPos - the initial y coordinate position of the plane
+     * @param health - the health of the plane
      */
     public BabyPlane(double initialYPos, int health) {
         super(BABY_PLANE, IMAGE_HEIGHT, INITIAL_X_POSITION, initialYPos, health);
@@ -43,7 +43,7 @@ public class BabyPlane extends Plane {
     }
 
     /**
-     * Update the position of the enemy plane.
+     * Update the position of the baby plane.
      */
     @Override
     public void updatePosition() {
@@ -56,7 +56,7 @@ public class BabyPlane extends Plane {
     }
 
     /**
-     * Update the enemy plane.
+     * Update the baby plane.
      */
     @Override
     public void updateActor() {
@@ -86,23 +86,23 @@ public class BabyPlane extends Plane {
     }
 
     /**
-     * Hide the plane.
+     * Hide the baby plane.
      */
     public void hide() {
         this.setVisible(false);
     }
 
     /**
-     * Determine if the enemy plane should fire a projectile.
+     * Determine if the baby plane should fire a projectile.
      *
-     * @return true if the enemy plane should fire a projectile, else false
+     * @return true if the baby plane should fire a projectile, else false
      */
     private boolean toFire() {
         return Math.random() < FIRE_RATE;
     }
 
     /**
-     * Initialize the random movement pattern for the boss.
+     * Initialize the random movement pattern for the baby plane.
      */
     private void initializeMovePattern() {
         for (int i = 0; i < MOVE_FREQUENCY_PER_CYCLE; i++) {
@@ -114,7 +114,7 @@ public class BabyPlane extends Plane {
     }
 
     /**
-     * Get the next move for the boss.
+     * Get the next move for the baby plane.
      *
      * @return the integer value of the next move
      */
@@ -133,9 +133,9 @@ public class BabyPlane extends Plane {
     }
 
     /**
-     * Get the initial Y coordinate position for the projectile fired by the boss.
+     * Get the initial Y coordinate position for the projectile fired by the baby plane.
      *
-     * @return the initial Y coordinate position for the projectile fired by the boss
+     * @return the initial Y coordinate position for the projectile fired by the baby plane
      */
     private double getProjectileInitialPosition() {
         return getLayoutY() + getTranslateY() + PROJECTILE_Y_POSITION_OFFSET;
