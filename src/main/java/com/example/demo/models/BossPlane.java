@@ -81,7 +81,7 @@ public class BossPlane extends Plane {
 	@Override
 	public DestructibleSprite fireBullet() {
 		if (toFire()) {
-			return BossBullet.create(getProjectileInitialPosition());
+			return new BossBullet(getProjectileInitialPosition());
 		}
 		return null;
 	}

@@ -215,7 +215,7 @@ public abstract class LevelParent {
 		generateEnemyFire();
 		updateNumberOfEnemies();
 		handleEnemyPenetration();
-		handleOffScreen();
+		//handleOffScreen();
 		handleUserProjectileCollisions();
 		handleEnemyProjectileCollisions();
 		handlePlaneCollisions();
@@ -333,16 +333,6 @@ public abstract class LevelParent {
 		}
 	}
 
-	/**
-	 * Handle projectiles which have moved off the screen by destroying them.
-	 */
-	private void handleOffScreen() {
-		for (DestructibleSprite enemyProjectile : enemyProjectiles) {
-			if (checkOffScreen(enemyProjectile)) {
-				enemyProjectile.destroy();
-			}
-		}
-	}
 
 	/**
 	 * Check if a destructible has moved off the screen.
