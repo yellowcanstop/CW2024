@@ -61,7 +61,7 @@ public abstract class LevelView {
 		root.getChildren().add(winDisplay);
 		winDisplay.show();
 		winDisplay.playSound();
-		EnemyBullet.resetPool();
+		//EnemyBullet.resetPool();
 		showReturnButton();
 	}
 
@@ -72,7 +72,7 @@ public abstract class LevelView {
 		root.getChildren().add(gameOverDisplay);
 		gameOverDisplay.show();
 		gameOverDisplay.playSound();
-		EnemyBullet.resetPool();
+		//EnemyBullet.resetPool();
 		showReturnButton();
 	}
 
