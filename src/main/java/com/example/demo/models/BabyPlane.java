@@ -18,12 +18,12 @@ public class BabyPlane extends Plane {
     private static final int INITIAL_X_POSITION = 40;
     private static final int PROJECTILE_X_POSITION_OFFSET = 70;
     private static final int PROJECTILE_Y_POSITION_OFFSET = 20;
-    private static final double FIRE_RATE = .05;
+    private static final double FIRE_RATE = .08;
     private final List<Integer> movePattern;
     private static final int VERTICAL_VELOCITY = 15;
-    private static final int MOVE_FREQUENCY_PER_CYCLE = 5;
+    private static final int MOVE_FREQUENCY_PER_CYCLE = 10;
     private static final int ZERO = 0;
-    private static final int MAX_FRAMES_WITH_SAME_MOVE = 5;
+    private static final int MAX_FRAMES_WITH_SAME_MOVE = 10;
     private int consecutiveMovesInSameDirection;
     private int indexOfCurrentMove;
 

@@ -18,7 +18,7 @@ public class LevelFour extends LevelParent {
     private final BossPlane bossPlane1;
     private final BossPlane bossPlane2;
     private static final int PLAYER_INITIAL_HEALTH = 10;
-    private static final int BABY_INITIAL_HEALTH = 5;
+    private static final int BABY_INITIAL_HEALTH = 8;
     private static final int BABY_INITIAL_Y_POSITION = 500;
     public static final String BACKGROUND3 = "/com/example/demo/images/generalBG.png";
     public static final String MUSIC3 = "/com/example/demo/sounds/battle.wav";
